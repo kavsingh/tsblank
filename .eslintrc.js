@@ -1,5 +1,5 @@
 module.exports = {
-  env: { node: true, browser: false },
+  env: { es6: true, node: true, browser: false },
   extends: ['eslint:recommended', 'prettier'],
   plugins: ['prettier'],
   rules: {
