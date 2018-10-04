@@ -5,6 +5,7 @@
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "baseUrl": "./",
+    "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
