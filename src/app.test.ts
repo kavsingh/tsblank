@@ -2,7 +2,7 @@ import { app } from './app';
 
 describe('app test', () => {
   it('initializes app', () => {
-    const mockElement = { innerText: null };
+    const mockElement = { innerHTML: null };
     const mockDocument: any = {
       createElement: jest.fn(() => mockElement),
       body: { appendChild: jest.fn() },
@@ -11,7 +11,7 @@ describe('app test', () => {
     app(mockDocument);
 
     expect(mockDocument.createElement).toHaveBeenCalledWith('div');
-    expect(mockElement.innerText).toBe('hello');
+    expect(mockElement.innerHTML).toBe('hello');
     expect(mockDocument.body.appendChild).toHaveBeenCalledWith(mockElement);
   });
 });
