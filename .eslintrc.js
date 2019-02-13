@@ -12,6 +12,7 @@ module.exports = {
   rules: {
     'no-console': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
     'prettier/prettier': 'warn',
   },
   overrides: [
@@ -19,6 +20,7 @@ module.exports = {
       files: ['**/*.test.*'],
       env: { node: true, 'jest/globals': true },
       rules: {
+        'no-console': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
         'jest/no-disabled-tests': 'error',
@@ -30,6 +32,7 @@ module.exports = {
       env: { node: false, browser: true },
       rules: {
         'no-console': 'error',
+        '@typescript-eslint/no-var-requires': 'error',
       },
     },
   ],
