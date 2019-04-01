@@ -10,7 +10,8 @@
     "build": "rm -rf ./dist && NODE_ENV=production webpack"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.4.0"
+    "@babel/polyfill": "^7.4.0",
+    "core-js": "3"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
