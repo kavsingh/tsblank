@@ -3,12 +3,11 @@ module.exports = ({ env }) => ({
     [
       '@babel/preset-env',
       {
-        corejs: 3,
-        modules: false,
-        useBuiltIns: 'usage',
-        shippedProposals: true,
         loose: true,
-        ...(env('test') ? { modules: 'commonjs', useBuiltIns: false } : {}),
+        shippedProposals: true,
+        ...(env('test')
+          ? { modules: 'commonjs', useBuiltIns: false }
+          : { modules: false, useBuiltIns: 'usage', corejs: 3 }),
       },
     ],
     '@babel/preset-typescript',

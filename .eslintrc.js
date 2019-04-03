@@ -21,6 +21,10 @@ module.exports = {
       env: { node: true, 'jest/globals': true },
       rules: {
         'no-console': 'off',
+        '@typescript-eslint/explicit-function-return-type': [
+          'warn',
+          { allowExpressions: true },
+        ],
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
         'jest/no-disabled-tests': 'error',
