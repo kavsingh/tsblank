@@ -19,7 +19,7 @@ const config: Configuration = {
   module: {
     rules: [
       {
-        test: /\.[jt]s$/,
+        test: /\.[jt]sx?$/,
         exclude: fromRoot('node_modules'),
         use: [{ loader: 'babel-loader' }],
       },
@@ -38,7 +38,7 @@ const config: Configuration = {
     }),
   ],
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
 };
 

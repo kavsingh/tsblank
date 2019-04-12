@@ -5,7 +5,7 @@ module.exports = {
     '^.+\\.[jt]sx?$': '<rootDir>/node_modules/babel-jest',
   },
   moduleDirectories: ['node_modules', 'src'],
-  moduleFileExtensions: ['ts', 'js', 'json'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   moduleNameMapper: {
     '^~/(.*)': '<rootDir>/src/$1',
   },
