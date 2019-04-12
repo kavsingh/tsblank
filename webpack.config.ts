@@ -1,12 +1,12 @@
-const path = require('path');
-const { EnvironmentPlugin } = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import path from 'path';
+import { Configuration, EnvironmentPlugin } from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-const fromRoot = path.resolve.bind(path, __dirname);
+const fromRoot = path.resolve.bind(null, __dirname);
 const isProduction = process.env.NODE_ENV === 'production';
 const publicPath = '';
 
-module.exports = {
+const config: Configuration = {
   mode: isProduction ? 'production' : 'development',
   entry: {
     app: ['./src/index.ts'],
@@ -38,6 +38,8 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['.js', '.ts'],
+    extensions: ['.ts', '.js'],
   },
 };
+
+export default config;

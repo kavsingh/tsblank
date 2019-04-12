@@ -20,6 +20,7 @@
     "noStrictGenericChecks": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "paths": { "~/*": ["src/*"] },
     "pretty": true,
     "rootDir": "./",
     "skipLibCheck": true,

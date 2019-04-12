@@ -12,4 +12,11 @@ module.exports = ({ env }) => ({
     ],
     '@babel/preset-typescript',
   ],
+  plugins: [
+    '@babel/plugin-proposal-class-properties',
+    [
+      'babel-plugin-module-resolver',
+      { alias: { '~': './src' }, extensions: ['.ts', '.js'] },
+    ],
+  ],
 });

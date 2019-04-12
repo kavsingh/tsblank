@@ -5,7 +5,10 @@ module.exports = {
     '^.+\\.[jt]sx?$': '<rootDir>/node_modules/babel-jest',
   },
   moduleDirectories: ['node_modules', 'src'],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  moduleFileExtensions: ['ts', 'js', 'json'],
+  moduleNameMapper: {
+    '^~/(.*)': '<rootDir>/src/$1',
+  },
   coverageReporters: ['lcov'],
   coveragePathIgnorePatterns: ['/node_modules/'],
 };
