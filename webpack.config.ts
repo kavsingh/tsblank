@@ -1,12 +1,12 @@
 import path from 'path';
 import { Configuration, EnvironmentPlugin } from 'webpack';
+import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
+const publicPath = '/';
 const fromRoot = path.resolve.bind(null, __dirname);
 const isProduction = process.env.NODE_ENV === 'production';
-const publicPath = '';
-
-const config: Configuration = {
+const config: Configuration & { devServer?: WebpackDevServerConfiguration } = {
   mode: isProduction ? 'production' : 'development',
   entry: {
     app: ['./src/index.ts'],
@@ -29,6 +29,8 @@ const config: Configuration = {
     host: 'localhost',
     port: 3000,
   },
+  // TODO: kiv typing updates
+  // @ts-ignore
   plugins: [
     new EnvironmentPlugin({ NODE_ENV: 'development' }),
     new HtmlWebpackPlugin({

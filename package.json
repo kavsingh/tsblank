@@ -10,18 +10,18 @@
     "build": "rm -rf ./dist && NODE_ENV=production TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\", \"isolatedModules\":false}' webpack"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.4.3",
+    "@babel/polyfill": "^7.4.4",
     "core-js": "^3.0.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.3",
-    "@babel/core": "^7.4.3",
-    "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "@babel/preset-env": "^7.4.3",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
     "@babel/preset-typescript": "^7.3.3",
     "@types/html-webpack-plugin": "^3.2.0",
-    "@types/jest": "^24.0.11",
-    "@types/webpack": "^4.4.27",
+    "@types/jest": "^24.0.12",
+    "@types/webpack": "^4.4.29",
     "@types/webpack-dev-server": "^3.1.5",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
