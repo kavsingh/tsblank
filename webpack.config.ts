@@ -29,8 +29,6 @@ const config: Configuration & { devServer?: WebpackDevServerConfiguration } = {
     host: 'localhost',
     port: 3000,
   },
-  // TODO: kiv typing updates
-  // @ts-ignore
   plugins: [
     new EnvironmentPlugin({ NODE_ENV: 'development' }),
     new HtmlWebpackPlugin({
