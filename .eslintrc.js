@@ -29,7 +29,7 @@ module.exports = {
       },
     },
     {
-      files: ['src/**'],
+      files: ['src/**/*'],
       env: { node: false, browser: true },
       rules: {
         'no-console': 'error',

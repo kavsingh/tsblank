@@ -16,7 +16,7 @@ module.exports = ({ env }) => ({
     '@babel/plugin-proposal-class-properties',
     [
       'babel-plugin-module-resolver',
-      { alias: { '~': './src' }, extensions: ['.ts', '.tsx', '.js', '.jsx'] },
+      { alias: { '~': './src' }, extensions: ['.ts', '.js'] },
     ],
   ],
 });

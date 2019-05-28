@@ -19,7 +19,7 @@ const config: Configuration & { devServer?: WebpackDevServerConfiguration } = {
   module: {
     rules: [
       {
-        test: /\.[jt]sx?$/,
+        test: /\.[jt]s?$/,
         exclude: fromRoot('node_modules'),
         use: [{ loader: 'babel-loader' }],
       },
@@ -40,7 +40,7 @@ const config: Configuration & { devServer?: WebpackDevServerConfiguration } = {
     }),
   ],
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    extensions: ['.ts', '.js'],
   },
 };
 

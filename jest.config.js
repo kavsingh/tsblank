@@ -1,11 +1,11 @@
 module.exports = {
   verbose: true,
-  testRegex: '^.+\\.test\\.[jt]sx?$',
+  testRegex: '^.+\\.test\\.[jt]s?$',
   transform: {
-    '^.+\\.[jt]sx?$': '<rootDir>/node_modules/babel-jest',
+    '^.+\\.[jt]s?$': '<rootDir>/node_modules/babel-jest',
   },
   moduleDirectories: ['node_modules', 'src'],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
+  moduleFileExtensions: ['ts', 'js', 'json'],
   moduleNameMapper: {
     '^~/(.*)': '<rootDir>/src/$1',
   },
