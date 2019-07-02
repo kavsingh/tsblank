@@ -37,6 +37,15 @@ module.exports = {
   },
   overrides: [
     {
+      files: ['src/**/*'],
+      env: { node: false, browser: true },
+      rules: {
+        'no-console': 'error',
+        '@typescript-eslint/no-var-requires': 'error',
+        'import/no-extraneous-dependencies': ['error', srcDependencies],
+      },
+    },
+    {
       files: ['**/*.test.*'],
       env: { node: true, 'jest/globals': true },
       rules: {
@@ -44,15 +53,6 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
         'import/no-extraneous-dependencies': ['error', devDependencies],
-      },
-    },
-    {
-      files: ['src/**/*'],
-      env: { node: false, browser: true },
-      rules: {
-        'no-console': 'error',
-        '@typescript-eslint/no-var-requires': 'error',
-        'import/no-extraneous-dependencies': ['error', srcDependencies],
       },
     },
   ],
