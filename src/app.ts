@@ -1,3 +1,5 @@
-export const app = (appMount: HTMLElement): void => {
-  appMount.innerHTML = 'hello';
+export default (appRoot: HTMLElement | null): void => {
+  if (!appRoot) throw new Error('Could not find root element');
+
+  appRoot.innerHTML = 'hello';
 };

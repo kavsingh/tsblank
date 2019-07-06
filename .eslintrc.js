@@ -14,7 +14,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   env: { es6: true, node: true, browser: false },
   settings: { 'import/resolver': 'babel-module' },
-  plugins: ['@typescript-eslint', 'import', 'jest', 'prettier'],
+  plugins: ['@typescript-eslint', 'filenames', 'import', 'jest', 'prettier'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -29,6 +29,8 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/no-var-requires': 'off',
+    'filenames/match-regex': ['error', '^[a-z-.]+$', true],
+    'filenames/match-exported': ['error', 'kebab'],
     'import/no-cycle': 'error',
     'import/no-self-import': 'error',
     'import/no-useless-path-segments': 'error',
