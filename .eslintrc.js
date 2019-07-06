@@ -39,6 +39,12 @@ module.exports = {
   },
   overrides: [
     {
+      files: ['*.config.*'],
+      rules: {
+        'filenames/match-exported': 'off',
+      },
+    },
+    {
       files: ['src/**/*'],
       env: { node: false, browser: true },
       rules: {

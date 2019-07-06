@@ -5,7 +5,8 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 const publicPath = '/';
 const fromRoot = path.resolve.bind(null, __dirname);
 const isProduction = process.env.NODE_ENV === 'production';
-const config: Configuration = {
+
+const configuration: Configuration = {
   mode: isProduction ? 'production' : 'development',
   entry: {
     app: ['./src/index.ts'],
@@ -41,4 +42,4 @@ const config: Configuration = {
   },
 };
 
-export default config;
+export default configuration;
