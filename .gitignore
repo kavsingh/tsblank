@@ -1,10 +1,11 @@
 .DS_Store
 
-/node_modules
+node_modules/
 *.log
 *.log.*
 
-.vscode
-.idea
+.idea/
+.vscode/*
+!.vscode/extensions.json
 
-/dist
+dist/
