@@ -1,12 +1,13 @@
 import path from 'path';
 import { Configuration, EnvironmentPlugin } from 'webpack';
+import { Configuration as DevServerConfiguration } from 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const publicPath = '/';
 const fromRoot = path.resolve.bind(null, __dirname);
 const isProduction = process.env.NODE_ENV === 'production';
 
-const configuration: Configuration = {
+const configuration: Configuration & { devServer?: DevServerConfiguration } = {
   mode: isProduction ? 'production' : 'development',
   entry: {
     app: ['./src/index.ts'],
