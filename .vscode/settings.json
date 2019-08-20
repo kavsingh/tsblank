@@ -1,4 +1,15 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "eslint.validate": ["javascript", "typescript"]
+  "editor.formatOnSave": true,
+  "eslint.enable": true,
+  "eslint.validate": ["javascript", "typescript"],
+  "files.watcherExclude": {
+    "**/node_modules": true,
+    "**/dist/": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist/": true
+  },
+  "tslint.enable": false,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
