@@ -27,7 +27,10 @@ module.exports = {
   rules: {
     'no-console': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/interface-name-prefix': 'off',
+    '@typescript-eslint/interface-name-prefix': [
+      'error',
+      { prefixWithI: 'never' },
+    ],
     '@typescript-eslint/no-var-requires': 'off',
     'filenames/match-regex': ['error', '^[a-z-.]+$', true],
     'filenames/match-exported': ['error', 'kebab'],
