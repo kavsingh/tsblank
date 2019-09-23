@@ -12,7 +12,6 @@ const devDependencies = {
 
 module.exports = {
   parser: '@typescript-eslint/parser',
-  parserOptions: { project: './tsconfig.json' },
   env: { es6: true, node: true, browser: false },
   settings: { 'import/resolver': 'babel-module' },
   plugins: ['@typescript-eslint', 'filenames', 'import', 'jest', 'prettier'],
@@ -20,7 +19,6 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:import/recommended',
     'plugin:import/typescript',
     'plugin:jest/recommended',
