@@ -10,13 +10,15 @@
     "build": "rm -rf ./dist && NODE_ENV=production TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\", \"isolatedModules\":false}' webpack"
   },
   "dependencies": {
-    "core-js": "3.4.1",
+    "core-js": "3.4.2",
     "regenerator-runtime": "0.13.3"
   },
   "devDependencies": {
     "@babel/cli": "7.7.0",
     "@babel/core": "7.7.2",
     "@babel/plugin-proposal-class-properties": "7.7.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "7.4.4",
+    "@babel/plugin-proposal-optional-chaining": "7.6.0",
     "@babel/preset-env": "7.7.1",
     "@babel/preset-typescript": "7.7.2",
     "@types/html-webpack-plugin": "3.2.1",
