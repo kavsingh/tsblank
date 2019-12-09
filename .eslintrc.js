@@ -28,6 +28,8 @@ module.exports = {
   ],
   rules: {
     'no-console': 'off',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['warn', { varsIgnorePattern: '^_' }],
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-var-requires': 'off',
     'filenames/match-regex': ['error', '^[a-z-.]+$', true],
