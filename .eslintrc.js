@@ -27,17 +27,37 @@ module.exports = {
     'prettier/@typescript-eslint',
   ],
   rules: {
+    'camelcase': 'off',
     'no-console': 'off',
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': ['warn', { varsIgnorePattern: '^_' }],
+    '@typescript-eslint/camelcase': ['error', { properties: 'never' }],
     '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-member-accessibility': 'off',
     '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { argsIgnorePattern: '^_', varsIgnorePattern: '[iI]gnored' },
+    ],
     'filenames/match-regex': ['error', '^[a-z-.]+$', true],
     'filenames/match-exported': ['error', 'kebab'],
     'import/no-cycle': 'error',
     'import/no-self-import': 'error',
+    'import/no-unused-modules': 'error',
     'import/no-useless-path-segments': 'error',
     'import/no-extraneous-dependencies': ['error', devDependencies],
+    'import/order': [
+      'warn',
+      {
+        'groups': [
+          'builtin',
+          'external',
+          'internal',
+          ['parent', 'sibling', 'index'],
+        ],
+        'pathGroups': [{ pattern: '~/**', group: 'internal' }],
+        'newlines-between': 'always',
+      },
+    ],
     'prettier/prettier': 'warn',
   },
   overrides: [
@@ -58,7 +78,7 @@ module.exports = {
     },
     {
       files: ['**/*.test.*'],
-      env: { node: true, 'jest/globals': true },
+      env: { 'node': true, 'jest/globals': true },
       rules: {
         'no-console': 'off',
         '@typescript-eslint/no-explicit-any': 'off',

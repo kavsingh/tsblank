@@ -1,4 +1,5 @@
 import path from 'path';
+
 import { Configuration, EnvironmentPlugin } from 'webpack';
 import { Configuration as DevServerConfiguration } from 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
