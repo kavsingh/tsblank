@@ -1,21 +1,23 @@
 import path from 'path';
 
-import { Configuration, EnvironmentPlugin } from 'webpack';
-import { Configuration as DevServerConfiguration } from 'webpack-dev-server';
+import { ConfigurationFactory } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-const publicPath = '/';
-const fromRoot = path.resolve.bind(null, __dirname);
-const isProduction = process.env.NODE_ENV === 'production';
+const envMatches = (matcher: RegExp) => (
+  env?: Parameters<ConfigurationFactory>[0],
+) => matcher.test(typeof env === 'string' ? env : String(env?.NODE_ENV));
 
-const configuration: Configuration & { devServer?: DevServerConfiguration } = {
-  mode: isProduction ? 'production' : 'development',
+const fromRoot = path.resolve.bind(null, __dirname);
+const isProd = envMatches(/production/);
+
+const configuration: ConfigurationFactory = (env) => ({
+  mode: isProd(env) ? 'production' : 'development',
+  devtool: isProd(env) ? 'source-map' : 'inline-source-map',
   entry: {
     app: ['./src/index.ts'],
   },
   output: {
-    publicPath,
-    filename: isProduction ? '[name].[chunkhash].js' : '[name].js',
+    filename: isProd(env) ? '[name].[chunkhash].js' : '[name].js',
     path: fromRoot('dist'),
   },
   module: {
@@ -29,10 +31,10 @@ const configuration: Configuration & { devServer?: DevServerConfiguration } = {
   },
   devServer: {
     host: 'localhost',
+    hot: true,
     port: 3000,
   },
   plugins: [
-    new EnvironmentPlugin({ NODE_ENV: 'development' }),
     new HtmlWebpackPlugin({
       title: 'app',
       template: fromRoot('src/index.html'),
@@ -42,6 +44,6 @@ const configuration: Configuration & { devServer?: DevServerConfiguration } = {
   resolve: {
     extensions: ['.ts', '.js'],
   },
-};
+});
 
 export default configuration;

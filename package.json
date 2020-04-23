@@ -6,8 +6,9 @@
   "scripts": {
     "test": "jest",
     "lint": "tsc && eslint . --ext .ts,.js",
-    "dev": "NODE_ENV=development TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\", \"isolatedModules\":false}' webpack-dev-server",
-    "build": "rm -rf ./dist && NODE_ENV=production TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\", \"isolatedModules\":false}' webpack"
+    "dev": "TS_NODE_PROJECT='./tsconfig.ts-node.json' webpack-dev-server --env.NODE_ENV=development",
+    "prebuild": "rm -rf ./dist",
+    "build": "TS_NODE_PROJECT='./tsconfig.ts-node.json' webpack --env.NODE_ENV=production"
   },
   "dependencies": {
     "@babel/runtime": "7.9.2",
