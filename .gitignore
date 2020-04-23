@@ -4,9 +4,9 @@ node_modules/
 *.log
 *.log.*
 
-.idea/
-.vscode/*
-!.vscode/extensions.json
-!.vscode/settings.json
+/.vscode
+!/.vscode/extensions.json
+!/.vscode/settings.json
 
-dist/
+/dist
+/coverage
