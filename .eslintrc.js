@@ -28,6 +28,7 @@ module.exports = {
   ],
   rules: {
     'camelcase': 'off',
+    'curly': ['warn', 'multi-line', 'consistent'],
     'no-console': 'off',
     'no-unused-vars': 'off',
     '@typescript-eslint/camelcase': ['error', { properties: 'never' }],
