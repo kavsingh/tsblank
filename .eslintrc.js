@@ -11,6 +11,7 @@ const devDependencies = {
 };
 
 module.exports = {
+  root: true,
   parser: '@typescript-eslint/parser',
   env: { es6: true, node: true, browser: false },
   settings: { 'import/resolver': 'babel-module' },
