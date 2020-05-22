@@ -19,7 +19,6 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
     'plugin:jest/recommended',
@@ -32,8 +31,6 @@ module.exports = {
     'curly': ['warn', 'multi-line', 'consistent'],
     'no-console': 'off',
     'no-unused-vars': 'off',
-    '@typescript-eslint/camelcase': ['error', { properties: 'never' }],
-    '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-unused-vars': [
