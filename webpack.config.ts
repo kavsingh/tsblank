@@ -1,16 +1,14 @@
 import path from 'path';
 
-import { ConfigurationFactory } from 'webpack';
+import { Configuration } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-const envMatches = (matcher: RegExp) => (
-  env?: Parameters<ConfigurationFactory>[0],
-) => matcher.test(typeof env === 'string' ? env : String(env?.NODE_ENV));
+const envMatches = (matcher: RegExp) => (env = '') => matcher.test(env);
 
 const fromRoot = path.resolve.bind(null, __dirname);
 const isProd = envMatches(/production/);
 
-const configuration: ConfigurationFactory = (env) => ({
+const configuration = (env: string): Configuration => ({
   mode: isProd(env) ? 'production' : 'development',
   devtool: isProd(env) ? 'source-map' : 'inline-source-map',
   entry: {
