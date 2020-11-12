@@ -15,14 +15,12 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   env: { es6: true, node: true, browser: false },
   settings: { 'import/resolver': 'babel-module' },
-  plugins: ['@typescript-eslint', 'filenames', 'import', 'jest', 'prettier'],
+  plugins: ['@typescript-eslint', 'filenames', 'import', 'prettier'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
-    'plugin:jest/recommended',
-    'plugin:jest/style',
     'prettier',
     'prettier/@typescript-eslint',
   ],
@@ -76,6 +74,8 @@ module.exports = {
     {
       files: ['**/*.test.*'],
       env: { 'node': true, 'jest/globals': true },
+      plugins: ['jest'],
+      extends: ['plugin:jest/recommended', 'plugin:jest/style'],
       rules: {
         'no-console': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
