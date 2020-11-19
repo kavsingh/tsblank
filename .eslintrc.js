@@ -31,7 +31,7 @@ module.exports = {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',
-      { argsIgnorePattern: '^_', varsIgnorePattern: '[iI]gnored' },
+      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
     ],
     'filenames/match-regex': ['error', '^[a-z-.]+$', true],
     'filenames/match-exported': ['error', 'kebab'],
