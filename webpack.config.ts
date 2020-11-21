@@ -10,6 +10,7 @@ const isProd = envMatches(/production/);
 
 const configuration = (env: string): Configuration => ({
   mode: isProd(env) ? 'production' : 'development',
+  target: 'web',
   devtool: isProd(env) ? 'source-map' : 'inline-source-map',
   entry: {
     app: ['./src/index.ts'],
@@ -29,8 +30,8 @@ const configuration = (env: string): Configuration => ({
   },
   devServer: {
     host: 'localhost',
-    hot: true,
     port: 3000,
+    contentBase: './dist',
   },
   plugins: [
     new HtmlWebpackPlugin({
