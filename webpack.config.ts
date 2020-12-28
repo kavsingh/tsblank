@@ -1,14 +1,12 @@
 import path from 'path';
 
-import { Configuration } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-
-const envMatches = (matcher: RegExp) => (env = '') => matcher.test(env);
+import type { Configuration } from 'webpack';
 
 const fromRoot = path.resolve.bind(null, __dirname);
-const isProd = envMatches(/production/);
+const isProd = (env: Record<string, unknown>) => env.production === true;
 
-const configuration = (env: string): Configuration => ({
+const configuration = (env: Record<string, unknown>): Configuration => ({
   mode: isProd(env) ? 'production' : 'development',
   target: 'web',
   devtool: isProd(env) ? 'source-map' : 'inline-source-map',
