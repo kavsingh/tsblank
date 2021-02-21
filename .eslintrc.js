@@ -22,7 +22,6 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:import/typescript',
     'prettier',
-    'prettier/@typescript-eslint',
   ],
   rules: {
     'camelcase': 'off',
