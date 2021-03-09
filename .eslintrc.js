@@ -15,13 +15,13 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   env: { es6: true, node: true, browser: false },
   settings: { 'import/resolver': 'babel-module' },
-  plugins: ['@typescript-eslint', 'filenames', 'import', 'prettier'],
+  plugins: ['filenames'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
-    'prettier',
+    'plugin:prettier/recommended',
   ],
   rules: {
     'camelcase': 'off',

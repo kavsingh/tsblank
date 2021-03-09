@@ -12,10 +12,10 @@ module.exports = ({ env }) => ({
     '@babel/preset-typescript',
   ],
   plugins: [
-    ['@babel/plugin-transform-runtime', { regenerator: true }],
     [
       'babel-plugin-module-resolver',
       { alias: { '~': './src' }, extensions: ['.ts', '.js'] },
     ],
+    ['@babel/plugin-transform-runtime', { regenerator: true }],
   ],
 });
