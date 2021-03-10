@@ -43,6 +43,7 @@
   "include": [
     "./src",
     "./*.config.ts",
-    "./*.config.js"
+    "./*.config.js",
+    "webpack.config.babel.ts"
   ]
 }

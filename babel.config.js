@@ -6,7 +6,7 @@ module.exports = ({ env }) => ({
         useBuiltIns: 'usage',
         shippedProposals: true,
         corejs: 3,
-        modules: env('test') ? 'commonjs' : false,
+        modules: env('test') || process.env.BABEL_NODE ? 'commonjs' : false,
       },
     ],
     '@babel/preset-typescript',
