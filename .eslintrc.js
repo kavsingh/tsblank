@@ -14,10 +14,7 @@ module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
   env: { es6: true, node: true, browser: false },
-  settings: {
-    'import/resolver': 'babel-module',
-    'import/internal-regex': '^~',
-  },
+  settings: { 'import/resolver': 'babel-module' },
   plugins: ['filenames'],
   extends: [
     'eslint:recommended',
