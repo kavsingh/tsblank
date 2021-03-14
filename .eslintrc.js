@@ -14,7 +14,10 @@ module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
   env: { es6: true, node: true, browser: false },
-  settings: { 'import/resolver': 'babel-module' },
+  settings: {
+    'import/resolver': 'babel-module',
+    'import/internal-regex': '^~',
+  },
   plugins: ['filenames'],
   extends: [
     'eslint:recommended',
@@ -32,7 +35,7 @@ module.exports = {
       'error',
       { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
     ],
-    'filenames/match-regex': ['error', '^[a-z-.]+$', true],
+    'filenames/match-regex': ['error', '^[a-z0-9-.]+$', true],
     'filenames/match-exported': ['error', 'kebab'],
     'import/no-cycle': 'error',
     'import/no-self-import': 'error',
@@ -48,7 +51,6 @@ module.exports = {
           'internal',
           ['parent', 'sibling', 'index'],
         ],
-        'pathGroups': [{ pattern: '~/**', group: 'internal' }],
         'newlines-between': 'always',
       },
     ],
