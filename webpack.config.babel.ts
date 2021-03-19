@@ -21,7 +21,7 @@ const configuration: ConfigurationFactory = (env) => ({
   module: {
     rules: [
       {
-        test: /\.[jt]s?$/,
+        test: /\.[jt]s$/,
         exclude: fromRoot('node_modules'),
         use: [{ loader: 'babel-loader' }],
       },
