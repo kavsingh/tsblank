@@ -1,12 +1,13 @@
 import path from 'path';
 
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import type { Configuration } from 'webpack';
+import type { ConfigurationFactory } from 'webpack';
 
 const fromRoot = path.resolve.bind(null, __dirname);
-const isProd = (env: Record<string, unknown>) => env.production === true;
+const isProd = (env: Parameters<ConfigurationFactory>[0]) =>
+  typeof env === 'string' ? env === 'production' : !!env?.production;
 
-const configuration = (env: Record<string, unknown>): Configuration => ({
+const configuration: ConfigurationFactory = (env) => ({
   mode: isProd(env) ? 'production' : 'development',
   target: 'web',
   devtool: isProd(env) ? 'source-map' : 'inline-source-map',
