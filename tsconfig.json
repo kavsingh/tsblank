@@ -1,12 +1,8 @@
 {
   "compilerOptions": {
-    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "baseUrl": "./",
     "esModuleInterop": true,
-    "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "lib": [
@@ -14,21 +10,15 @@
       "dom"
     ],
     "module": "esnext",
-    "moduleResolution": "node",
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
-    "noStrictGenericChecks": false,
     "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "paths": {
       "~/*": [
-        "src/*"
+        "./src/*"
       ]
     },
-    "pretty": true,
-    "rootDir": "./",
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
@@ -39,8 +29,6 @@
   ],
   "include": [
     "./src",
-    "./*.config.ts",
-    "./*.config.js",
-    "webpack.config.babel.ts"
+    "./*.ts",
   ]
 }
