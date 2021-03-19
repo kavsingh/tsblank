@@ -14,7 +14,7 @@ const configuration = (env: Record<string, unknown>): Configuration => ({
     app: ['./src/index.ts'],
   },
   output: {
-    filename: isProd(env) ? '[name].[chunkhash].js' : '[name].js',
+    filename: isProd(env) ? '[name].[contenthash].js' : '[name].js',
     path: fromRoot('dist'),
   },
   module: {
