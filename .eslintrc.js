@@ -59,6 +59,7 @@ module.exports = {
       files: ['*.config.*'],
       rules: {
         'filenames/match-exported': 'off',
+        '@typescript-eslint/no-var-requires': 'off',
       },
     },
     {
@@ -66,7 +67,6 @@ module.exports = {
       env: { node: false, browser: true },
       rules: {
         'no-console': 'error',
-        '@typescript-eslint/no-var-requires': 'error',
         'import/no-extraneous-dependencies': ['error', srcDependencies],
       },
     },
