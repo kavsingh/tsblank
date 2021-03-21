@@ -10,9 +10,9 @@
   "scripts": {
     "test": "jest",
     "lint": "tsc && eslint .",
-    "dev": "BABEL_NODE=true webpack serve --env development",
+    "dev": "webpack serve --env development",
     "prebuild": "rm -rf ./dist",
-    "build": "BABEL_NODE=true webpack --env production"
+    "build": "webpack --env production"
   },
   "dependencies": {
     "@babel/runtime": "7.13.10",

@@ -1,4 +1,4 @@
-module.exports = ({ env }) => ({
+module.exports = {
   presets: [
     [
       '@babel/preset-env',
@@ -6,7 +6,6 @@ module.exports = ({ env }) => ({
         useBuiltIns: 'usage',
         shippedProposals: true,
         corejs: 3,
-        modules: env('test') || process.env.BABEL_NODE ? 'commonjs' : false,
       },
     ],
     '@babel/preset-typescript',
@@ -18,4 +17,4 @@ module.exports = ({ env }) => ({
     ],
     ['@babel/plugin-transform-runtime', { regenerator: true }],
   ],
-});
+};

@@ -8,8 +8,8 @@ const isProd = (env: Parameters<ConfigurationFactory>[0]) =>
   typeof env === 'string' ? env === 'production' : !!env?.production;
 
 const configuration: ConfigurationFactory = (env) => ({
-  mode: isProd(env) ? 'production' : 'development',
   target: 'web',
+  mode: isProd(env) ? 'production' : 'development',
   devtool: isProd(env) ? 'source-map' : 'inline-source-map',
   entry: {
     app: ['./src/index.ts'],
