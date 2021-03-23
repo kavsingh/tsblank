@@ -1,7 +1,11 @@
 import path from 'path';
 
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import type { ConfigurationFactory } from 'webpack';
+import type { Configuration } from 'webpack';
+
+type ConfigurationFactory = (
+  env?: string | Record<string, unknown>,
+) => Configuration;
 
 const fromRoot = path.resolve.bind(null, __dirname);
 const isProd = (env: Parameters<ConfigurationFactory>[0]) =>
