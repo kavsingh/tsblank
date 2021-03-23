@@ -27,8 +27,16 @@ module.exports = {
     'camelcase': 'off',
     'curly': ['warn', 'multi-line', 'consistent'],
     'no-console': 'off',
+    'no-shadow': 'off',
     'no-unused-vars': 'off',
     '@typescript-eslint/consistent-type-imports': ['error'],
+    '@typescript-eslint/no-shadow': [
+      'error',
+      {
+        ignoreTypeValueShadow: false,
+        ignoreFunctionTypeParameterNameValueShadow: true,
+      },
+    ],
     '@typescript-eslint/no-unused-vars': [
       'error',
       { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
