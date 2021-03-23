@@ -28,6 +28,7 @@ module.exports = {
     'curly': ['warn', 'multi-line', 'consistent'],
     'no-console': 'off',
     'no-unused-vars': 'off',
+    '@typescript-eslint/consistent-type-imports': ['error'],
     '@typescript-eslint/no-unused-vars': [
       'error',
       { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
