@@ -39,8 +39,11 @@ const configuration: ConfigurationFactory = (env) => ({
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin({
-      typescript: { mode: 'write-references' },
-      eslint: { files: 'src/**/*.{ts,tsx,js,jsx}' },
+      typescript: {
+        mode: 'write-references',
+        configOverwrite: { include: ['./src'] },
+      },
+      eslint: { files: 'src/**/*.{ts,js}' },
     }),
     new HtmlWebpackPlugin({
       title: 'app',
