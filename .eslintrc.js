@@ -14,13 +14,18 @@ module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
   env: { es6: true, node: true, browser: false },
-  settings: { 'import/resolver': 'babel-module' },
-  plugins: ['filenames'],
+  settings: {
+    'react': { version: 'detect' },
+    'import/resolver': 'babel-module',
+  },
+  plugins: ['filenames', '@emotion'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
   ],
   rules: {
@@ -62,6 +67,11 @@ module.exports = {
         'newlines-between': 'always',
       },
     ],
+    'react/jsx-filename-extension': ['error', { extensions: ['.tsx', '.jsx'] }],
+    'react/jsx-uses-react': 'off',
+    'react/prop-types': 'off',
+    'react/react-in-jsx-scope': 'off',
+    '@emotion/syntax-preference': ['error', 'string'],
     'prettier/prettier': 'warn',
   },
   overrides: [

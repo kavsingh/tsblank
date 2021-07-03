@@ -18,7 +18,7 @@ const configuration: ConfigurationFactory = (env) => ({
   mode: isProd(env) ? 'production' : 'development',
   devtool: isProd(env) ? 'source-map' : 'inline-source-map',
   entry: {
-    app: ['./src/index.ts'],
+    app: ['./src/index.tsx'],
   },
   output: {
     filename: isProd(env) ? '[name].[contenthash].js' : '[name].js',
@@ -27,7 +27,7 @@ const configuration: ConfigurationFactory = (env) => ({
   module: {
     rules: [
       {
-        test: /\.[jt]s$/,
+        test: /\.[jt]sx?$/,
         exclude: fromRoot('node_modules'),
         use: [{ loader: 'babel-loader' }],
       },
@@ -44,7 +44,7 @@ const configuration: ConfigurationFactory = (env) => ({
         mode: 'write-references',
         configOverwrite: { include: ['./src'] },
       },
-      eslint: { files: 'src/**/*.{ts,js}' },
+      eslint: { files: 'src/**/*.{ts,tsx,js,jsx}' },
     }),
     new HtmlWebpackPlugin({
       title: 'app',
@@ -53,7 +53,7 @@ const configuration: ConfigurationFactory = (env) => ({
     }),
   ],
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
 });
 

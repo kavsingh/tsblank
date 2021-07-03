@@ -5,6 +5,8 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
+    "jsx": "preserve",
+    "jsxImportSource": "@emotion/react",
     "lib": [
       "esnext",
       "dom"
@@ -20,6 +22,12 @@
         "./src/*"
       ]
     },
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin",
+        "validate": false
+      }
+    ],
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
