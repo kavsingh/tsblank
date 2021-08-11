@@ -10,38 +10,24 @@ const devDependencies = {
   peerDependencies: false,
 };
 
+const testFilePatterns = (extensions = '*') =>
+  ['**/*.test', '**/*.mock', '**/__test__/**/*', '**/__mocks__/**/*'].map(
+    (pattern) => `${pattern}.${extensions}`,
+  );
+
 module.exports = {
   root: true,
-  parser: '@typescript-eslint/parser',
   env: { es6: true, node: true, browser: false },
   settings: { 'import/resolver': 'babel-module' },
   plugins: ['filenames'],
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
     'plugin:import/recommended',
-    'plugin:import/typescript',
     'plugin:prettier/recommended',
   ],
   rules: {
-    'camelcase': 'off',
     'curly': ['warn', 'multi-line', 'consistent'],
     'no-console': 'off',
-    'no-shadow': 'off',
-    'no-unused-vars': 'off',
-    '@typescript-eslint/consistent-type-imports': ['error'],
-    '@typescript-eslint/member-ordering': ['warn'],
-    '@typescript-eslint/no-shadow': [
-      'error',
-      {
-        ignoreTypeValueShadow: false,
-        ignoreFunctionTypeParameterNameValueShadow: true,
-      },
-    ],
-    '@typescript-eslint/no-unused-vars': [
-      'error',
-      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
-    ],
     'filenames/match-regex': ['error', '^[a-z0-9-.]+$', true],
     'filenames/match-exported': ['error', 'kebab'],
     'import/no-cycle': 'error',
@@ -67,10 +53,41 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.config.*'],
+      files: ['*.js'],
+      parser: '@babel/eslint-parser',
+    },
+    {
+      files: ['*.ts'],
+      parser: '@typescript-eslint/parser',
+      parserOptions: { project: './tsconfig.json' },
+      extends: [
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        'plugin:import/typescript',
+      ],
+      rules: {
+        'camelcase': 'off',
+        'no-shadow': 'off',
+        'no-unused-vars': 'off',
+        '@typescript-eslint/consistent-type-imports': ['error'],
+        '@typescript-eslint/member-ordering': ['warn'],
+        '@typescript-eslint/no-shadow': [
+          'error',
+          {
+            ignoreTypeValueShadow: false,
+            ignoreFunctionTypeParameterNameValueShadow: true,
+          },
+        ],
+        '@typescript-eslint/no-unused-vars': [
+          'error',
+          { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+        ],
+      },
+    },
+    {
+      files: ['./*'],
       rules: {
         'filenames/match-exported': 'off',
-        '@typescript-eslint/no-var-requires': 'off',
       },
     },
     {
@@ -82,14 +99,25 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.test.*'],
+      files: testFilePatterns(),
       env: { 'node': true, 'jest/globals': true },
-      extends: ['plugin:jest/recommended', 'plugin:jest/style'],
+      extends: [
+        'plugin:jest/recommended',
+        'plugin:jest/style',
+        'plugin:testing-library/dom',
+        'plugin:jest-dom/recommended',
+      ],
       rules: {
         'no-console': 'off',
+        'import/no-extraneous-dependencies': ['error', devDependencies],
+      },
+    },
+    {
+      files: testFilePatterns('ts'),
+      rules: {
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
-        'import/no-extraneous-dependencies': ['error', devDependencies],
+        '@typescript-eslint/unbound-method': 'off',
       },
     },
   ],
