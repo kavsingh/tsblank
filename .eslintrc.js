@@ -28,6 +28,7 @@ module.exports = {
   rules: {
     'curly': ['warn', 'multi-line', 'consistent'],
     'no-console': 'off',
+    'no-throw-literal': 'error',
     'filenames/match-regex': ['error', '^[a-z0-9-.]+$', true],
     'filenames/match-exported': ['error', 'kebab'],
     'import/no-cycle': 'error',
@@ -68,6 +69,7 @@ module.exports = {
       rules: {
         'camelcase': 'off',
         'no-shadow': 'off',
+        'no-throw-literal': 'off',
         'no-unused-vars': 'off',
         '@typescript-eslint/consistent-type-imports': ['error'],
         '@typescript-eslint/member-ordering': ['warn'],
@@ -78,6 +80,7 @@ module.exports = {
             ignoreFunctionTypeParameterNameValueShadow: true,
           },
         ],
+        '@typescript-eslint/no-throw-literal': 'error',
         '@typescript-eslint/no-unused-vars': [
           'error',
           { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
