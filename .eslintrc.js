@@ -23,6 +23,8 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:import/recommended',
+    // needs to go here instead of in typescript overrides
+    'plugin:import/typescript',
     'plugin:prettier/recommended',
   ],
   rules: {
@@ -64,7 +66,6 @@ module.exports = {
       extends: [
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
-        'plugin:import/typescript',
       ],
       rules: {
         'camelcase': 'off',
