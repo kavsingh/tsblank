@@ -3,8 +3,17 @@ import { screen } from '@testing-library/dom';
 import app from './app';
 
 describe('app test', () => {
+  beforeEach(() => {
+    Array.from(document.body.children).forEach((el) => {
+      document.body.removeChild(el);
+    });
+  });
+
   it('initializes app', () => {
-    app(document.createElement('div'));
+    const root = document.createElement('div');
+
+    document.body.appendChild(root);
+    app(root);
 
     expect(screen.getByText('hello')).toBeInTheDocument();
   });
