@@ -36,7 +36,6 @@ const configuration: ConfigurationFactory = (env) => ({
   devServer: {
     host: 'localhost',
     port: 3000,
-    static: { contentBase: './dist' },
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin({
