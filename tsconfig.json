@@ -16,7 +16,7 @@
     "noImplicitReturns": true,
     "noUncheckedIndexedAccess": true,
     "paths": {
-      "~/*": [
+      "src/*": [
         "./src/*"
       ]
     },

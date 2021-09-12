@@ -21,7 +21,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       'eslint-import-resolver-custom-alias': {
-        alias: { '~': './src' },
+        alias: { src: './src' },
         extensions: ['.ts', '.js'],
       },
     },
