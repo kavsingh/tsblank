@@ -21,7 +21,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       'eslint-import-resolver-custom-alias': {
-        alias: { src: './src' },
+        alias: { '~': './src' },
         extensions: ['.ts', '.js'],
       },
     },
@@ -56,6 +56,7 @@ module.exports = {
           'type',
         ],
         'pathGroups': [{ pattern: '~/**', group: 'internal' }],
+        'pathGroupsExcludedImportTypes': ['type'],
         'newlines-between': 'always',
       },
     ],

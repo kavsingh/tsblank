@@ -6,5 +6,5 @@ import legacyPlugin from '@vitejs/plugin-legacy';
 export default defineConfig({
   build: { sourcemap: true },
   plugins: [legacyPlugin()],
-  resolve: { alias: { src: path.resolve(__dirname, './src') } },
+  resolve: { alias: { '~': path.resolve(__dirname, './src') } },
 });
