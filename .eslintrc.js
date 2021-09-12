@@ -18,7 +18,14 @@ const testFilePatterns = (extensions = '*') =>
 module.exports = {
   root: true,
   env: { es6: true, node: true, browser: false },
-  settings: { 'import/resolver': 'babel-module' },
+  settings: {
+    'import/resolver': {
+      'eslint-import-resolver-custom-alias': {
+        alias: { '~': './src' },
+        extensions: ['.ts', '.js'],
+      },
+    },
+  },
   plugins: ['filenames'],
   extends: [
     'eslint:recommended',
@@ -55,10 +62,6 @@ module.exports = {
     'prettier/prettier': 'warn',
   },
   overrides: [
-    {
-      files: ['*.js'],
-      parser: '@babel/eslint-parser',
-    },
     {
       files: ['*.ts'],
       parser: '@typescript-eslint/parser',
