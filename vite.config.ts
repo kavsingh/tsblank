@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite';
-import legacyPlugin from 'vite-plugin-legacy';
+import legacyPlugin from '@vitejs/plugin-legacy';
 
 export default defineConfig({
   build: { sourcemap: true },
-  plugins: [legacyPlugin({ corejs: true })],
+  plugins: [legacyPlugin()],
   resolve: { alias: [{ find: '~', replacement: './src' }] },
 });

@@ -8,15 +8,12 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "vite-jest",
+    "test": "jest",
     "lint": "tsc && eslint .",
     "dev": "vite",
     "prebuild": "rm -rf ./dist",
     "build": "vite build",
     "serve": "vite preview"
-  },
-  "dependencies": {
-    "core-js": "3.17.3"
   },
   "devDependencies": {
     "@testing-library/dom": "8.5.0",
@@ -24,6 +21,7 @@
     "@types/jest": "27.0.1",
     "@typescript-eslint/eslint-plugin": "4.31.0",
     "@typescript-eslint/parser": "4.31.0",
+    "@vitejs/plugin-legacy": "1.5.3",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-import-resolver-custom-alias": "1.2.0",
@@ -35,10 +33,9 @@
     "eslint-plugin-testing-library": "4.12.2",
     "jest": "27.1.1",
     "prettier": "2.4.0",
+    "ts-jest": "27.0.5",
     "ts-node": "10.2.1",
     "typescript": "4.4.3",
-    "vite": "2.5.6",
-    "vite-jest": "0.0.3",
-    "vite-plugin-legacy": "2.1.0"
+    "vite": "2.5.6"
   }
 }
