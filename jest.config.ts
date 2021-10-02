@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   transform: { '^.+\\.ts$': 'ts-jest' },
   moduleNameMapper: { '^~/(.*)': '<rootDir>/src/$1' },
   testEnvironment: 'jsdom',
