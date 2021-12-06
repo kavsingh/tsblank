@@ -30,7 +30,6 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:import/recommended',
-    // needs to go here instead of in typescript overrides
     'plugin:import/typescript',
     'plugin:prettier/recommended',
   ],
@@ -76,7 +75,10 @@ module.exports = {
         'no-shadow': 'off',
         'no-throw-literal': 'off',
         'no-unused-vars': 'off',
-        '@typescript-eslint/consistent-type-imports': ['error'],
+        '@typescript-eslint/consistent-type-imports': [
+          'error',
+          { disallowTypeAnnotations: false },
+        ],
         '@typescript-eslint/member-ordering': ['warn'],
         '@typescript-eslint/no-shadow': [
           'error',
