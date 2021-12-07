@@ -19,12 +19,7 @@ module.exports = {
   root: true,
   env: { es6: true, node: true, browser: false },
   settings: {
-    'import/resolver': {
-      'eslint-import-resolver-custom-alias': {
-        alias: { '~': './src' },
-        extensions: ['.ts', '.js'],
-      },
-    },
+    'import/parsers': { '@typescript-eslint/parser': ['.ts'] },
   },
   plugins: ['filenames'],
   extends: [
@@ -63,9 +58,23 @@ module.exports = {
   },
   overrides: [
     {
+      files: ['*.js'],
+      settings: {
+        'import/resolver': { typescript: { project: './tsconfig.json' } },
+      },
+    },
+    {
       files: ['*.ts'],
       parser: '@typescript-eslint/parser',
       parserOptions: { project: './tsconfig.json' },
+      settings: {
+        'import/resolver': {
+          'eslint-import-resolver-custom-alias': {
+            alias: { '~': './src' },
+            extensions: ['.ts', '.js'],
+          },
+        },
+      },
       extends: [
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
