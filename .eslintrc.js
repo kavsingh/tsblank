@@ -112,13 +112,7 @@ module.exports = {
     },
     {
       files: testFilePatterns(),
-      env: { 'node': true, 'jest/globals': true },
-      extends: [
-        'plugin:jest/recommended',
-        'plugin:jest/style',
-        'plugin:testing-library/dom',
-        'plugin:jest-dom/recommended',
-      ],
+      env: { node: true },
       rules: {
         'no-console': 'off',
         'import/no-extraneous-dependencies': ['error', devDependencies],
@@ -129,6 +123,8 @@ module.exports = {
       rules: {
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
+        '@typescript-eslint/no-unsafe-assignment': 'off',
+        '@typescript-eslint/no-unsafe-call': 'off',
         '@typescript-eslint/unbound-method': 'off',
       },
     },
