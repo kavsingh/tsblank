@@ -113,6 +113,7 @@ module.exports = {
     {
       files: testFilePatterns(),
       env: { node: true },
+      extends: ['plugin:testing-library/dom'],
       rules: {
         'no-console': 'off',
         'import/no-extraneous-dependencies': ['error', devDependencies],
