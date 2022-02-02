@@ -8,7 +8,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "vitest",
+    "tdd": "vitest",
+    "test": "vitest run",
     "lint": "tsc && eslint .",
     "dev": "vite",
     "prebuild": "rm -rf ./dist",
