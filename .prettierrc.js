@@ -1,5 +1,4 @@
 module.exports = {
-  quoteProps: 'consistent',
-  singleQuote: true,
-  trailingComma: 'all',
+  quoteProps: "consistent",
+  trailingComma: "all",
 };

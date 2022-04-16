@@ -12,8 +12,7 @@
     "test": "vitest run",
     "lint": "tsc && eslint .",
     "dev": "vite",
-    "prebuild": "rm -rf ./dist",
-    "build": "vite build",
+    "build": "rm -rf ./dist && vite build",
     "serve": "vite preview"
   },
   "devDependencies": {
