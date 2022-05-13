@@ -5,10 +5,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "lib": [
-      "esnext",
-      "dom"
-    ],
+    "lib": ["esnext", "dom"],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
@@ -16,20 +13,13 @@
     "noImplicitReturns": true,
     "noUncheckedIndexedAccess": true,
     "paths": {
-      "~/*": [
-        "./src/*"
-      ]
+      "~/*": ["./src/*"]
     },
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
     "target": "esnext"
   },
-  "exclude": [
-    "**/node_modules"
-  ],
-  "include": [
-    "./src",
-    "./*.ts",
-  ]
+  "exclude": ["**/node_modules"],
+  "include": ["./src", "./*.ts"]
 }
