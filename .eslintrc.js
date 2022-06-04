@@ -22,10 +22,6 @@ module.exports = {
     "import/parsers": { "@typescript-eslint/parser": [".ts"] },
     "import/resolver": {
       "eslint-import-resolver-typescript": { project: "./tsconfig.json" },
-      "eslint-import-resolver-custom-alias": {
-        alias: { "~": "./src" },
-        extensions: [".ts", ".js"],
-      },
     },
   },
   plugins: ["filenames"],
@@ -58,6 +54,7 @@ module.exports = {
         ],
         "pathGroups": [{ pattern: "~/**", group: "internal" }],
         "pathGroupsExcludedImportTypes": ["type"],
+        "alphabetize": { order: "asc" },
         "newlines-between": "always",
       },
     ],

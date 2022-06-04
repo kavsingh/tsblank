@@ -1,5 +1,5 @@
-import { describe, beforeEach, it, expect } from "vitest";
 import { screen } from "@testing-library/dom";
+import { describe, beforeEach, it, expect } from "vitest";
 
 import app from "./app";
 

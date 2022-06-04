@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,
+    "baseUrl": "src",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
@@ -13,7 +14,7 @@
     "noImplicitReturns": true,
     "noUncheckedIndexedAccess": true,
     "paths": {
-      "~/*": ["./src/*"]
+      "~/*": ["*"]
     },
     "skipLibCheck": true,
     "sourceMap": true,
