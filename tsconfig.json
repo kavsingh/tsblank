@@ -1,24 +1,14 @@
 {
+  "extends": "@tsconfig/node18-strictest/tsconfig.json",
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "allowUnreachableCode": false,
-    "baseUrl": "src",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "lib": ["esnext", "dom"],
     "module": "esnext",
-    "moduleResolution": "node",
     "noEmit": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "noUncheckedIndexedAccess": true,
     "paths": {
-      "~/*": ["*"]
+      "~/*": ["./src/*"]
     },
-    "skipLibCheck": true,
     "sourceMap": true,
-    "strict": true,
     "target": "esnext"
   },
   "exclude": ["**/node_modules"],
