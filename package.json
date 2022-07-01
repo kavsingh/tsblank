@@ -1,41 +1,41 @@
 {
-  "name": "tsblank",
-  "version": "0.0.0",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:kavsingh/tsblank.git"
-  },
-  "main": "index.js",
-  "license": "MIT",
-  "scripts": {
-    "tdd": "vitest",
-    "test": "vitest run",
-    "lint": "tsc && eslint .",
-    "dev": "vite",
-    "build": "rm -rf ./dist && vite build",
-    "serve": "vite preview"
-  },
-  "devDependencies": {
-    "@testing-library/dom": "8.14.0",
-    "@testing-library/user-event": "14.2.1",
-    "@tsconfig/node18-strictest": "1.0.0",
-    "@types/node": "18.0.0",
-    "@typescript-eslint/eslint-plugin": "5.29.0",
-    "@typescript-eslint/parser": "5.29.0",
-    "@vitejs/plugin-legacy": "1.8.2",
-    "eslint": "8.18.0",
-    "eslint-config-prettier": "8.5.0",
-    "eslint-import-resolver-typescript": "3.1.0",
-    "eslint-plugin-filenames": "1.3.2",
-    "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-testing-library": "5.5.1",
-    "jsdom": "20.0.0",
-    "prettier": "2.7.1",
-    "ts-node": "10.8.1",
-    "typescript": "4.7.4",
-    "vite": "2.9.12",
-    "vite-plugin-checker": "0.4.6",
-    "vitest": "0.16.0"
-  }
+	"name": "tsblank",
+	"version": "0.0.0",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:kavsingh/tsblank.git"
+	},
+	"main": "index.js",
+	"license": "MIT",
+	"scripts": {
+		"tdd": "vitest",
+		"test": "vitest run",
+		"lint": "tsc && eslint .",
+		"dev": "vite",
+		"build": "rm -rf ./dist && vite build",
+		"serve": "vite preview"
+	},
+	"devDependencies": {
+		"@testing-library/dom": "8.14.0",
+		"@testing-library/user-event": "14.2.1",
+		"@tsconfig/node18-strictest": "1.0.0",
+		"@types/node": "18.0.0",
+		"@typescript-eslint/eslint-plugin": "5.30.0",
+		"@typescript-eslint/parser": "5.30.0",
+		"@vitejs/plugin-legacy": "1.8.2",
+		"eslint": "8.18.0",
+		"eslint-config-prettier": "8.5.0",
+		"eslint-import-resolver-typescript": "3.1.3",
+		"eslint-plugin-filenames": "1.3.2",
+		"eslint-plugin-import": "2.26.0",
+		"eslint-plugin-prettier": "4.2.1",
+		"eslint-plugin-testing-library": "5.5.1",
+		"jsdom": "20.0.0",
+		"prettier": "2.7.1",
+		"ts-node": "10.8.1",
+		"typescript": "4.7.4",
+		"vite": "2.9.13",
+		"vite-plugin-checker": "0.4.7",
+		"vitest": "0.16.0"
+	}
 }

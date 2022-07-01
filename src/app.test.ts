@@ -4,20 +4,20 @@ import { describe, beforeEach, it, expect } from "vitest";
 import app from "./app";
 
 describe("App", () => {
-  beforeEach(() => {
-    document.body.innerHTML = "";
-  });
+	beforeEach(() => {
+		document.body.innerHTML = "";
+	});
 
-  it("should initialize", () => {
-    const root = document.body.appendChild(document.createElement("div"));
+	it("should initialize", () => {
+		const root = document.body.appendChild(document.createElement("div"));
 
-    app(root);
+		app(root);
 
-    expect(screen.getByText("hello")).toBeTruthy();
-  });
+		expect(screen.getByText("hello")).toBeTruthy();
+	});
 
-  it("should throw if root element is not found", () => {
-    expect(() => app(null)).toThrow("Could not find root element");
-    expect(screen.queryByText("hello")).toBeFalsy();
-  });
+	it("should throw if root element is not found", () => {
+		expect(() => app(null)).toThrow("Could not find root element");
+		expect(screen.queryByText("hello")).toBeFalsy();
+	});
 });
