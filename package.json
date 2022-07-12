@@ -16,12 +16,12 @@
 		"serve": "vite preview"
 	},
 	"devDependencies": {
-		"@testing-library/dom": "8.15.0",
+		"@testing-library/dom": "8.16.0",
 		"@testing-library/user-event": "14.2.1",
 		"@tsconfig/node18-strictest": "1.0.0",
 		"@types/node": "18.0.3",
-		"@typescript-eslint/eslint-plugin": "5.30.5",
-		"@typescript-eslint/parser": "5.30.5",
+		"@typescript-eslint/eslint-plugin": "5.30.6",
+		"@typescript-eslint/parser": "5.30.6",
 		"@vitejs/plugin-legacy": "1.8.2",
 		"eslint": "8.19.0",
 		"eslint-config-prettier": "8.5.0",
