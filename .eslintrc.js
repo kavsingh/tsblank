@@ -17,6 +17,7 @@ const testFilePatterns = (extensions = "*") =>
 
 module.exports = {
 	root: true,
+	reportUnusedDisableDirectives: true,
 	env: { es6: true, node: true, browser: false },
 	settings: {
 		"import/parsers": { "@typescript-eslint/parser": [".ts"] },
@@ -69,6 +70,7 @@ module.exports = {
 				"plugin:@typescript-eslint/recommended",
 				"plugin:@typescript-eslint/recommended-requiring-type-checking",
 			],
+			plugins: ["deprecated"],
 			rules: {
 				"camelcase": "off",
 				"no-shadow": "off",
@@ -91,6 +93,7 @@ module.exports = {
 					"error",
 					{ argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
 				],
+				"deprecation/deprecation": "warn",
 			},
 		},
 		{
