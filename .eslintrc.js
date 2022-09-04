@@ -11,9 +11,13 @@ const devDependencies = {
 };
 
 const testFilePatterns = (extensions = "*") =>
-	["**/*.test", "**/*.mock", "**/__test__/**/*", "**/__mocks__/**/*"].map(
-		(pattern) => `${pattern}.${extensions}`,
-	);
+	[
+		"**/*.test",
+		"**/*.spec",
+		"**/*.mock",
+		"**/__test__/**/*",
+		"**/__mocks__/**/*",
+	].map((pattern) => `${pattern}.${extensions}`);
 
 module.exports = {
 	root: true,
@@ -114,7 +118,7 @@ module.exports = {
 		{
 			files: testFilePatterns(),
 			env: { node: true },
-			extends: ["plugin:testing-library/dom"],
+			extends: ["plugin:testing-library/dom", "plugin:jest-dom/recommended"],
 			rules: {
 				"no-console": "off",
 				"import/no-extraneous-dependencies": ["error", devDependencies],

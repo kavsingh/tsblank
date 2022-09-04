@@ -9,7 +9,8 @@
 			"~/*": ["./src/*"]
 		},
 		"sourceMap": true,
-		"target": "esnext"
+		"target": "esnext",
+		"types": []
 	},
 	"exclude": ["**/node_modules"],
 	"include": ["./src", "./*.ts"]

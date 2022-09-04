@@ -13,11 +13,11 @@ describe("App", () => {
 
 		app(root);
 
-		expect(screen.getByText("hello")).toBeTruthy();
+		expect(screen.getByText("hello")).toBeInTheDocument();
 	});
 
 	it("should throw if root element is not found", () => {
 		expect(() => app(null)).toThrow("Could not find root element");
-		expect(screen.queryByText("hello")).toBeFalsy();
+		expect(screen.queryByText("hello")).not.toBeInTheDocument();
 	});
 });
