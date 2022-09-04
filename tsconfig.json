@@ -5,9 +5,7 @@
 		"lib": ["esnext", "dom"],
 		"module": "esnext",
 		"noEmit": true,
-		"paths": {
-			"~/*": ["./src/*"]
-		},
+		"paths": { "~/*": ["./src/*"] },
 		"sourceMap": true,
 		"target": "esnext",
 		"types": []
