@@ -12,7 +12,19 @@ export default function Button(
 		<button
 			{...buttonProps}
 			class={twMerge(
-				"rounded border border-violet-300 p-2 leading-none transition-colors hover:border-violet-500 dark:border-violet-900 dark:hover:border-violet-600",
+				`
+					rounded
+					border
+					border-violet-300
+					p-2
+					leading-none
+					transition-colors
+					hover:border-violet-500
+					disabled:pointer-events-none
+					disabled:opacity-60
+					dark:border-violet-900
+					dark:hover:border-violet-600
+				`,
 				local.class,
 			)}
 		/>

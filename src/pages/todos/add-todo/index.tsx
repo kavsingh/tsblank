@@ -34,11 +34,13 @@ export default function AddTodo() {
 					id="todo-description"
 					name="todo-description"
 					value={description()}
-					onChange={handleInput}
+					onInput={handleInput}
 					autofocus
 				/>
 			</label>
-			<Button type="submit">Add todo</Button>
+			<Button type="submit" disabled={!description()}>
+				Add todo
+			</Button>
 		</form>
 	);
 }
