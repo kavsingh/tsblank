@@ -1,10 +1,10 @@
-name: Verify
+name: Test and lint
 
 on: [push]
 
 jobs:
-  verify:
-    name: Verify
+  test-and-lint:
+    name: Test and lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

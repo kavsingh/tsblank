@@ -5,4 +5,4 @@ quick and dirty typescript + vite web boilerplates
 - solid-js + css modules: `npx degit kavsingh/tsblank#solid-js`
 - react-dom + css modules: `npx degit kavsingh/tsblank#react-dom-css`
 
-![CI status](https://github.com/kavsingh/tsblank/workflows/Verify/badge.svg)
+![Test and lint](https://github.com/kavsingh/tsblank/workflows/test-and-lint/badge.svg)
