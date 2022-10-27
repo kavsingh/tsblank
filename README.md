@@ -1,5 +1,3 @@
-![CI status](https://github.com/kavsingh/tsblank/workflows/Verify/badge.svg)
-
 quick and dirty typescript + vite web boilerplates
 
 - vanilla: `npx degit kavsingh/tsblank`
