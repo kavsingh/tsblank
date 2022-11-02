@@ -13,7 +13,7 @@
 		"lint": "tsc && eslint .",
 		"dev": "vite",
 		"build": "rm -rf ./dist && vite build",
-		"serve": "vite preview"
+		"preview": "vite preview"
 	},
 	"devDependencies": {
 		"@testing-library/dom": "8.19.0",
