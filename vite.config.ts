@@ -1,14 +1,12 @@
 /// <reference types="vitest" />
 
-import path from "path";
-
 import { defineConfig } from "vite";
 import checkerPlugin from "vite-plugin-checker";
+import tsconfigPathsPlugin from "vite-tsconfig-paths";
 
 export default defineConfig(({ mode }) => ({
 	build: { sourcemap: true },
-	plugins: [...(mode === "test" ? [] : [checker()])],
-	resolve: { alias: { "~": path.resolve(__dirname, "./src") } },
+	plugins: [tsconfigPathsPlugin(), mode !== "test" && checker()],
 	test: {
 		include: ["src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}"],
 		environment: "jsdom",
