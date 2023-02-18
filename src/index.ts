@@ -1,3 +1,7 @@
-import app from "~/app";
+import App from "~/app";
 
-app(document.getElementById("app-root"));
+const appRoot = document.getElementById("app-root");
+
+if (!appRoot) throw new Error("Could not find root element #app-root");
+
+App(appRoot);

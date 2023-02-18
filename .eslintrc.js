@@ -91,6 +91,7 @@ module.exports = {
 				"no-shadow": "off",
 				"no-throw-literal": "off",
 				"no-unused-vars": "off",
+				"@typescript-eslint/consistent-type-definitions": ["warn", "type"],
 				"@typescript-eslint/consistent-type-imports": [
 					"error",
 					{ disallowTypeAnnotations: false },
