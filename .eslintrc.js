@@ -134,6 +134,7 @@ module.exports = {
 		{
 			files: ["src/**/*"],
 			env: { node: false, browser: true },
+			extends: ["plugin:tailwindcss/recommended"],
 			rules: {
 				"no-console": "error",
 				"import/no-extraneous-dependencies": ["error", srcDependencies],
