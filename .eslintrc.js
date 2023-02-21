@@ -14,14 +14,15 @@ const devDependencies = {
 
 const tsconfigPathPatterns = Object.keys(tsconfig.compilerOptions.paths);
 
-const testFilePatterns = (extensions = "*") =>
-	[
+function testFilePatterns(extensions = "*") {
+	return [
 		"**/*.test",
 		"**/*.spec",
 		"**/*.mock",
 		"**/__test__/**/*",
 		"**/__mocks__/**/*",
 	].map((pattern) => `${pattern}.${extensions}`);
+}
 
 module.exports = {
 	root: true,
