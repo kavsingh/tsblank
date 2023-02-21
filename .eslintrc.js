@@ -1,4 +1,5 @@
-const tsconfig = require("./tsconfig.json");
+const requireJSON5 = require("require-json5");
+const tsconfig = requireJSON5("./tsconfig.json");
 
 const srcDependencies = {
 	devDependencies: false,
