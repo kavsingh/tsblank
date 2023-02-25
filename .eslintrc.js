@@ -30,7 +30,7 @@ function testFilePatterns(extensions = "*") {
 module.exports = {
 	root: true,
 	reportUnusedDisableDirectives: true,
-	env: { es6: true, node: true, browser: false },
+	env: { es2022: true, node: true, browser: false },
 	settings: {
 		"import/parsers": { "@typescript-eslint/parser": [".ts"] },
 		"import/resolver": {
@@ -63,8 +63,7 @@ module.exports = {
 					"builtin",
 					"external",
 					"internal",
-					["parent", "sibling"],
-					"index",
+					["parent", "sibling", "index"],
 					"type",
 				],
 				"pathGroups": [
@@ -82,6 +81,10 @@ module.exports = {
 	},
 	overrides: [
 		{
+			files: ["*.mjs"],
+			parserOptions: { sourceType: "module", ecmaVersion: "latest" },
+		},
+		{
 			files: ["*.ts"],
 			parser: "@typescript-eslint/parser",
 			parserOptions: { project: "./tsconfig.json" },
@@ -93,6 +96,10 @@ module.exports = {
 			plugins: ["deprecation"],
 			rules: {
 				"camelcase": "off",
+				"no-restricted-syntax": [
+					"warn",
+					{ selector: "TSEnumDeclaration", message: "Avoid using enums" },
+				],
 				"no-shadow": "off",
 				"no-throw-literal": "off",
 				"no-unused-vars": "off",
@@ -145,6 +152,7 @@ module.exports = {
 			files: testFilePatterns("ts"),
 			rules: {
 				"@typescript-eslint/no-explicit-any": "off",
+				"@typescript-eslint/no-non-null-assertion": "off",
 				"@typescript-eslint/no-unsafe-argument": "off",
 				"@typescript-eslint/no-unsafe-assignment": "off",
 				"@typescript-eslint/no-unsafe-call": "off",
