@@ -1,4 +1,5 @@
 const requireJSON5 = require("require-json5");
+
 const tsconfig = requireJSON5("./tsconfig.json");
 
 const srcDependencies = {
@@ -21,6 +22,7 @@ function testFilePatterns(extensions = "*") {
 		"**/*.spec",
 		"**/*.mock",
 		"**/__test__/**/*",
+		"**/__test-*__/**/*",
 		"**/__mocks__/**/*",
 	].map((pattern) => `${pattern}.${extensions}`);
 }
@@ -136,16 +138,18 @@ module.exports = {
 			rules: {
 				"no-console": "off",
 				"import/no-extraneous-dependencies": ["error", devDependencies],
-				"filenames/match-exported": ["error", "kebab", "\\.test$"],
+				"filenames/match-exported": ["error", "kebab", "\\.(test|spec|mock)$"],
 			},
 		},
 		{
 			files: testFilePatterns("ts"),
 			rules: {
 				"@typescript-eslint/no-explicit-any": "off",
-				"@typescript-eslint/no-non-null-assertion": "off",
+				"@typescript-eslint/no-unsafe-argument": "off",
 				"@typescript-eslint/no-unsafe-assignment": "off",
 				"@typescript-eslint/no-unsafe-call": "off",
+				"@typescript-eslint/no-unsafe-member-access": "off",
+				"@typescript-eslint/no-unsafe-return": "off",
 				"@typescript-eslint/unbound-method": "off",
 			},
 		},
