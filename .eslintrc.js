@@ -52,7 +52,6 @@ module.exports = {
 		"no-unreachable": "error",
 		"filenames/match-regex": ["error", "^[a-z0-9-.]+$", true],
 		"filenames/match-exported": ["error", "kebab"],
-		"filenames/no-index": "error",
 		"import/no-cycle": "error",
 		"import/no-self-import": "error",
 		"import/no-unused-modules": "error",
