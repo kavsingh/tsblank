@@ -15,18 +15,18 @@ const devDependencies = {
 };
 
 const tsconfigPathPatterns = Object.keys(tsconfig.compilerOptions.paths);
+const testFileSuffixes = ["test", "spec", "mock"];
 
 function testFilePatterns(extensions = "*") {
 	return [
-		"**/*.test",
-		"**/*.spec",
-		"**/*.mock",
+		...testFileSuffixes.map((suffix) => `**/*.${suffix}`),
 		"**/__test__/**/*",
 		"**/__test-*__/**/*",
 		"**/__mocks__/**/*",
 	].map((pattern) => `${pattern}.${extensions}`);
 }
 
+/** @type {import('eslint').ESLint.ConfigData} */
 module.exports = {
 	root: true,
 	reportUnusedDisableDirectives: true,
@@ -145,7 +145,11 @@ module.exports = {
 			rules: {
 				"no-console": "off",
 				"import/no-extraneous-dependencies": ["error", devDependencies],
-				"filenames/match-exported": ["error", "kebab", "\\.(test|spec|mock)$"],
+				"filenames/match-exported": [
+					"error",
+					"kebab",
+					`\\.(${testFileSuffixes.join("|")})$`,
+				],
 			},
 		},
 		{
