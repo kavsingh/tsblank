@@ -22,7 +22,7 @@ const testFileSuffixes = ["test", "spec", "mock"];
 function testFilePatterns({ root = "", extensions = "*" } = {}) {
 	return [
 		`*.{${testFileSuffixes.join(",")}}`,
-		"__{test,mocks,fixtures}__/**/*",
+		"__{test,tests,mocks,fixtures}__/**/*",
 		"__{test,mock,fixture}-*__/**/*",
 	].map((pattern) => path.join(root, `**/${pattern}.${extensions}`));
 }
@@ -52,6 +52,7 @@ module.exports = {
 		"no-unreachable": "error",
 		"filenames/match-regex": ["error", "^[a-z0-9-.]+$", true],
 		"filenames/match-exported": ["error", "kebab"],
+		"filenames/no-index": "error",
 		"import/no-cycle": "error",
 		"import/no-self-import": "error",
 		"import/no-unused-modules": "error",
