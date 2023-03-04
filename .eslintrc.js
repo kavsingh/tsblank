@@ -1,3 +1,5 @@
+const path = require("path");
+
 const requireJSON5 = require("require-json5");
 
 const tsconfig = requireJSON5("./tsconfig.json");
@@ -17,13 +19,12 @@ const devDependencies = {
 const tsconfigPathPatterns = Object.keys(tsconfig.compilerOptions.paths);
 const testFileSuffixes = ["test", "spec", "mock"];
 
-function testFilePatterns(extensions = "*") {
+function testFilePatterns({ root = "", extensions = "*" } = {}) {
 	return [
-		...testFileSuffixes.map((suffix) => `**/*.${suffix}`),
-		"**/__test__/**/*",
-		"**/__test-*__/**/*",
-		"**/__mocks__/**/*",
-	].map((pattern) => `${pattern}.${extensions}`);
+		`*.{${testFileSuffixes.join(",")}}`,
+		"__{test,mocks,fixtures}__/**/*",
+		"__{test,mock,fixture}-*__/**/*",
+	].map((pattern) => path.join(root, `**/${pattern}.${extensions}`));
 }
 
 /** @type {import('eslint').ESLint.ConfigData} */
@@ -153,7 +154,7 @@ module.exports = {
 			},
 		},
 		{
-			files: testFilePatterns("ts"),
+			files: testFilePatterns({ extensions: "ts" }),
 			rules: {
 				"@typescript-eslint/no-explicit-any": "off",
 				"@typescript-eslint/no-non-null-assertion": "off",
