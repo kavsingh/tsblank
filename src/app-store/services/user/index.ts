@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-invalid-void-type */
 
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
 
-import { usersSchema, type User, userSchema } from "./schemas/user";
+import { usersSchema, type User, userSchema } from "./schema";
 
-export const queryApi = createApi({
-	reducerPath: "queryApi",
+export const userApi = createApi({
+	reducerPath: "userService",
 	baseQuery: fetchBaseQuery({
 		baseUrl: "https://jsonplaceholder.typicode.com",
 	}),
@@ -42,3 +42,7 @@ export const queryApi = createApi({
 		}),
 	}),
 });
+
+export const userQuery = userApi.endpoints.user;
+export const usersQuery = userApi.endpoints.users;
+export const userApiUtil = userApi.util;
