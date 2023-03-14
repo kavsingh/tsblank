@@ -22,7 +22,7 @@ export function createAppStore(
 		devTools: !import.meta.env.PROD,
 	});
 
-	return { store };
+	return { store } as const;
 }
 
 export type AppStore = ReturnType<typeof createAppStore>["store"];
