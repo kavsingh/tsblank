@@ -2,7 +2,11 @@
 
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
 
-import { usersSchema, type User, userSchema } from "./schema";
+import { createUseEndpointQuery } from "../query-helpers";
+
+import { usersSchema, userSchema } from "./schema";
+
+import type { User } from "./schema";
 
 export const userApi = createApi({
 	reducerPath: "userService",
@@ -46,3 +50,6 @@ export const userApi = createApi({
 export const userQuery = userApi.endpoints.user;
 export const usersQuery = userApi.endpoints.users;
 export const userApiUtil = userApi.util;
+
+export const useUserQuery = createUseEndpointQuery(userQuery);
+export const useUsersQuery = createUseEndpointQuery(usersQuery);
