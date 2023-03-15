@@ -2,10 +2,10 @@ import type { CountProps } from "./components/count";
 
 export default async function App(appRoot: HTMLElement) {
 	appRoot.innerHTML = `
-		<div data-comp="ui-root" class="flex flex-col gap-4 p-4 min-bs-full"></div>
+		<div class="flex flex-col gap-4 p-4 min-bs-full"></div>
 	`;
 
-	const uiRoot = document.querySelector("[data-comp=ui-root]");
+	const uiRoot = appRoot.firstElementChild;
 
 	if (!uiRoot) throw new Error("Could not create ui root");
 
