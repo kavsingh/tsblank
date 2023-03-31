@@ -4,7 +4,7 @@ import { describe, beforeEach, it, expect } from "vitest";
 
 import Count from "./index";
 
-describe("app", () => {
+describe("count", () => {
 	beforeEach(() => {
 		document.body.innerHTML = "";
 	});
