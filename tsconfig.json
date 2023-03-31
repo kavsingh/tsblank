@@ -15,7 +15,7 @@
 		// unreachable code detected via ts too eagerly
 		"allowUnreachableCode": true
 	},
-	"exclude": ["**/node_modules", "**/*.module.css.d.ts"],
+	"exclude": ["**/node_modules"],
 	"include": ["./src", "./*.ts"],
 	"ts-node": {
 		"swc": true,
