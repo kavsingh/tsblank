@@ -143,7 +143,11 @@ module.exports = {
 		{
 			files: testFilePatterns(),
 			env: { node: true },
-			extends: ["plugin:testing-library/dom", "plugin:jest-dom/recommended"],
+			extends: [
+				"plugin:vitest/all",
+				"plugin:testing-library/dom",
+				"plugin:jest-dom/recommended",
+			],
 			rules: {
 				"no-console": "off",
 				"import/no-extraneous-dependencies": ["error", devDependencies],
@@ -152,6 +156,7 @@ module.exports = {
 					"kebab",
 					`\\.(${testFileSuffixes.join("|")})$`,
 				],
+				"vitest/no-hooks": "off",
 			},
 		},
 		{

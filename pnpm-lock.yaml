@@ -70,6 +70,9 @@ devDependencies:
   eslint-plugin-testing-library:
     specifier: 5.10.2
     version: 5.10.2(eslint@8.37.0)(typescript@4.9.5)
+  eslint-plugin-vitest:
+    specifier: 0.0.57
+    version: 0.0.57(eslint@8.37.0)(typescript@4.9.5)
   jsdom:
     specifier: 21.1.1
     version: 21.1.1
@@ -1919,6 +1922,19 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0, npm: '>=6'}
     peerDependencies:
       eslint: ^7.5.0 || ^8.0.0
+    dependencies:
+      '@typescript-eslint/utils': 5.57.0(eslint@8.37.0)(typescript@4.9.5)
+      eslint: 8.37.0
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+    dev: true
+
+  /eslint-plugin-vitest@0.0.57(eslint@8.37.0)(typescript@4.9.5):
+    resolution: {integrity: sha512-+Ab+QrgjkqwIu7DqtW6D+/F+HmlyQ0dV78jOWs12RscKsFdXdX4IU0u3zM/sXN6ju2DJN4wwxx2/i+eIHkcWpg==}
+    engines: {node: 14.x || >= 16}
+    peerDependencies:
+      eslint: '>=8.0.0'
     dependencies:
       '@typescript-eslint/utils': 5.57.0(eslint@8.37.0)(typescript@4.9.5)
       eslint: 8.37.0
