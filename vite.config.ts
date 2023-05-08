@@ -11,6 +11,7 @@ export default defineConfig(({ mode }) => ({
 		include: ["src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}"],
 		environment: "jsdom",
 		setupFiles: ["./vitest.setup.ts"],
+		clearMocks: true,
 	},
 }));
 
