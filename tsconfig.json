@@ -4,6 +4,7 @@
 		"@tsconfig/strictest/tsconfig.json"
 	],
 	"compilerOptions": {
+		"jsx": "react-jsx",
 		"lib": ["esnext", "dom"],
 		"module": "esnext",
 		"moduleResolution": "bundler",

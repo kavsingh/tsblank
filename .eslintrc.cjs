@@ -33,7 +33,7 @@ module.exports = {
 	reportUnusedDisableDirectives: true,
 	env: { es2022: true, node: true, browser: false },
 	settings: {
-		"import/parsers": { "@typescript-eslint/parser": [".ts"] },
+		"import/parsers": { "@typescript-eslint/parser": [".ts", ".tsx"] },
 		"import/resolver": {
 			"eslint-import-resolver-typescript": { project: "./tsconfig.json" },
 		},
@@ -86,7 +86,7 @@ module.exports = {
 			parserOptions: { sourceType: "module", ecmaVersion: "latest" },
 		},
 		{
-			files: ["*.ts"],
+			files: ["*.ts?(x)"],
 			parser: "@typescript-eslint/parser",
 			parserOptions: { project: "./tsconfig.json" },
 			extends: [
@@ -134,20 +134,27 @@ module.exports = {
 		{
 			files: ["src/**/*"],
 			env: { node: false, browser: true },
-			extends: ["plugin:tailwindcss/recommended"],
+			settings: { react: { version: "detect" } },
+			extends: [
+				"plugin:react/recommended",
+				"plugin:react/jsx-runtime",
+				"plugin:react-hooks/recommended",
+				"plugin:tailwindcss/recommended",
+			],
 			rules: {
 				"no-console": "error",
 				"import/no-extraneous-dependencies": ["error", srcDependencies],
+				"react/jsx-filename-extension": [
+					"error",
+					{ extensions: [".tsx", ".jsx"] },
+				],
+				"react/prop-types": "off",
 			},
 		},
 		{
 			files: testFilePatterns(),
 			env: { node: true },
-			extends: [
-				"plugin:vitest/all",
-				"plugin:testing-library/dom",
-				"plugin:jest-dom/recommended",
-			],
+			extends: ["plugin:vitest/all", "plugin:jest-dom/recommended"],
 			rules: {
 				"no-console": "off",
 				"import/no-extraneous-dependencies": ["error", devDependencies],
@@ -160,7 +167,11 @@ module.exports = {
 			},
 		},
 		{
-			files: testFilePatterns({ extensions: "ts" }),
+			files: testFilePatterns({ extensions: "[jt]sx" }),
+			extends: ["plugin:testing-library/react"],
+		},
+		{
+			files: testFilePatterns({ extensions: "ts?(x)" }),
 			rules: {
 				"@typescript-eslint/no-explicit-any": "off",
 				"@typescript-eslint/no-non-null-assertion": "off",
