@@ -6,6 +6,7 @@
 	"compilerOptions": {
 		"lib": ["esnext", "dom"],
 		"module": "esnext",
+		"moduleResolution": "bundler",
 		"noEmit": true,
 		"paths": { "~/*": ["./src/*"] },
 		"sourceMap": true,
