@@ -2,7 +2,7 @@ import type { CountProps } from "./components/count";
 
 export default async function App(appRoot: HTMLElement) {
 	appRoot.innerHTML = `
-		<div class="flex flex-col gap-4 p-4 min-bs-full"></div>
+		<div class="flex flex-col gap-4 p-4 min-h-full"></div>
 	`;
 
 	const uiRoot = appRoot.firstElementChild;

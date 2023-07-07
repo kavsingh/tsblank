@@ -6,7 +6,7 @@ import tsconfigPathsPlugin from "vite-tsconfig-paths";
 
 export default defineConfig(({ mode }) => ({
 	build: { sourcemap: true },
-	plugins: [tsconfigPathsPlugin(), mode !== "test" && checker()],
+	plugins: [tsconfigPathsPlugin(), checker(mode)],
 	test: {
 		include: ["src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}"],
 		environment: "jsdom",
@@ -15,8 +15,10 @@ export default defineConfig(({ mode }) => ({
 	},
 }));
 
-const checker = () =>
-	checkerPlugin({
+function checker(mode: string) {
+	if (mode !== "test") return undefined;
+
+	return checkerPlugin({
 		overlay: { initialIsOpen: false },
 		typescript: true,
 		eslint: {
@@ -24,3 +26,4 @@ const checker = () =>
 			dev: { logLevel: ["error"] },
 		},
 	});
+}
