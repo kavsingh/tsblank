@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => ({
 }));
 
 function checker(mode: string) {
-	if (mode !== "test") return undefined;
+	if (mode !== "development") return undefined;
 
 	return checkerPlugin({
 		overlay: { initialIsOpen: false },
