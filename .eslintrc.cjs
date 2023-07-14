@@ -141,6 +141,9 @@ module.exports = {
 		{
 			files: ["src/**/*"],
 			env: { node: false, browser: true },
+			settings: {
+				tailwindcss: { callees: ["twMerge", "twJoin"] },
+			},
 			extends: ["plugin:tailwindcss/recommended"],
 			rules: {
 				"no-console": "error",

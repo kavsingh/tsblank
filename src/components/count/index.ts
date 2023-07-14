@@ -1,6 +1,12 @@
+import { twMerge } from "tailwind-merge";
+
 import Button from "~/components/button";
 
-export default function Count({ initialCount = 0, step = 1 }: CountProps = {}) {
+export default function Count({
+	className,
+	initialCount = 0,
+	step = 1,
+}: CountProps = {}) {
 	const el = document.createElement("div");
 	const value = document.createElement("span");
 
@@ -20,7 +26,7 @@ export default function Count({ initialCount = 0, step = 1 }: CountProps = {}) {
 	});
 
 	value.innerHTML = formatValue(initialCount);
-	el.setAttribute("class", "flex gap-2 items-center");
+	el.setAttribute("class", twMerge("flex items-center gap-2", className));
 	el.appendChild(decrement);
 	el.appendChild(value);
 	el.appendChild(increment);
@@ -31,6 +37,7 @@ export default function Count({ initialCount = 0, step = 1 }: CountProps = {}) {
 export type CountProps = {
 	initialCount?: number;
 	step?: number;
+	className?: string;
 };
 
 function formatValue(value: number) {
