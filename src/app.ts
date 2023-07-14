@@ -12,11 +12,11 @@ export default async function App(appRoot: HTMLElement) {
 	await Promise.all([
 		LazyCount(),
 		LazyCount({ initialCount: 10, step: 5 }),
-	]).then((counts) =>
+	]).then((counts) => {
 		counts.forEach(({ el }) => {
 			uiRoot.appendChild(el);
-		}),
-	);
+		});
+	});
 }
 
 async function LazyCount(props?: CountProps) {

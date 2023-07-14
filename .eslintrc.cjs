@@ -1,3 +1,4 @@
+/** @type {import("path")} */
 const path = require("path");
 
 const requireJSON5 = require("require-json5");
@@ -27,29 +28,57 @@ function testFilePatterns({ root = "", extensions = "*" } = {}) {
 	].map((pattern) => path.join(root, `**/${pattern}.${extensions}`));
 }
 
-/** @type {import('eslint').ESLint.ConfigData} */
+/** @type {import("eslint").ESLint.ConfigData} */
 module.exports = {
 	root: true,
 	reportUnusedDisableDirectives: true,
 	env: { es2022: true, node: true, browser: false },
+	parser: "@typescript-eslint/parser",
+	parserOptions: { project: "./tsconfig.json" },
 	settings: {
 		"import/parsers": { "@typescript-eslint/parser": [".ts"] },
 		"import/resolver": {
 			"eslint-import-resolver-typescript": { project: "./tsconfig.json" },
 		},
 	},
-	plugins: ["filenames"],
+	plugins: ["filenames", "deprecation"],
 	extends: [
-		"eslint:recommended",
+		"plugin:@typescript-eslint/strict-type-checked",
+		"plugin:@typescript-eslint/stylistic-type-checked",
 		"plugin:import/recommended",
 		"plugin:import/typescript",
 		"plugin:prettier/recommended",
 	],
 	rules: {
+		"camelcase": "off",
 		"curly": ["warn", "multi-line", "consistent"],
 		"no-console": "off",
-		"no-throw-literal": "error",
+		"no-restricted-syntax": [
+			"warn",
+			{ selector: "TSEnumDeclaration", message: "Avoid using enums" },
+		],
 		"no-unreachable": "error",
+		"@typescript-eslint/consistent-type-definitions": ["warn", "type"],
+		"@typescript-eslint/consistent-type-imports": [
+			"error",
+			{ disallowTypeAnnotations: false },
+		],
+		"@typescript-eslint/member-ordering": ["warn"],
+		"no-shadow": "off",
+		"@typescript-eslint/no-shadow": [
+			"error",
+			{
+				ignoreTypeValueShadow: false,
+				ignoreFunctionTypeParameterNameValueShadow: true,
+			},
+		],
+		"no-throw-literal": "off",
+		"@typescript-eslint/no-throw-literal": "error",
+		"no-unused-vars": "off",
+		"@typescript-eslint/no-unused-vars": [
+			"error",
+			{ argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+		],
 		"filenames/match-regex": ["error", "^[a-z0-9-.]+$", true],
 		"filenames/match-exported": ["error", "kebab"],
 		"import/no-cycle": "error",
@@ -78,52 +107,18 @@ module.exports = {
 				"newlines-between": "always",
 			},
 		],
+		"deprecation/deprecation": "warn",
 		"prettier/prettier": "warn",
 	},
 	overrides: [
 		{
-			files: ["*.mjs"],
-			parserOptions: { sourceType: "module", ecmaVersion: "latest" },
+			files: ["*.c[jt]s"],
+			parserOptions: { sourceType: "script" },
+			rules: { "@typescript-eslint/no-var-requires": "off" },
 		},
 		{
-			files: ["*.ts"],
-			parser: "@typescript-eslint/parser",
-			parserOptions: { project: "./tsconfig.json" },
-			extends: [
-				"plugin:@typescript-eslint/recommended",
-				"plugin:@typescript-eslint/recommended-requiring-type-checking",
-				"plugin:@typescript-eslint/strict",
-			],
-			plugins: ["deprecation"],
-			rules: {
-				"camelcase": "off",
-				"no-restricted-syntax": [
-					"warn",
-					{ selector: "TSEnumDeclaration", message: "Avoid using enums" },
-				],
-				"no-shadow": "off",
-				"no-throw-literal": "off",
-				"no-unused-vars": "off",
-				"@typescript-eslint/consistent-type-definitions": ["warn", "type"],
-				"@typescript-eslint/consistent-type-imports": [
-					"error",
-					{ disallowTypeAnnotations: false },
-				],
-				"@typescript-eslint/member-ordering": ["warn"],
-				"@typescript-eslint/no-shadow": [
-					"error",
-					{
-						ignoreTypeValueShadow: false,
-						ignoreFunctionTypeParameterNameValueShadow: true,
-					},
-				],
-				"@typescript-eslint/no-throw-literal": "error",
-				"@typescript-eslint/no-unused-vars": [
-					"error",
-					{ argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
-				],
-				"deprecation/deprecation": "warn",
-			},
+			files: ["*.?(c)js"],
+			extends: ["plugin:@typescript-eslint/disable-type-checked"],
 		},
 		{
 			files: ["./*"],

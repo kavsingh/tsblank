@@ -19,15 +19,9 @@
 		"allowUnreachableCode": true
 	},
 	"exclude": ["**/node_modules"],
-	"include": ["./src", "./*.ts"],
+	"include": ["./src", "./*.ts", "./*.*.cjs"],
 	"ts-node": {
-		"swc": true,
-		"transpileOnly": true,
-		"compilerOptions": {
-			"isolatedModules": false,
-			"lib": ["esnext"],
-			"module": "commonjs",
-			"target": "es2022"
-		}
+		"esm": true,
+		"transpileOnly": true
 	}
 }
