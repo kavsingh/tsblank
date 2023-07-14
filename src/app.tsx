@@ -1,12 +1,11 @@
 import { AppStoreProvider } from "#app-store/context";
-import { createAppStore } from "#app-store/create";
 import Todos from "#pages/todos";
 
-const { store } = createAppStore();
+import type { AppStore } from "#app-store/create";
 
-export default function App() {
+export default function App(props: { store: AppStore }) {
 	return (
-		<AppStoreProvider store={store}>
+		<AppStoreProvider store={props.store}>
 			<div class="flex min-h-full flex-col gap-4 p-4">
 				<Todos />
 			</div>

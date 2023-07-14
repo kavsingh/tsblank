@@ -1,27 +1,14 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineSlices, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
 import { userApi } from "./services/user";
 import { todosSlice } from "./todos/slice";
 
-import type { StateFromReducersMapObject } from "@reduxjs/toolkit";
+const reducer = combineSlices(todosSlice, userApi);
 
-const reducer = {
-	[todosSlice.name]: todosSlice.reducer,
-	[userApi.reducerPath]: userApi.reducer,
-} as const;
-
-export function createAppStore(
-	state?: Partial<StateFromReducersMapObject<typeof reducer>> | undefined,
-) {
-	const preloadedState: StateFromReducersMapObject<typeof reducer> = {
-		todos: todosSlice.getInitialState(),
-		...state,
-	};
-
+export function createAppStore() {
 	const store = configureStore({
 		reducer,
-		preloadedState,
 		middleware(getDefaultMiddleware) {
 			return getDefaultMiddleware().concat(userApi.middleware);
 		},

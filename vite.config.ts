@@ -27,7 +27,7 @@ export default defineConfig(({ mode }) => ({
 		setupFiles: ["./vitest.setup.ts"],
 		clearMocks: true,
 		testTransformMode: { web: ["/.[jt]sx?$/"] },
-		server: { deps: { inline: [/@solidjs/] } },
+		server: { deps: { inline: [/@solidjs/, /msw/] } },
 	},
 }));
 
