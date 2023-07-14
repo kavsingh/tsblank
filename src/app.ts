@@ -1,4 +1,4 @@
-import type { CountProps } from "./components/count";
+import type { CountProps } from "~/components/count";
 
 export default async function App(appRoot: HTMLElement) {
 	appRoot.innerHTML = `

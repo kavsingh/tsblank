@@ -1,9 +1,17 @@
 /** @type {import("path")} */
 const path = require("path");
 
-const requireJSON5 = require("require-json5");
+/** @type {import("typescript")} */
+const ts = require("typescript");
 
-const tsconfig = requireJSON5("./tsconfig.json");
+const tsconfigFile = ts.findConfigFile(
+	__dirname,
+	ts.sys.fileExists,
+	"tsconfig.json",
+);
+const tsconfig = tsconfigFile
+	? ts.readConfigFile(tsconfigFile, ts.sys.readFile)
+	: undefined;
 
 const srcDependencies = {
 	devDependencies: false,
@@ -17,7 +25,9 @@ const devDependencies = {
 	peerDependencies: false,
 };
 
-const tsconfigPathPatterns = Object.keys(tsconfig.compilerOptions.paths);
+const tsconfigPathPatterns = Object.keys(
+	tsconfig?.config?.compilerOptions?.paths ?? {},
+);
 const testFileSuffixes = ["test", "spec", "mock"];
 
 function testFilePatterns({ root = "", extensions = "*" } = {}) {
@@ -41,7 +51,9 @@ module.exports = {
 			"eslint-import-resolver-typescript": { project: "./tsconfig.json" },
 		},
 	},
-	plugins: ["filenames", "deprecation"],
+	// TODO: re-enable deprecation when compat with eslint v8.45
+	// plugins: ["filenames", "deprecation"],
+	plugins: ["filenames"],
 	extends: [
 		"plugin:@typescript-eslint/strict-type-checked",
 		"plugin:@typescript-eslint/stylistic-type-checked",
@@ -107,7 +119,7 @@ module.exports = {
 				"newlines-between": "always",
 			},
 		],
-		"deprecation/deprecation": "warn",
+		// "deprecation/deprecation": "warn",
 		"prettier/prettier": "warn",
 	},
 	overrides: [
