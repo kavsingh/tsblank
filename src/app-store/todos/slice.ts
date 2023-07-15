@@ -16,7 +16,9 @@ export const todosSlice = createSlice({
 			state.entities[id] = { id, description: payload };
 		},
 		removeTodo(state, { payload }: PayloadAction<string>) {
-			if (payload in state.entities) state.entities[payload] = undefined;
+			// should be safe, use of Maps not recommended in redux stores
+			// eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+			if (payload in state.entities) delete state.entities[payload];
 
 			if (state.ids.includes(payload)) {
 				state.ids = state.ids.filter((id) => id !== payload);
@@ -32,7 +34,7 @@ type Todo = {
 
 type TodosState = {
 	ids: Id[];
-	entities: Record<Id, Todo | undefined>;
+	entities: Record<Id, Todo>;
 };
 
 type Id = string;
