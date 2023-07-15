@@ -1,4 +1,4 @@
-import { createMemo, onCleanup } from "solid-js";
+import { onCleanup } from "solid-js";
 
 import { useAppDispatch, useAppSelector } from "../hooks";
 
@@ -14,12 +14,11 @@ export function createUseEndpointQuery<
 	Definitions extends EndpointDefinitions,
 >(endpoint: ApiEndpointQuery<Definition, Definitions>) {
 	return function useEndpointQuery(
-		...args: Parameters<(typeof endpoint)["initiate"]>
+		...[queryArg, ...rest]: Parameters<(typeof endpoint)["initiate"]>
 	) {
 		const dispatch = useAppDispatch();
-		const state = useAppSelector((appState) => appState);
-		const subscription = dispatch(endpoint.initiate(...args));
-		const result = createMemo(() => endpoint.select(args[0])(state()));
+		const subscription = dispatch(endpoint.initiate(queryArg, ...rest));
+		const result = useAppSelector(endpoint.select(queryArg));
 
 		onCleanup(() => {
 			subscription.unsubscribe();
