@@ -51,9 +51,7 @@ module.exports = {
 			"eslint-import-resolver-typescript": { project: "./tsconfig.json" },
 		},
 	},
-	// TODO: re-enable deprecation when compat with eslint v8.45
-	// plugins: ["filenames", "deprecation"],
-	plugins: ["filenames"],
+	plugins: ["filenames", "deprecation"],
 	extends: [
 		"plugin:@typescript-eslint/strict-type-checked",
 		"plugin:@typescript-eslint/stylistic-type-checked",
@@ -131,6 +129,9 @@ module.exports = {
 		{
 			files: ["*.?(c)js"],
 			extends: ["plugin:@typescript-eslint/disable-type-checked"],
+			rules: {
+				"deprecation/deprecation": "off",
+			},
 		},
 		{
 			files: ["./*"],
