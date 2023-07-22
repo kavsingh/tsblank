@@ -117,7 +117,7 @@ module.exports = {
 				"newlines-between": "always",
 			},
 		],
-		// "deprecation/deprecation": "warn",
+		"deprecation/deprecation": "warn",
 		"prettier/prettier": "warn",
 	},
 	overrides: [
