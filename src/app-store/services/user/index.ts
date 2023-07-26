@@ -2,11 +2,14 @@
 
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
 
-import { createUseEndpointQuery } from "../query-helpers";
+import {
+	createUseEndpointMutation,
+	createUseEndpointQuery,
+} from "../query-helpers";
 
 import { usersSchema, userSchema } from "./schema";
 
-import type { User } from "./schema";
+import type { CreateUser, User } from "./schema";
 
 export const userApi = createApi({
 	reducerPath: "userService",
@@ -44,12 +47,26 @@ export const userApi = createApi({
 				return user ? [{ type: "User", id: user.id }] : [];
 			},
 		}),
+		createUser: builder.mutation<User, CreateUser>({
+			query(userProps) {
+				return { url: "users", method: "post", body: userProps };
+			},
+			transformResponse(data) {
+				return userSchema.parse(data);
+			},
+			invalidatesTags(user) {
+				return user ? ["Users"] : [];
+			},
+		}),
 	}),
 });
 
 export const userQuery = userApi.endpoints.user;
 export const usersQuery = userApi.endpoints.users;
+export const createUserMutation = userApi.endpoints.createUser;
 export const userApiUtil = userApi.util;
 
 export const useUserQuery = createUseEndpointQuery(userQuery);
 export const useUsersQuery = createUseEndpointQuery(usersQuery);
+export const useCreateUserMutation =
+	createUseEndpointMutation(createUserMutation);
