@@ -54,8 +54,14 @@ export const userApi = createApi({
 			transformResponse(data) {
 				return userSchema.parse(data);
 			},
-			invalidatesTags(user) {
-				return user ? ["Users"] : [];
+			async onQueryStarted(arg, api) {
+				const result = await api.queryFulfilled;
+
+				api.dispatch(
+					userApiUtil.updateQueryData("users", undefined, (draft) => {
+						draft.push(result.data);
+					}),
+				);
 			},
 		}),
 	}),
