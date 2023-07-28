@@ -3,7 +3,7 @@ import AddUser from "./add-user";
 import TodoList from "./todo-list";
 import UserList from "./user-list";
 
-export default function Todos() {
+export default function Things() {
 	return (
 		<div class="grid w-full grid-cols-[1fr_1fr] gap-4">
 			<div>
