@@ -15,7 +15,7 @@
 		"dev": "vite",
 		"build": "rm -rf ./dist && vite build",
 		"preview": "vite preview",
-		"tnode": "node --loader=ts-node/esm"
+		"tnode": "node --loader=tsx"
 	},
 	"dependencies": {
 		"tailwind-merge": "1.14.0"
