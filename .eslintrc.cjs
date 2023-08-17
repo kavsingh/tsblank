@@ -4,14 +4,7 @@ const path = require("path");
 /** @type {import("typescript")} */
 const ts = require("typescript");
 
-const tsconfigFile = ts.findConfigFile(
-	__dirname,
-	ts.sys.fileExists,
-	"tsconfig.json",
-);
-const tsconfig = tsconfigFile
-	? ts.readConfigFile(tsconfigFile, ts.sys.readFile)
-	: undefined;
+const testFileSuffixes = ["test", "spec", "mock"];
 
 const srcDependencies = {
 	devDependencies: false,
@@ -24,19 +17,6 @@ const devDependencies = {
 	optionalDependencies: false,
 	peerDependencies: false,
 };
-
-const tsconfigPathPatterns = Object.keys(
-	tsconfig?.config?.compilerOptions?.paths ?? {},
-);
-const testFileSuffixes = ["test", "spec", "mock"];
-
-function testFilePatterns({ root = "", extensions = "*" } = {}) {
-	return [
-		`*.{${testFileSuffixes.join(",")}}`,
-		"__{test,tests,mocks,fixtures}__/**/*",
-		"__{test,mock,fixture}-*__/**/*",
-	].map((pattern) => path.join(root, `**/${pattern}.${extensions}`));
-}
 
 /** @type {import("eslint").ESLint.ConfigData} */
 module.exports = {
@@ -108,7 +88,7 @@ module.exports = {
 					"type",
 				],
 				"pathGroups": [
-					...tsconfigPathPatterns.map((pattern) => ({
+					...getTsConfigPathAliases().map((pattern) => ({
 						pattern,
 						group: "internal",
 					})),
@@ -169,11 +149,6 @@ module.exports = {
 					`\\.(${testFileSuffixes.join("|")})$`,
 				],
 				"vitest/no-hooks": "off",
-			},
-		},
-		{
-			files: testFilePatterns({ extensions: "ts" }),
-			rules: {
 				"@typescript-eslint/no-explicit-any": "off",
 				"@typescript-eslint/no-non-null-assertion": "off",
 				"@typescript-eslint/no-unsafe-argument": "off",
@@ -186,3 +161,27 @@ module.exports = {
 		},
 	],
 };
+
+function testFilePatterns({ root = "", extensions = "*" } = {}) {
+	return [
+		`*.{${testFileSuffixes.join(",")}}`,
+		"__{test,tests,mocks,fixtures}__/**/*",
+		"__{test,mock,fixture}-*__/**/*",
+	].map((pattern) => path.join(root, `**/${pattern}.${extensions}`));
+}
+
+function getTsConfigPathAliases() {
+	return Object.keys(getTsConfig()?.config?.compilerOptions?.paths ?? {});
+}
+
+function getTsConfig() {
+	const tsconfigFile = ts.findConfigFile(
+		__dirname,
+		ts.sys.fileExists,
+		"tsconfig.json",
+	);
+
+	return tsconfigFile
+		? ts.readConfigFile(tsconfigFile, ts.sys.readFile)
+		: undefined;
+}
