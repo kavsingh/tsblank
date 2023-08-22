@@ -80,7 +80,3 @@ export const useUserQuery = createUseEndpointQuery(userQuery);
 export const useUsersQuery = createUseEndpointQuery(usersQuery);
 export const useCreateUserMutation =
 	createUseEndpointMutation(createUserMutation);
-
-export type UserApiBuilder = Parameters<
-	Parameters<(typeof userApi)["injectEndpoints"]>[0]["endpoints"]
->[0];
