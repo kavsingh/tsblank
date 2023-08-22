@@ -48,11 +48,7 @@ describe("<Things /> page", () => {
 
 		const { Wrapper, ue, disposeStore } = setupWrapper();
 
-		render(() => (
-			<Wrapper>
-				<Things />
-			</Wrapper>
-		));
+		render(() => <Things />, { wrapper: Wrapper });
 
 		await ue.type(await screen.findByLabelText("Name"), "New User");
 		await ue.type(await screen.findByLabelText("Email"), "new@user.com");

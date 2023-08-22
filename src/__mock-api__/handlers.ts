@@ -1,7 +1,11 @@
 import { http, HttpResponse } from "msw";
 import { z } from "zod";
 
-import { userSchema, type User } from "../app-store/services/user/schema";
+import {
+	userSchema,
+	createUserSchema,
+} from "../app-store/services/user/schema";
+import { type User } from "../app-store/services/user/schema";
 
 export const handlers = [
 	http.get("https://jsonplaceholder.typicode.com/users", () => {
@@ -14,9 +18,7 @@ export const handlers = [
 		return user ? HttpResponse.json(user) : HttpResponse.error();
 	}),
 	http.post("https://jsonplaceholder.typicode.com/user", async (info) => {
-		const userParams = userSchema
-			.omit({ id: true })
-			.parse(await info.request.json());
+		const userParams = createUserSchema.parse(await info.request.json());
 		const newUser: User = { ...userParams, id: sessionUsers.length };
 
 		sessionUsers.push(newUser);
