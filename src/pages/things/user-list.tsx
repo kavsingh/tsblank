@@ -18,9 +18,9 @@ export default function UserList() {
 										: ""
 								}
 							>
-								<dl class="flex gap-2">
+								<dl class="flex items-baseline gap-2">
 									<dt>{user.name}</dt>
-									<dd class="opacity-50">{user.email}</dd>
+									<dd class="text-sm opacity-50">{user.email}</dd>
 								</dl>
 							</li>
 						)}
