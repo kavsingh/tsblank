@@ -1,5 +1,5 @@
-/** @type {import("path")} */
-const path = require("path");
+/** @type {import("node:path")} */
+const path = require("node:path");
 
 /** @type {import("typescript")} */
 const ts = require("typescript");
