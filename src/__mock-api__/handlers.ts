@@ -4,19 +4,21 @@ import { z } from "zod";
 import {
 	userSchema,
 	createUserSchema,
-} from "../app-store/services/user/schema";
-import { type User } from "../app-store/services/user/schema";
+} from "../app-store/services/user/schemas";
+import { type User } from "../app-store/services/user/schemas";
 
 export const handlers = [
 	http.get("https://jsonplaceholder.typicode.com/users", () => {
 		return HttpResponse.json(sessionUsers);
 	}),
+
 	http.get("https://jsonplaceholder.typicode.com/users/*", (info) => {
 		const { id } = getUserParams.parse(info.params);
 		const user = sessionUsers.find((u) => u.id === Number(id));
 
 		return user ? HttpResponse.json(user) : HttpResponse.error();
 	}),
+
 	http.post("https://jsonplaceholder.typicode.com/user", async (info) => {
 		const userParams = createUserSchema.parse(await info.request.json());
 		const newUser: User = { ...userParams, id: sessionUsers.length };
