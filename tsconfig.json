@@ -11,7 +11,6 @@
 		"paths": { "~/*": ["./src/*"] },
 		"sourceMap": true,
 		"target": "esnext",
-
 		// leave the following to eslint
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
