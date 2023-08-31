@@ -103,11 +103,11 @@ module.exports = {
 		{
 			files: ["src/**/*"],
 			env: { node: false, browser: true },
-			parserOptions: { project: "./tsconfig.vite.json" },
+			parserOptions: { project: "./src/tsconfig.json" },
 			settings: {
 				"import/resolver": {
 					"eslint-import-resolver-typescript": {
-						project: "./tsconfig.vite.json",
+						project: "./tsconfig.json",
 					},
 				},
 				"tailwindcss": { callees: ["twMerge", "twJoin"] },
@@ -116,7 +116,6 @@ module.exports = {
 			rules: {
 				"no-console": "error",
 				"import/no-extraneous-dependencies": ["error", srcDependencies],
-				"import/order": getImportOrderConfig("tsconfig.vite.json"),
 			},
 		},
 		{
@@ -163,12 +162,14 @@ function testFilePatterns({ root = "", extensions = "*" } = {}) {
 	].map((pattern) => path.join(root, `**/${pattern}.${extensions}`));
 }
 
-/** @param {string} configName */
-function getImportOrderConfig(configName) {
+/** @param {string} configPath */
+function getImportOrderConfig(configPath) {
+	const parsed = path.parse(path.resolve(__dirname, configPath));
+
 	const tsconfigFile = ts.findConfigFile(
-		__dirname,
+		parsed.dir,
 		ts.sys.fileExists,
-		configName,
+		parsed.base,
 	);
 
 	const configContents = tsconfigFile

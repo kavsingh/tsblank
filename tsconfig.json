@@ -5,6 +5,7 @@
 	],
 	"compilerOptions": {
 		"noEmit": true,
+		"paths": { "~/*": ["./src/*"] },
 		// leave the following to eslint
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
