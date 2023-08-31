@@ -1,0 +1,13 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"lib": ["esnext", "dom"],
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"paths": { "~/*": ["./src/*"] },
+		"sourceMap": true,
+		"target": "esnext"
+	},
+	"exclude": ["**/node_modules"],
+	"include": ["./src", "./vitest.*.ts"]
+}

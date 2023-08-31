@@ -1,23 +1,15 @@
 {
 	"extends": [
-		"@tsconfig/node20/tsconfig.json",
-		"@tsconfig/strictest/tsconfig.json"
+		"@tsconfig/strictest/tsconfig.json",
+		"@tsconfig/node20/tsconfig.json"
 	],
 	"compilerOptions": {
-		"lib": ["esnext", "dom"],
-		"module": "esnext",
-		"moduleResolution": "bundler",
 		"noEmit": true,
-		"paths": { "~/*": ["./src/*"] },
-		"sourceMap": true,
-		"target": "esnext",
 		// leave the following to eslint
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
-		// leave to eslint: some extensions delete
-		// unreachable code detected via ts too eagerly
 		"allowUnreachableCode": true
 	},
 	"exclude": ["**/node_modules"],
-	"include": ["./src", "./*.ts", "./*.*.cjs"]
+	"include": ["./*.ts", "./*.*.cjs"]
 }

@@ -6,7 +6,10 @@ import tsconfigPathsPlugin from "vite-tsconfig-paths";
 
 export default defineConfig(({ mode }) => ({
 	build: { sourcemap: true },
-	plugins: [tsconfigPathsPlugin(), checker(mode)],
+	plugins: [
+		tsconfigPathsPlugin({ projects: ["./tsconfig.vite.json"] }),
+		checker(mode),
+	],
 	test: {
 		include: ["src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}"],
 		environment: "jsdom",
