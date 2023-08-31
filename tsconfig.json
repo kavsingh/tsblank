@@ -6,6 +6,7 @@
 	"compilerOptions": {
 		"noEmit": true,
 		"paths": { "~/*": ["./src/*"] },
+		"useDefineForClassFields": true,
 		// leave the following to eslint
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
