@@ -1,12 +1,25 @@
 /// <reference types="vitest" />
 
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
 import { defineConfig } from "vite";
 import checkerPlugin from "vite-plugin-checker";
-import tsconfigPathsPlugin from "vite-tsconfig-paths";
+// import tsconfigPathsPlugin from "vite-tsconfig-paths";
+
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 export default defineConfig(({ mode }) => ({
 	build: { sourcemap: true },
-	plugins: [tsconfigPathsPlugin(), checker(mode)],
+	plugins: [
+		// fails when using nested tsconfig. TODO: investigate
+		// tsconfigPathsPlugin(),
+		checker(mode),
+	],
+	// TODO: remove when tsconfigPaths problem is resolved
+	resolve: {
+		alias: { "~": path.join(__dirname, "src") },
+	},
 	test: {
 		include: ["src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}"],
 		environment: "jsdom",
