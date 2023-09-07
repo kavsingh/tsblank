@@ -1,0 +1,14 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "chrome",
+			"request": "launch",
+			"name": "Debug (Chrome)",
+			"url": "http://localhost:5173",
+			"webRoot": "${workspaceFolder}/src",
+			"skipFiles": ["${workspaceFolder}/node_modules/**/*"],
+			"runtimeArgs": ["--remote-debugging-port=9222"]
+		}
+	]
+}
