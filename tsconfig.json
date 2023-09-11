@@ -1,11 +1,12 @@
 {
-	"extends": [
-		"@tsconfig/strictest/tsconfig.json",
-		"@tsconfig/node20/tsconfig.json"
-	],
+	"extends": "@tsconfig/strictest/tsconfig.json",
 	"compilerOptions": {
 		"noEmit": true,
+		"lib": ["esnext"],
+		"module": "esnext",
+		"moduleResolution": "bundler",
 		"paths": { "~/*": ["./src/*"] },
+		"target": "esnext",
 		"useDefineForClassFields": true,
 		// leave the following to eslint
 		"noUnusedLocals": false,
