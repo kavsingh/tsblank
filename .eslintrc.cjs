@@ -29,7 +29,7 @@ module.exports = {
 	parser: "@typescript-eslint/parser",
 	parserOptions: { project: "./tsconfig.json" },
 	settings: {
-		"import-x/parsers": { "@typescript-eslint/parser": [".ts"] },
+		"import-x/parsers": { "@typescript-eslint/parser": [".ts", ".tsx"] },
 		"import-x/resolver": {
 			"eslint-import-resolver-typescript": { project: "./tsconfig.json" },
 		},
@@ -88,12 +88,12 @@ module.exports = {
 	},
 	overrides: [
 		{
-			files: ["*.c[jt]s"],
+			files: ["*.c[jt]s?(x)"],
 			parserOptions: { sourceType: "script" },
 			rules: { "@typescript-eslint/no-var-requires": "off" },
 		},
 		{
-			files: ["*.?(c)js"],
+			files: ["*.?(c)js?(x)"],
 			extends: ["plugin:@typescript-eslint/disable-type-checked"],
 			rules: {
 				"deprecation/deprecation": "off",
@@ -113,13 +113,24 @@ module.exports = {
 				"import-x/resolver": {
 					"eslint-import-resolver-typescript": { project: webTsConfig },
 				},
+				"react": { version: "detect" },
 				"tailwindcss": { callees: ["twMerge", "twJoin"] },
 			},
-			extends: ["plugin:tailwindcss/recommended"],
+			extends: [
+				"plugin:react/recommended",
+				"plugin:react/jsx-runtime",
+				"plugin:react-hooks/recommended",
+				"plugin:tailwindcss/recommended",
+			],
 			rules: {
 				"no-console": "error",
 				"import-x/no-extraneous-dependencies": ["error", srcDependencies],
 				"import-x/order": getImportOrderConfig(webTsConfig),
+				"react/jsx-filename-extension": [
+					"error",
+					{ extensions: [".tsx", ".jsx"] },
+				],
+				"react/prop-types": "off",
 			},
 		},
 		{
@@ -147,12 +158,16 @@ module.exports = {
 			files: testFilePatterns({ root: "src" }),
 			env: { node: true },
 			plugins: ["vitest"],
-			extends: ["plugin:testing-library/dom", "plugin:jest-dom/recommended"],
+			extends: ["plugin:jest-dom/recommended"],
 			rules: {
 				// @ts-expect-error type import mismatch
 				...vitest.configs.all.rules,
 				"vitest/no-hooks": "off",
 			},
+		},
+		{
+			files: testFilePatterns({ root: "src", extensions: "[jt]sx" }),
+			extends: ["plugin:testing-library/react"],
 		},
 	],
 };
