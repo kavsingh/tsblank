@@ -26,7 +26,7 @@ module.exports = {
 	parser: "@typescript-eslint/parser",
 	parserOptions: { project: "./tsconfig.json" },
 	settings: {
-		"import/parsers": { "@typescript-eslint/parser": [".ts"] },
+		"import/parsers": { "@typescript-eslint/parser": [".ts", ".tsx"] },
 		"import/resolver": {
 			"eslint-import-resolver-typescript": { project: "./tsconfig.json" },
 		},
@@ -81,12 +81,12 @@ module.exports = {
 	},
 	overrides: [
 		{
-			files: ["*.c[jt]s"],
+			files: ["*.c[jt]s?(x)"],
 			parserOptions: { sourceType: "script" },
 			rules: { "@typescript-eslint/no-var-requires": "off" },
 		},
 		{
-			files: ["*.?(c)js"],
+			files: ["*.?(c)js?(x)"],
 			extends: ["plugin:@typescript-eslint/disable-type-checked"],
 			rules: {
 				"deprecation/deprecation": "off",
@@ -108,13 +108,24 @@ module.exports = {
 						project: "./src/tsconfig.json",
 					},
 				},
+				"react": { version: "detect" },
 				"tailwindcss": { callees: ["twMerge", "twJoin"] },
 			},
-			extends: ["plugin:tailwindcss/recommended"],
+			extends: [
+				"plugin:react/recommended",
+				"plugin:react/jsx-runtime",
+				"plugin:react-hooks/recommended",
+				"plugin:tailwindcss/recommended",
+			],
 			rules: {
 				"no-console": "error",
 				"import/no-extraneous-dependencies": ["error", srcDependencies],
 				"import/order": getImportOrderConfig("./src/tsconfig.json"),
+				"react/jsx-filename-extension": [
+					"error",
+					{ extensions: [".tsx", ".jsx"] },
+				],
+				"react/prop-types": "off",
 			},
 		},
 		{
@@ -141,14 +152,14 @@ module.exports = {
 		{
 			files: testFilePatterns({ root: "src" }),
 			env: { node: true },
-			extends: [
-				"plugin:vitest/all",
-				"plugin:testing-library/dom",
-				"plugin:jest-dom/recommended",
-			],
+			extends: ["plugin:vitest/all", "plugin:jest-dom/recommended"],
 			rules: {
 				"vitest/no-hooks": "off",
 			},
+		},
+		{
+			files: testFilePatterns({ root: "src", extensions: "[jt]sx" }),
+			extends: ["plugin:testing-library/react"],
 		},
 	],
 };
