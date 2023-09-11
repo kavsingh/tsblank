@@ -1,13 +1,14 @@
 {
 	"extends": "@tsconfig/strictest/tsconfig.json",
 	"compilerOptions": {
-		"noEmit": true,
+		"allowJs": true,
 		"lib": ["esnext"],
 		"module": "esnext",
 		"moduleResolution": "bundler",
+		"noEmit": true,
 		"paths": { "~/*": ["./src/*"] },
 		"target": "esnext",
-		"useDefineForClassFields": true,
+		"types": ["@types/node", "bun-types"],
 		// leave the following to eslint
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
