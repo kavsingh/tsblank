@@ -107,7 +107,7 @@ module.exports = {
 			settings: {
 				"import/resolver": {
 					"eslint-import-resolver-typescript": {
-						project: "./tsconfig.json",
+						project: "./src/tsconfig.json",
 					},
 				},
 				"tailwindcss": { callees: ["twMerge", "twJoin"] },
@@ -116,6 +116,7 @@ module.exports = {
 			rules: {
 				"no-console": "error",
 				"import/no-extraneous-dependencies": ["error", srcDependencies],
+				"import/order": getImportOrderConfig("./src/tsconfig.json"),
 			},
 		},
 		{

@@ -6,7 +6,6 @@
 		"module": "esnext",
 		"moduleResolution": "bundler",
 		"noEmit": true,
-		"paths": { "~/*": ["./src/*"] },
 		"target": "esnext",
 		"types": ["@types/node", "bun-types"],
 		// leave the following to eslint
