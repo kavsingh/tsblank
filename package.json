@@ -9,12 +9,12 @@
 	"main": "index.js",
 	"license": "MIT",
 	"scripts": {
-		"tdd": "vitest",
-		"test": "vitest run",
-		"lint": "tsc && eslint .",
-		"dev": "vite",
-		"build": "rm -rf ./dist && vite build",
-		"preview": "vite preview"
+		"tdd": "bunx vitest",
+		"test": "bunx vitest run",
+		"lint": "bunx tsc && bunx eslint .",
+		"dev": "bunx vite",
+		"build": "rm -rf ./dist && bunx vite build",
+		"preview": "bunx vite preview"
 	},
 	"dependencies": {
 		"tailwind-merge": "1.14.0"
@@ -35,7 +35,7 @@
 		"eslint": "8.49.0",
 		"eslint-config-prettier": "9.0.0",
 		"eslint-import-resolver-typescript": "3.6.0",
-		"eslint-plugin-deprecation": "1.5.0",
+		"eslint-plugin-deprecation": "2.0.0",
 		"eslint-plugin-filenames": "1.3.2",
 		"eslint-plugin-import": "2.28.1",
 		"eslint-plugin-jest-dom": "5.1.0",
