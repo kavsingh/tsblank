@@ -1,7 +1,7 @@
 /// <reference types="vitest" />
 
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { URL, fileURLToPath } from "node:url";
 
 import { defineConfig } from "vite";
 import checkerPlugin from "vite-plugin-checker";

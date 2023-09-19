@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/dom";
-import userEvent from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 import { describe, beforeEach, it, expect } from "vitest";
 
 import Count from "./index";
