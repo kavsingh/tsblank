@@ -7,6 +7,8 @@ import { defineConfig } from "vite";
 import checkerPlugin from "vite-plugin-checker";
 import tsconfigPathsPlugin from "vite-tsconfig-paths";
 
+import type { PluginOption } from "vite";
+
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 export default defineConfig(({ mode }) => ({
@@ -16,7 +18,7 @@ export default defineConfig(({ mode }) => ({
 			projects: [path.resolve(__dirname, "src/tsconfig.json")],
 		}),
 		checker(mode),
-	],
+	] as PluginOption[],
 	test: {
 		include: ["src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}"],
 		environment: "jsdom",
