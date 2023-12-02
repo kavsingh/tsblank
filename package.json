@@ -11,7 +11,7 @@
 	"scripts": {
 		"tdd": "bun x vitest",
 		"test": "bun x vitest run",
-		"lint": "bun x tsc && bunx eslint .",
+		"lint": "bun x tsc && bun x eslint .",
 		"dev": "bun x vite",
 		"build": "rm -rf ./dist && bun x vite build",
 		"preview": "bun x vite preview"
