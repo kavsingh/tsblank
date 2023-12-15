@@ -188,7 +188,8 @@ function getImportOrderConfig(configPath) {
 				"builtin",
 				"external",
 				"internal",
-				["parent", "sibling", "index"],
+				"parent",
+				["sibling", "index"],
 				"type",
 			],
 			"pathGroups": pathAliases.map((pattern) => ({
