@@ -2,10 +2,11 @@ import { For, Show } from "solid-js";
 
 import { useAppDispatch, useAppSelector } from "#app-store/hooks";
 import { removeTodo } from "#app-store/todos/actions";
+import { selectTodo, selectTodoIds } from "#app-store/todos/selectors";
 import Button from "#components/button";
 
 export default function TodoList() {
-	const ids = useAppSelector((state) => state.todos.ids);
+	const ids = useAppSelector(selectTodoIds);
 
 	return (
 		<div class="flex flex-col gap-1">
@@ -16,7 +17,7 @@ export default function TodoList() {
 
 function Todo(props: { id: string }) {
 	const dispatch = useAppDispatch();
-	const todo = useAppSelector((state) => state.todos.entities[props.id]);
+	const todo = useAppSelector((state) => selectTodo(state, props.id));
 
 	return (
 		<Show when={todo()} keyed>

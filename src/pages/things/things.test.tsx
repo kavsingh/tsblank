@@ -13,7 +13,7 @@ describe("<Things /> page", () => {
 	it("should add todo", async () => {
 		expect.assertions(1);
 
-		const { Wrapper, ue, disposeStore } = setupWrapper();
+		const { Wrapper, ue, dispose } = setupWrapper();
 
 		render(() => <Things />, { wrapper: Wrapper });
 
@@ -24,13 +24,13 @@ describe("<Things /> page", () => {
 			expect(screen.getByText("Todo 1")).toBeInTheDocument();
 		});
 
-		disposeStore();
+		dispose();
 	});
 
 	it("should render users", async () => {
 		expect.assertions(2);
 
-		const { Wrapper, disposeStore } = setupWrapper();
+		const { Wrapper, dispose } = setupWrapper();
 
 		render(() => <Things />, { wrapper: Wrapper });
 
@@ -40,13 +40,13 @@ describe("<Things /> page", () => {
 
 		expect(screen.getByText(/User2 Test/i)).toBeInTheDocument();
 
-		disposeStore();
+		dispose();
 	});
 
 	it("should add user", async () => {
 		expect.assertions(1);
 
-		const { Wrapper, ue, disposeStore } = setupWrapper();
+		const { Wrapper, ue, dispose } = setupWrapper();
 
 		render(() => <Things />, { wrapper: Wrapper });
 
@@ -58,7 +58,7 @@ describe("<Things /> page", () => {
 			expect(screen.getByText(/New User/i)).toBeInTheDocument();
 		});
 
-		disposeStore();
+		dispose();
 	});
 });
 
@@ -70,5 +70,5 @@ function setupWrapper() {
 		return <AppStoreProvider store={store}>{props.children}</AppStoreProvider>;
 	}
 
-	return { Wrapper, ue, store, disposeStore: dispose };
+	return { Wrapper, ue, store, dispose };
 }

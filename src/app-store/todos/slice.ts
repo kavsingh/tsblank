@@ -25,6 +25,14 @@ export const todosSlice = createSlice({
 			}
 		},
 	},
+	selectors: {
+		selectTodoIds(state) {
+			return state.ids;
+		},
+		selectTodo(state, id: string) {
+			return state.entities[id];
+		},
+	},
 });
 
 type Todo = {
