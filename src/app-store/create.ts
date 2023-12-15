@@ -15,10 +15,10 @@ export function createAppStore() {
 		devTools: !import.meta.env.PROD,
 	});
 
-	const removeRtkListeners = setupListeners(store.dispatch);
+	const removeQueryListeners = setupListeners(store.dispatch);
 
 	function dispose() {
-		removeRtkListeners();
+		removeQueryListeners();
 	}
 
 	return { store, dispose } as const;
