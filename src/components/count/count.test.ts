@@ -10,6 +10,8 @@ describe("count", () => {
 	});
 
 	it("should render correctly", () => {
+		expect.assertions(3);
+
 		const { el } = Count();
 
 		document.body.appendChild(el);
@@ -20,6 +22,8 @@ describe("count", () => {
 	});
 
 	it("should update count", async () => {
+		expect.assertions(5);
+
 		const { el } = Count({ initialCount: 2, step: 0.5 });
 		const user = userEvent.setup();
 

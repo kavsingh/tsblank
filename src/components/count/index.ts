@@ -1,4 +1,4 @@
-import Button from "~/components/button";
+import Button from "#components/button";
 
 export default function Count({ initialCount = 0, step = 1 }: CountProps = {}) {
 	const el = document.createElement("div");
