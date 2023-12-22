@@ -24,7 +24,7 @@ function Todo(props: { id: string }) {
 			{({ id, description }) => (
 				<div>
 					<div>{description}</div>
-					<Button color="destructive" onClick={[dispatch, removeTodo(id)]}>
+					<Button intent="destructive" onClick={[dispatch, removeTodo(id)]}>
 						Remove
 					</Button>
 				</div>

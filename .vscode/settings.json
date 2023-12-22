@@ -20,7 +20,8 @@
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"tailwindCSS.validate": true,
 	"tailwindCSS.experimental.classRegex": [
-		["tv\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+		["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+		["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
 	],
 	"cssVariables.lookupFiles": ["src/style/**/*.css"],
 	"[javascript]": {

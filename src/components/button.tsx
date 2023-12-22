@@ -1,35 +1,51 @@
+import { cva } from "class-variance-authority";
 import { splitProps } from "solid-js";
-import { tv } from "tailwind-variants";
+import { twMerge } from "tailwind-merge";
 
+import type { VariantProps } from "class-variance-authority";
 import type { JSX } from "solid-js";
-import type { VariantProps } from "tailwind-variants";
 
 export default function Button(
 	props: Omit<JSX.ButtonHTMLAttributes<HTMLButtonElement>, "classList"> &
-		VariantProps<typeof buttonClasses>,
+		ButtonVariantProps,
 ) {
-	const [local, buttonProps] = splitProps(props, ["class", "color", "type"]);
+	const [localProps, buttonProps] = splitProps(props, [
+		"class",
+		"type",
+		"intent",
+	]);
 
 	return (
 		<button
 			{...buttonProps}
-			type={local.type ?? "button"}
-			class={buttonClasses({ color: local.color, class: local.class })}
+			type={localProps.type ?? "button"}
+			class={buttonClasses({
+				intent: localProps.intent,
+				class: localProps.class,
+			})}
 		/>
 	);
 }
 
-const buttonClasses = tv({
-	base: "rounded border p-2 leading-none transition-colors disabled:pointer-events-none disabled:opacity-60",
-	variants: {
-		color: {
-			primary:
-				"border-violet-300 hover:border-violet-500 dark:border-violet-900 dark:hover:border-violet-600",
-			destructive:
-				"border-red-300 hover:border-red-500 dark:border-red-900 dark:hover:border-red-600",
+function buttonClasses(...args: Parameters<typeof buttonVariants>) {
+	return twMerge(buttonVariants(...args));
+}
+
+const buttonVariants = cva(
+	"rounded border p-2 leading-none transition-colors disabled:pointer-events-none disabled:opacity-60",
+	{
+		variants: {
+			intent: {
+				primary:
+					"border-violet-300 hover:border-violet-500 dark:border-violet-900 dark:hover:border-violet-600",
+				destructive:
+					"border-red-300 hover:border-red-500 dark:border-red-900 dark:hover:border-red-600",
+			},
+		},
+		defaultVariants: {
+			intent: "primary",
 		},
 	},
-	defaultVariants: {
-		color: "primary",
-	},
-});
+);
+
+type ButtonVariantProps = VariantProps<typeof buttonVariants>;
