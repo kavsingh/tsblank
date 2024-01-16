@@ -113,7 +113,7 @@ module.exports = {
 				"import-x/resolver": {
 					"eslint-import-resolver-typescript": { project: webTsConfig },
 				},
-				"tailwindcss": { callees: ["twMerge", "twJoin"] },
+				"tailwindcss": { callees: ["tv"] },
 			},
 			extends: ["plugin:tailwindcss/recommended", "plugin:solid/typescript"],
 			rules: {
