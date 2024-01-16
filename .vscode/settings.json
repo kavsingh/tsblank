@@ -20,6 +20,9 @@
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"eslint.workingDirectories": [{ "mode": "auto" }],
 	"tailwindCSS.validate": true,
+	"tailwindCSS.experimental.classRegex": [
+		["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+	],
 	"cssVariables.lookupFiles": ["src/style/**/*.css"],
 	"[javascript]": {
 		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
