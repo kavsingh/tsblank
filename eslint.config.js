@@ -24,7 +24,12 @@ const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig(
 	{
-		ignores: [".vscode/*", "dist/*", "coverage/*"],
+		ignores: [
+			".vscode/*",
+			"dist/*",
+			"coverage/*",
+			"public/mockServiceWorker.js",
+		],
 	},
 
 	{

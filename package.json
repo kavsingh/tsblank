@@ -18,8 +18,11 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@reduxjs/toolkit": "2.11.1",
 		"solid-js": "1.9.10",
-		"tailwind-merge": "3.4.0"
+		"tailwind-merge": "3.4.0",
+		"tailwind-variants": "3.2.2",
+		"zod": "4.1.13"
 	},
 	"devDependencies": {
 		"@eslint/js": "9.39.1",
@@ -44,8 +47,10 @@
 		"eslint-plugin-prettier": "5.5.4",
 		"eslint-plugin-solid": "0.14.5",
 		"eslint-plugin-testing-library": "7.13.5",
+		"eslint-plugin-vitest": "0.5.4",
 		"globals": "16.5.0",
 		"jsdom": "27.3.0",
+		"msw": "2.12.4",
 		"prettier": "3.7.4",
 		"rolldown-vite": "7.2.10",
 		"tailwindcss": "4.1.17",
@@ -59,6 +64,12 @@
 	"trustedDependencies": [
 		"@tailwindcss/oxide",
 		"esbuild",
+		"msw",
 		"unrs-resolver"
-	]
+	],
+	"msw": {
+		"workerDirectory": [
+			"public"
+		]
+	}
 }
