@@ -108,7 +108,7 @@ module.exports = {
 						project: "./src/tsconfig.json",
 					},
 				},
-				"tailwindcss": { callees: ["twMerge", "twJoin"] },
+				"tailwindcss": { callees: ["tv"] },
 			},
 			extends: ["plugin:tailwindcss/recommended", "plugin:solid/typescript"],
 			rules: {

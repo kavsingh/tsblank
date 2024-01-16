@@ -17,8 +17,10 @@
 		"preview": "bun x vite preview"
 	},
 	"dependencies": {
+		"@reduxjs/toolkit": "2.2.1",
 		"solid-js": "1.8.15",
-		"tailwind-merge": "2.2.1"
+		"tailwind-variants": "0.2.0",
+		"zod": "3.22.4"
 	},
 	"devDependencies": {
 		"@solidjs/testing-library": "0.8.6",
@@ -46,6 +48,7 @@
 		"eslint-plugin-testing-library": "6.2.0",
 		"eslint-plugin-vitest": "0.3.26",
 		"jsdom": "24.0.0",
+		"msw": "2.2.3",
 		"prettier": "3.2.5",
 		"tailwindcss": "3.4.1",
 		"typescript": "5.4.2",
@@ -57,5 +60,10 @@
 	},
 	"overrides": {
 		"tsconfig-paths": ">=4.0.0"
+	},
+	"msw": {
+		"workerDirectory": [
+			"public"
+		]
 	}
 }
