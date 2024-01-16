@@ -18,7 +18,12 @@ const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default tsEslint.config(
 	{
-		ignores: [".vscode/*", "dist/*", "coverage/*"],
+		ignores: [
+			".vscode/*",
+			"dist/*",
+			"coverage/*",
+			"public/mockServiceWorker.js",
+		],
 	},
 
 	{

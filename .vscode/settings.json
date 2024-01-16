@@ -32,7 +32,7 @@
 	"tailwindCSS.lint.recommendedVariantOrder": "error",
 	"tailwindCSS.experimental.configFile": "src/index.css",
 	"tailwindCSS.experimental.classRegex": [
-		["twMerge\\(([^)]*)\\)", "twJoin\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+		["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
 	],
 
 	"cssVariables.lookupFiles": ["src/style/**/*.css"],
