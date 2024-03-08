@@ -29,7 +29,7 @@ module.exports = {
 	parser: "@typescript-eslint/parser",
 	parserOptions: { project: "./tsconfig.json" },
 	settings: {
-		"import-x/parsers": { "@typescript-eslint/parser": [".ts"] },
+		"import-x/parsers": { "@typescript-eslint/parser": [".ts", ".tsx"] },
 		"import-x/resolver": {
 			"eslint-import-resolver-typescript": { project: "./tsconfig.json" },
 		},
@@ -88,12 +88,12 @@ module.exports = {
 	},
 	overrides: [
 		{
-			files: ["*.c[jt]s"],
+			files: ["*.c[jt]s?(x)"],
 			parserOptions: { sourceType: "script" },
 			rules: { "@typescript-eslint/no-var-requires": "off" },
 		},
 		{
-			files: ["*.?(c)js"],
+			files: ["*.?(c)js?(x)"],
 			extends: ["plugin:@typescript-eslint/disable-type-checked"],
 			rules: {
 				"deprecation/deprecation": "off",
@@ -115,7 +115,7 @@ module.exports = {
 				},
 				"tailwindcss": { callees: ["twMerge", "twJoin"] },
 			},
-			extends: ["plugin:tailwindcss/recommended"],
+			extends: ["plugin:tailwindcss/recommended", "plugin:solid/typescript"],
 			rules: {
 				"no-console": "error",
 				"import-x/no-extraneous-dependencies": ["error", srcDependencies],

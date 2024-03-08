@@ -5,6 +5,7 @@ import { URL, fileURLToPath } from "node:url";
 
 import { defineConfig } from "vite";
 import checkerPlugin from "vite-plugin-checker";
+import solidPlugin from "vite-plugin-solid";
 import tsconfigPathsPlugin from "vite-tsconfig-paths";
 
 import type { PluginOption } from "vite";
@@ -17,13 +18,16 @@ export default defineConfig(({ mode }) => ({
 		tsconfigPathsPlugin({
 			projects: [path.resolve(__dirname, "src/tsconfig.json")],
 		}),
+		solidPlugin(),
 		checker(mode),
 	] as PluginOption[],
 	test: {
-		include: ["src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}"],
+		include: ["src/**/*.{test,spec}.{js,mjs,cjs,jsx,ts,mts,cts,tsx}"],
 		environment: "jsdom",
 		setupFiles: ["./vitest.setup.ts"],
 		clearMocks: true,
+		testTransformMode: { web: ["/.[jt]sx?$/"] },
+		server: { deps: { inline: [/@solidjs/] } },
 	},
 }));
 
@@ -34,7 +38,7 @@ function checker(mode: string) {
 		overlay: { initialIsOpen: false },
 		typescript: true,
 		eslint: {
-			lintCommand: 'eslint "./src/**/*.ts"',
+			lintCommand: 'eslint "./src/**/*.+(ts|tsx)"',
 			dev: { logLevel: ["error"] },
 		},
 	});
