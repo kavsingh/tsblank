@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 
 import { defineConfig } from "vite";
 import { checker as checkerPlugin } from "vite-plugin-checker";
+import solidPlugin from "vite-plugin-solid";
 import tsconfigPathsPlugin from "vite-tsconfig-paths";
 
 import type { PluginOption } from "vite";
@@ -17,6 +18,7 @@ export default defineConfig(({ mode }) => ({
 		tsconfigPathsPlugin({
 			projects: [path.resolve(__dirname, "src/tsconfig.json")],
 		}),
+		solidPlugin(),
 		checker(mode),
 	] as PluginOption[],
 }));

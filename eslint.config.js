@@ -6,6 +6,7 @@ import filenames from "@kavsingh/eslint-plugin-filenames";
 import importX from "eslint-plugin-import-x";
 import jestDom from "eslint-plugin-jest-dom";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
+import solid from "eslint-plugin-solid";
 import tailwind from "eslint-plugin-tailwindcss";
 import testingLibrary from "eslint-plugin-testing-library";
 import vitest from "eslint-plugin-vitest";
@@ -129,7 +130,10 @@ export default tsEslint.config(
 			},
 			"tailwindcss": { callees: ["twMerge", "twJoin"] },
 		},
-		extends: [...tailwind.configs["flat/recommended"]],
+		extends: [
+			...tailwind.configs["flat/recommended"],
+			solid.configs["flat/recommended"],
+		],
 		rules: {
 			"no-console": "error",
 		},
