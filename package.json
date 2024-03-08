@@ -17,9 +17,11 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"solid-js": "1.8.18",
 		"tailwind-merge": "2.4.0"
 	},
 	"devDependencies": {
+		"@solidjs/testing-library": "0.8.8",
 		"@tailwindcss/container-queries": "0.1.1",
 		"@testing-library/dom": "10.3.2",
 		"@testing-library/jest-dom": "6.4.6",
@@ -39,6 +41,7 @@
 		"eslint-plugin-import-x": "3.0.1",
 		"eslint-plugin-jest-dom": "5.4.0",
 		"eslint-plugin-prettier": "5.2.1",
+		"eslint-plugin-solid": "0.14.1",
 		"eslint-plugin-tailwindcss": "3.17.4",
 		"eslint-plugin-testing-library": "6.2.2",
 		"eslint-plugin-vitest": "0.5.4",
@@ -48,6 +51,7 @@
 		"typescript": "5.5.3",
 		"vite": "5.3.4",
 		"vite-plugin-checker": "0.7.2",
+		"vite-plugin-solid": "2.10.2",
 		"vite-tsconfig-paths": "4.3.2",
 		"vitest": "2.0.3"
 	}
