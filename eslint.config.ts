@@ -8,6 +8,9 @@ import importX from "eslint-plugin-import-x";
 // @ts-expect-error no types available
 import jestDom from "eslint-plugin-jest-dom";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
+import { default as react } from "eslint-plugin-react";
+// @ts-expect-error no types available
+import reactHooks from "eslint-plugin-react-hooks";
 import tailwind from "eslint-plugin-tailwindcss";
 // @ts-expect-error no types available
 import testingLibrary from "eslint-plugin-testing-library";
@@ -137,10 +140,29 @@ export default tsEslint.config(
 				},
 			},
 			"tailwindcss": { callees: ["twMerge", "twJoin"] },
+			"react": { version: "detect" },
 		},
-		extends: [...tailwind.configs["flat/recommended"]],
+		extends: [
+			// @ts-expect-error upstream types
+			react.configs.flat.recommended,
+			// @ts-expect-error upstream types
+			react.configs.flat["jsx-runtime"],
+			...tailwind.configs["flat/recommended"],
+		],
+		plugins: {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+			"react-hooks": reactHooks,
+		},
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		rules: {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+			...reactHooks.configs.recommended.rules,
 			"no-console": "error",
+			"react/jsx-filename-extension": [
+				"error",
+				{ extensions: [".tsx", ".jsx"] },
+			],
+			"react/prop-types": "off",
 		},
 	},
 
@@ -187,7 +209,7 @@ export default tsEslint.config(
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		rules: {
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-			...testingLibrary.configs["flat/dom"].rules,
+			...testingLibrary.configs["flat/react"].rules,
 			"vitest/no-hooks": "off",
 		},
 	},
