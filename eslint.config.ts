@@ -8,6 +8,7 @@ import importX from "eslint-plugin-import-x";
 // @ts-expect-error no types available
 import jestDom from "eslint-plugin-jest-dom";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
+import solid from "eslint-plugin-solid";
 import tailwind from "eslint-plugin-tailwindcss";
 // @ts-expect-error no types available
 import testingLibrary from "eslint-plugin-testing-library";
@@ -138,7 +139,10 @@ export default tsEslint.config(
 			},
 			"tailwindcss": { callees: ["twMerge", "twJoin"] },
 		},
-		extends: [...tailwind.configs["flat/recommended"]],
+		extends: [
+			...tailwind.configs["flat/recommended"],
+			solid.configs["flat/recommended"],
+		],
 		rules: {
 			"no-console": "error",
 		},
