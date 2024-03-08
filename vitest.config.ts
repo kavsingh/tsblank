@@ -5,6 +5,7 @@ import baseConfig from "./vite.config";
 export default mergeConfig(
 	baseConfig({ command: "build", mode: "production" }),
 	defineConfig({
+		resolve: { conditions: ["development", "browser"] },
 		test: {
 			include: ["src/**/*.{test,spec}.?(m|c)[tj]s?(x)"],
 			environment: "jsdom",
