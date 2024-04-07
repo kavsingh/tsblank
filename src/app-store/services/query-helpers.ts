@@ -45,8 +45,8 @@ export function createUseEndpointMutation<
 		async function mutate(arg: Parameters<(typeof endpoint)["initiate"]>[0]) {
 			const init = endpoint.initiate(arg, options);
 			const request = init(
-				store.dispatch.bind(store),
-				store.getState.bind(store),
+				store().dispatch.bind(store),
+				store().getState.bind(store),
 				undefined,
 			);
 
@@ -59,7 +59,7 @@ export function createUseEndpointMutation<
 			return endpoint.select({
 				requestId: requestId(),
 				fixedCacheKey: options?.fixedCacheKey,
-			})(store.getState());
+			})(store().getState());
 		});
 
 		return [mutate, state] as const;

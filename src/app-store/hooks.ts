@@ -10,10 +10,10 @@ export function useAppSelector<T>(
 	equals?: MemoOptions<T>["equals"],
 ) {
 	const store = useAppStore();
-	const [selected, setSelected] = createSignal<T>(selector(store.getState()));
+	const [selected, setSelected] = createSignal<T>(selector(store().getState()));
 	const result = createMemo(() => selected(), { equals });
-	const unsubscribe = store.subscribe(() => {
-		setSelected(() => selector(store.getState()));
+	const unsubscribe = store().subscribe(() => {
+		setSelected(() => selector(store().getState()));
 	});
 
 	onCleanup(unsubscribe);
@@ -24,5 +24,5 @@ export function useAppSelector<T>(
 export function useAppDispatch() {
 	const store = useAppStore();
 
-	return store.dispatch;
+	return store().dispatch;
 }

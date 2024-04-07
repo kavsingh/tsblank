@@ -1,12 +1,13 @@
-import { createContext, useContext } from "solid-js";
+import { createContext, createMemo, useContext } from "solid-js";
 
 import type { AppStore } from "./create";
-import type { ParentProps } from "solid-js";
+import type { Accessor, ParentProps } from "solid-js";
 
 export function AppStoreProvider(props: ParentProps<{ store: AppStore }>) {
+	const store = createMemo(() => props.store);
+
 	return (
-		// eslint-disable-next-line solid/reactivity
-		<AppStoreContext.Provider value={props.store}>
+		<AppStoreContext.Provider value={store}>
 			{props.children}
 		</AppStoreContext.Provider>
 	);
@@ -22,4 +23,6 @@ export function useAppStore() {
 	return store;
 }
 
-const AppStoreContext = createContext<AppStore | undefined>(undefined);
+const AppStoreContext = createContext<Accessor<AppStore> | undefined>(
+	undefined,
+);
