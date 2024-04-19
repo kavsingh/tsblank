@@ -1,6 +1,7 @@
 /** @type {import("node:path")} */
 const path = require("node:path");
 
+const vitest = require("eslint-plugin-vitest");
 /** @type {import("typescript")} */
 const ts = require("typescript");
 
@@ -141,12 +142,11 @@ module.exports = {
 		{
 			files: testFilePatterns({ root: "src" }),
 			env: { node: true },
-			extends: [
-				"plugin:vitest/all",
-				"plugin:testing-library/dom",
-				"plugin:jest-dom/recommended",
-			],
+			plugins: ["vitest"],
+			extends: ["plugin:testing-library/dom", "plugin:jest-dom/recommended"],
 			rules: {
+				// @ts-expect-error type import mismatch
+				...vitest.configs.all.rules,
 				"vitest/no-hooks": "off",
 			},
 		},
