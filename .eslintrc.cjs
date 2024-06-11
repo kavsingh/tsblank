@@ -53,6 +53,10 @@ module.exports = {
 		"@typescript-eslint/consistent-type-definitions": ["warn", "type"],
 		"@typescript-eslint/consistent-type-imports": "error",
 		"@typescript-eslint/member-ordering": ["warn"],
+		"@typescript-eslint/restrict-template-expressions": [
+			"error",
+			{ allowNumber: true },
+		],
 		"no-shadow": "off",
 		"@typescript-eslint/no-shadow": [
 			"error",
