@@ -19,6 +19,8 @@ const devDependencies = {
 	peerDependencies: false,
 };
 
+const webTsConfig = path.resolve(__dirname, "src", "tsconfig.json");
+
 /** @type {import("eslint").ESLint.ConfigData} */
 module.exports = {
 	root: true,
@@ -106,12 +108,10 @@ module.exports = {
 		{
 			files: ["src/**/*"],
 			env: { node: false, browser: true },
-			parserOptions: { project: "./src/tsconfig.json" },
+			parserOptions: { project: webTsConfig },
 			settings: {
 				"import-x/resolver": {
-					"eslint-import-resolver-typescript": {
-						project: "./src/tsconfig.json",
-					},
+					"eslint-import-resolver-typescript": { project: webTsConfig },
 				},
 				"tailwindcss": { callees: ["twMerge", "twJoin"] },
 			},
@@ -119,7 +119,7 @@ module.exports = {
 			rules: {
 				"no-console": "error",
 				"import-x/no-extraneous-dependencies": ["error", srcDependencies],
-				"import-x/order": getImportOrderConfig("./src/tsconfig.json"),
+				"import-x/order": getImportOrderConfig(webTsConfig),
 			},
 		},
 		{
@@ -167,13 +167,13 @@ function testFilePatterns({ root = "", extensions = "*" } = {}) {
 
 /** @param {string} configPath */
 function getImportOrderConfig(configPath) {
-	const parsed = path.parse(path.resolve(__dirname, configPath));
-
-	const tsconfigFile = ts.findConfigFile(
-		parsed.dir,
-		ts.sys.fileExists,
-		parsed.base,
+	const { dir, base } = path.parse(
+		path.isAbsolute(configPath)
+			? configPath
+			: path.resolve(__dirname, configPath),
 	);
+
+	const tsconfigFile = ts.findConfigFile(dir, ts.sys.fileExists, base);
 
 	const configContents = tsconfigFile
 		? ts.readConfigFile(tsconfigFile, ts.sys.readFile)
