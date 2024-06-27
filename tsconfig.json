@@ -6,6 +6,7 @@
 		"module": "esnext",
 		"moduleResolution": "bundler",
 		"noEmit": true,
+		"paths": { "#*": ["./src/*"] },
 		"target": "esnext",
 		// leave the following to eslint
 		"noUnusedLocals": false,

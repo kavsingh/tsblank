@@ -20,7 +20,6 @@ export default async function App(appRoot: HTMLElement) {
 }
 
 async function LazyCount(props?: CountProps) {
-	// eslint-disable-next-line import-x/no-unresolved
 	const { default: Count } = await import("#components/count");
 
 	return Count(props);
