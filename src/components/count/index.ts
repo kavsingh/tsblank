@@ -1,3 +1,4 @@
+// eslint-disable-next-line import-x/no-unresolved
 import Button from "#components/button";
 
 export default function Count({ initialCount = 0, step = 1 }: CountProps = {}) {
