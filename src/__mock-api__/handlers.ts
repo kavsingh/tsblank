@@ -20,7 +20,7 @@ export const handlers = [
 		return user ? HttpResponse.json(user) : HttpResponse.error();
 	}),
 
-	http.post("https://jsonplaceholder.typicode.com/user", async (info) => {
+	http.post("https://jsonplaceholder.typicode.com/users", async (info) => {
 		const userParams = createUserSchema.parse(await info.request.json());
 		const newUser: User = { ...userParams, id: sessionUsers.length };
 
