@@ -17,26 +17,26 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"tailwind-merge": "2.3.0"
+		"tailwind-merge": "2.4.0"
 	},
 	"devDependencies": {
 		"@tailwindcss/container-queries": "0.1.1",
-		"@testing-library/dom": "10.2.0",
+		"@testing-library/dom": "10.3.1",
 		"@testing-library/jest-dom": "6.4.6",
 		"@testing-library/user-event": "14.5.2",
 		"@tsconfig/strictest": "2.0.5",
 		"@types/bun": "1.1.6",
 		"@types/eslint": "8.56.10",
-		"@typescript-eslint/eslint-plugin": "7.15.0",
-		"@typescript-eslint/parser": "7.15.0",
-		"@vitest/coverage-v8": "1.6.0",
+		"@typescript-eslint/eslint-plugin": "7.16.0",
+		"@typescript-eslint/parser": "7.16.0",
+		"@vitest/coverage-v8": "2.0.1",
 		"autoprefixer": "10.4.19",
 		"eslint": "8.57.0",
 		"eslint-config-prettier": "9.1.0",
 		"eslint-import-resolver-typescript": "3.6.1",
 		"eslint-plugin-deprecation": "3.0.0",
 		"eslint-plugin-filenames": "1.3.2",
-		"eslint-plugin-import-x": "0.5.2",
+		"eslint-plugin-import-x": "0.5.3",
 		"eslint-plugin-jest-dom": "5.4.0",
 		"eslint-plugin-prettier": "5.1.3",
 		"eslint-plugin-tailwindcss": "3.17.4",
@@ -45,10 +45,10 @@
 		"jsdom": "24.1.0",
 		"prettier": "3.3.2",
 		"tailwindcss": "3.4.4",
-		"typescript": "5.5.2",
-		"vite": "5.3.2",
-		"vite-plugin-checker": "0.7.0",
+		"typescript": "5.5.3",
+		"vite": "5.3.3",
+		"vite-plugin-checker": "0.7.1",
 		"vite-tsconfig-paths": "4.3.2",
-		"vitest": "1.6.0"
+		"vitest": "2.0.1"
 	}
 }
