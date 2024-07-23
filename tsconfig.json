@@ -2,6 +2,7 @@
 	"extends": "@tsconfig/strictest/tsconfig.json",
 	"compilerOptions": {
 		"allowJs": true,
+		"checkJs": true,
 		"lib": ["esnext"],
 		"module": "esnext",
 		"moduleResolution": "bundler",
@@ -13,5 +14,5 @@
 		"allowUnreachableCode": true
 	},
 	"exclude": ["**/node_modules"],
-	"include": ["./*.ts", "./*.*.cjs"]
+	"include": ["./*.ts", "./*.js", "./*.*.cjs"]
 }
