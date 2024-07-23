@@ -4,8 +4,6 @@ import { fileURLToPath } from "node:url";
 import { fixupPluginRules } from "@eslint/compat";
 import js from "@eslint/js";
 import deprecationPlugin from "eslint-plugin-deprecation";
-// -@ts-expect-error no types available
-// import filenamesPlugin from "eslint-plugin-filenames";
 import importPlugin from "eslint-plugin-import-x";
 // @ts-expect-error no types available
 import jestDomPlugin from "eslint-plugin-jest-dom";
@@ -43,7 +41,6 @@ export default tsEslint.config(
 		},
 		plugins: {
 			"import-x": importPlugin,
-			// "filenames": fixupPluginRules(filenamesPlugin),
 			// @ts-expect-error upstream types
 			"deprecation": fixupPluginRules(deprecationPlugin),
 		},
@@ -66,6 +63,10 @@ export default tsEslint.config(
 			"@typescript-eslint/consistent-type-definitions": ["warn", "type"],
 			"@typescript-eslint/consistent-type-imports": "error",
 			"@typescript-eslint/member-ordering": ["warn"],
+			"@typescript-eslint/restrict-template-expressions": [
+				"error",
+				{ allowNumber: true },
+			],
 			"no-shadow": "off",
 			"@typescript-eslint/no-shadow": [
 				"error",
@@ -78,7 +79,7 @@ export default tsEslint.config(
 			"@typescript-eslint/no-throw-literal": "error",
 			"no-unused-vars": "off",
 			"@typescript-eslint/no-unused-vars": [
-				"error",
+				"warn",
 				{ argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
 			],
 			// "filenames/match-regex": ["error", "^[a-z0-9-.]+$", true],

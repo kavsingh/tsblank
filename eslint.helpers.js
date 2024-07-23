@@ -52,13 +52,13 @@ export function readTsConfig(configPath) {
  * @typedef {import("eslint").Linter.RuleSeverity} RuleLevel
  *
  * @param {string} tsConfigPath
- * @param {(config: Record<string, unknown>, tsconfig: TsConfig | undefined) => Record<string, unknown>} customizer
+ * @param {(ruleConfig: Record<string, unknown>, tsconfig: TsConfig | undefined) => Record<string, unknown>} customizer
  *
  * @returns {[RuleLevel, Record<string, unknown>]}
  **/
 export function getImportOrderConfig(
 	tsConfigPath,
-	customizer = (config) => config,
+	customizer = (ruleConfig) => ruleConfig,
 ) {
 	const tsConfig = readTsConfig(tsConfigPath);
 	const aliases = Object.keys(tsConfig?.compilerOptions?.paths ?? {});
