@@ -3,13 +3,11 @@
 @tailwind utilities;
 
 :root {
-	color: theme("colors.zinc.900");
-	background-color: theme("colors.zinc.100");
+	@apply text-zinc-900 bg-zinc-100;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		color: theme("colors.zinc.300");
-		background-color: theme("colors.zinc.900");
+		@apply text-zinc-300 bg-zinc-900;
 	}
 }
