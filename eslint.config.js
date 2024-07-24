@@ -121,12 +121,12 @@ export default tsEslint.config(
 			},
 			"tailwindcss": { callees: ["twMerge", "twJoin"] },
 		},
+		extends: [...tailwindPlugin.configs["flat/recommended"]],
 		rules: {
 			"no-console": "error",
 			"import-x/order": getImportOrderConfig(webTsConfig),
 		},
 	},
-	...tailwindPlugin.configs["flat/recommended"],
 	{
 		files: testFilePatterns(),
 		languageOptions: { globals: { ...globals.node } },

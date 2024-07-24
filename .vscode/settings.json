@@ -17,7 +17,6 @@
 		"**/node_modules": true,
 		"**/dist/": true
 	},
-	"eslint.experimental.useFlatConfig": true,
 	"tailwindCSS.validate": true,
 	"cssVariables.lookupFiles": ["src/style/**/*.css"],
 	"typescript.tsdk": "node_modules/typescript/lib",

@@ -9,13 +9,13 @@ export default async function App(appRoot: HTMLElement) {
 
 	if (!uiRoot) throw new Error("Could not create ui root");
 
-	await Promise.all([
+	const counts = await Promise.all([
 		LazyCount(),
 		LazyCount({ initialCount: 10, step: 5 }),
-	]).then((counts) => {
-		counts.forEach(({ el }) => {
-			uiRoot.appendChild(el);
-		});
+	]);
+
+	counts.forEach(({ el }) => {
+		uiRoot.appendChild(el);
 	});
 }
 
