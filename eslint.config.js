@@ -30,15 +30,17 @@ const webTsConfig = path.resolve(__dirname, "src", "tsconfig.json");
 
 export default tsEslint.config(
 	{ ignores: [".vscode/*", "dist/*", "coverage/*"] },
-	js.configs.recommended,
-	...tsEslint.configs.strictTypeChecked,
-	...tsEslint.configs.stylisticTypeChecked,
 	{
 		linterOptions: { reportUnusedDisableDirectives: true },
 		languageOptions: {
 			globals: { ...globals.node },
 			parserOptions: { project: baseTsConfig },
 		},
+	},
+	js.configs.recommended,
+	...tsEslint.configs.strictTypeChecked,
+	...tsEslint.configs.stylisticTypeChecked,
+	{
 		plugins: {
 			"import-x": importPlugin,
 			// @ts-expect-error upstream types
