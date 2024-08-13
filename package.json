@@ -17,7 +17,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"tailwind-merge": "2.4.0"
+		"tailwind-merge": "2.5.2"
 	},
 	"devDependencies": {
 		"@tailwindcss/container-queries": "0.1.1",
@@ -27,10 +27,10 @@
 		"@tsconfig/strictest": "2.0.5",
 		"@types/bun": "1.1.6",
 		"@types/eslint": "8.56.10",
-		"@typescript-eslint/eslint-plugin": "7.17.0",
-		"@typescript-eslint/parser": "7.17.0",
-		"@vitest/coverage-v8": "2.0.4",
-		"autoprefixer": "10.4.19",
+		"@typescript-eslint/eslint-plugin": "8.1.0",
+		"@typescript-eslint/parser": "8.1.0",
+		"@vitest/coverage-v8": "2.0.5",
+		"autoprefixer": "10.4.20",
 		"eslint": "8.57.0",
 		"eslint-config-prettier": "9.1.0",
 		"eslint-import-resolver-typescript": "3.6.1",
@@ -40,15 +40,15 @@
 		"eslint-plugin-jest-dom": "5.4.0",
 		"eslint-plugin-prettier": "5.2.1",
 		"eslint-plugin-tailwindcss": "3.17.4",
-		"eslint-plugin-testing-library": "6.2.2",
+		"eslint-plugin-testing-library": "6.3.0",
 		"eslint-plugin-vitest": "0.5.4",
 		"jsdom": "24.1.1",
 		"prettier": "3.3.3",
-		"tailwindcss": "3.4.6",
+		"tailwindcss": "3.4.10",
 		"typescript": "5.5.4",
-		"vite": "5.3.4",
+		"vite": "5.4.0",
 		"vite-plugin-checker": "0.7.2",
-		"vite-tsconfig-paths": "4.3.2",
-		"vitest": "2.0.4"
+		"vite-tsconfig-paths": "5.0.1",
+		"vitest": "2.0.5"
 	}
 }
