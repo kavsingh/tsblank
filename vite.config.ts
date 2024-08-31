@@ -34,6 +34,7 @@ function checker(mode: string) {
 		overlay: { initialIsOpen: false },
 		typescript: true,
 		eslint: {
+			useFlatConfig: true,
 			lintCommand: 'eslint "./src/**/*.ts"',
 			dev: { logLevel: ["error"] },
 		},
