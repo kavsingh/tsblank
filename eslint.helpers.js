@@ -49,7 +49,7 @@ export function readTsConfig(configPath) {
 }
 
 /**
- * @typedef {import("eslint").Linter.RuleSeverity} RuleLevel
+ * @typedef {import("eslint").Linter.RuleLevel} RuleLevel
  *
  * @param {string} tsConfigPath
  * @param {(ruleConfig: Record<string, unknown>, tsconfig: TsConfig | undefined) => Record<string, unknown>} customizer

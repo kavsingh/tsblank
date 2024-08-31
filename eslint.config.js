@@ -1,10 +1,8 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { fixupPluginRules } from "@eslint/compat";
-import js from "@eslint/js";
+import jsPlugin from "@eslint/js";
 import filenamesPlugin from "@kavsingh/eslint-plugin-filenames";
-import deprecationPlugin from "eslint-plugin-deprecation";
 import importPlugin from "eslint-plugin-import-x";
 // @ts-expect-error no types available
 import jestDomPlugin from "eslint-plugin-jest-dom";
@@ -15,7 +13,7 @@ import tailwindPlugin from "eslint-plugin-tailwindcss";
 import testingPlugin from "eslint-plugin-testing-library";
 import vitestPlugin from "eslint-plugin-vitest";
 import globals from "globals";
-import tsEslint from "typescript-eslint";
+import tsEslintPlugin from "typescript-eslint";
 
 import {
 	testFilePatterns,
@@ -29,7 +27,7 @@ const __dirname = path.dirname(__filename);
 const baseTsConfig = path.resolve(__dirname, "tsconfig.json");
 const webTsConfig = path.resolve(__dirname, "src", "tsconfig.json");
 
-export default tsEslint.config(
+export default tsEslintPlugin.config(
 	{ ignores: [".vscode/*", "dist/*", "coverage/*"] },
 	{
 		linterOptions: { reportUnusedDisableDirectives: true },
@@ -38,16 +36,12 @@ export default tsEslint.config(
 			parserOptions: { project: baseTsConfig },
 		},
 	},
-	js.configs.recommended,
-	...tsEslint.configs.strictTypeChecked,
-	...tsEslint.configs.stylisticTypeChecked,
+	jsPlugin.configs.recommended,
+	...tsEslintPlugin.configs.strictTypeChecked,
+	...tsEslintPlugin.configs.stylisticTypeChecked,
 	filenamesPlugin.configs.kebab,
 	{
-		plugins: {
-			"import-x": importPlugin,
-			// @ts-expect-error upstream types
-			"deprecation": fixupPluginRules(deprecationPlugin),
-		},
+		plugins: { "import-x": importPlugin },
 		settings: {
 			"import-x/resolver": {
 				"eslint-import-resolver-typescript": { project: baseTsConfig },
@@ -98,18 +92,19 @@ export default tsEslint.config(
 			"import-x/no-unused-modules": "error",
 			"import-x/no-useless-path-segments": "error",
 			"import-x/order": getImportOrderConfig(baseTsConfig),
-			"deprecation/deprecation": "warn",
 		},
 	},
 	{
 		files: ["*.c[jt]s"],
 		languageOptions: { parserOptions: { sourceType: "script" } },
-		rules: { "@typescript-eslint/no-var-requires": "off" },
+		rules: {
+			"@typescript-eslint/no-require-imports": "off",
+			"@typescript-eslint/no-var-requires": "off",
+		},
 	},
 	{
 		files: ["*.?(c)js"],
-		extends: [tsEslint.configs.disableTypeChecked],
-		rules: { "deprecation/deprecation": "off" },
+		extends: [tsEslintPlugin.configs.disableTypeChecked],
 	},
 	{
 		files: ["./*"],
