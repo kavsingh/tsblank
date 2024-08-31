@@ -2,7 +2,6 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import ts from "typescript";
-import { z } from "zod";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,19 +16,19 @@ export function testFilePatterns({ root = "", extensions = "*" } = {}) {
 	].map((pattern) => path.join(root, `**/${pattern}.${extensions}`));
 }
 
-const tsConfigSchema = z.object({
-	compilerOptions: z
-		.object({ paths: z.record(z.array(z.string())).optional() })
-		.optional(),
-});
-
-/** @typedef {import("zod").infer<typeof tsConfigSchema>} TsConfig */
+/**
+ * @typedef {Object} TsConfigCompilerOptions
+ * @property {Record<string, string[]> | undefined} [paths]
+ *
+ * @typedef {Object} TsConfig
+ * @property {TsConfigCompilerOptions | undefined} [compilerOptions]
+ */
 
 /**
  * @param {string} configPath
  *
  * @returns {TsConfig | undefined}
- **/
+ */
 export function readTsConfig(configPath) {
 	const dir = path.isAbsolute(configPath)
 		? path.dirname(configPath)
@@ -41,11 +40,14 @@ export function readTsConfig(configPath) {
 
 	const contents = ts.findConfigFile(dir, ts.sys.fileExists.bind(ts.sys), file);
 
-	return contents
-		? tsConfigSchema.parse(
-				ts.readConfigFile(contents, ts.sys.readFile.bind(ts.sys)).config,
-			)
+	/** @type {unknown | undefined} */
+	const config = contents
+		? ts.readConfigFile(contents, ts.sys.readFile.bind(ts.sys)).config
 		: undefined;
+
+	if (!(config && typeof config === "object")) return undefined;
+
+	return config;
 }
 
 /**
@@ -55,7 +57,7 @@ export function readTsConfig(configPath) {
  * @param {(ruleConfig: Record<string, unknown>, tsconfig: TsConfig | undefined) => Record<string, unknown>} customizer
  *
  * @returns {[RuleLevel, Record<string, unknown>]}
- **/
+ */
 export function getImportOrderConfig(
 	tsConfigPath,
 	customizer = (ruleConfig) => ruleConfig,
