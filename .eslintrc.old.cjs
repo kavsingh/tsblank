@@ -21,7 +21,6 @@ const devDependencies = {
 
 const webTsConfig = path.resolve(__dirname, "src", "tsconfig.json");
 
-/** @type {import("eslint").ESLint.ConfigData} */
 module.exports = {
 	root: true,
 	reportUnusedDisableDirectives: true,
