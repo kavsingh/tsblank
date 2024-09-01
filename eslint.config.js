@@ -13,7 +13,7 @@ import tailwindPlugin from "eslint-plugin-tailwindcss";
 import testingPlugin from "eslint-plugin-testing-library";
 import vitestPlugin from "eslint-plugin-vitest";
 import globals from "globals";
-import tsEslintPlugin from "typescript-eslint";
+import * as tsEslintPlugin from "typescript-eslint";
 
 import {
 	testFilePatterns,
@@ -39,17 +39,16 @@ export default tsEslintPlugin.config(
 	jsPlugin.configs.recommended,
 	...tsEslintPlugin.configs.strictTypeChecked,
 	...tsEslintPlugin.configs.stylisticTypeChecked,
+	importPlugin.flatConfigs.recommended,
+	importPlugin.flatConfigs.typescript,
 	filenamesPlugin.configs.kebab,
 	{
-		plugins: { "import-x": importPlugin },
 		settings: {
 			"import-x/resolver": {
 				"eslint-import-resolver-typescript": { project: baseTsConfig },
 			},
 		},
 		rules: {
-			...importPlugin.configs.recommended.rules,
-			...importPlugin.configs.typescript.rules,
 			"camelcase": "off",
 			"curly": ["warn", "multi-line", "consistent"],
 			"no-console": "off",
@@ -95,7 +94,7 @@ export default tsEslintPlugin.config(
 		},
 	},
 	{
-		files: ["*.c[jt]s"],
+		files: ["*.{cjs,cts}"],
 		languageOptions: { parserOptions: { sourceType: "script" } },
 		rules: {
 			"@typescript-eslint/no-require-imports": "off",
@@ -103,7 +102,7 @@ export default tsEslintPlugin.config(
 		},
 	},
 	{
-		files: ["*.?(c)js"],
+		files: ["*.{js,cjs}"],
 		extends: [tsEslintPlugin.configs.disableTypeChecked],
 	},
 	{
@@ -113,7 +112,7 @@ export default tsEslintPlugin.config(
 		},
 	},
 	{
-		files: ["src/**/*"],
+		files: ["src/**/*.{ts,mts,cts,js,mjs,cjs}"],
 		languageOptions: {
 			globals: { ...globals.browser },
 			parserOptions: { project: webTsConfig },

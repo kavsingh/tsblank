@@ -8,7 +8,10 @@ const __dirname = path.dirname(__filename);
 
 export const testFileSuffixes = ["test", "spec", "mock"];
 
-export function testFilePatterns({ root = "", extensions = "*" } = {}) {
+export function testFilePatterns({
+	root = "",
+	extensions = "{ts,mts,cts,js,mjs,cjs}",
+} = {}) {
 	return [
 		`*.{${testFileSuffixes.join(",")}}`,
 		"__{test,tests,mocks,fixtures}__/**/*",

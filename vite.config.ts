@@ -4,7 +4,7 @@ import path from "node:path";
 import { URL, fileURLToPath } from "node:url";
 
 import { defineConfig } from "vite";
-import checkerPlugin from "vite-plugin-checker";
+import { checker as checkerPlugin } from "vite-plugin-checker";
 import tsconfigPathsPlugin from "vite-tsconfig-paths";
 
 import type { PluginOption } from "vite";
