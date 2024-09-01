@@ -29,6 +29,7 @@ const webTsConfig = path.resolve(__dirname, "src", "tsconfig.json");
 
 export default tsEslintPlugin.config(
 	{ ignores: [".vscode/*", "dist/*", "coverage/*"] },
+
 	{
 		linterOptions: { reportUnusedDisableDirectives: true },
 		languageOptions: {
@@ -36,12 +37,14 @@ export default tsEslintPlugin.config(
 			parserOptions: { project: baseTsConfig },
 		},
 	},
+
 	jsPlugin.configs.recommended,
 	...tsEslintPlugin.configs.strictTypeChecked,
 	...tsEslintPlugin.configs.stylisticTypeChecked,
 	importPlugin.flatConfigs.recommended,
 	importPlugin.flatConfigs.typescript,
 	filenamesPlugin.configs.kebab,
+
 	{
 		settings: {
 			"import-x/resolver": {
@@ -93,26 +96,33 @@ export default tsEslintPlugin.config(
 			"import-x/order": getImportOrderConfig(baseTsConfig),
 		},
 	},
+
 	{
-		files: ["*.{cjs,cts}"],
-		languageOptions: { parserOptions: { sourceType: "script" } },
+		files: ["**/*.c[tj]s?(x)"],
+		languageOptions: {
+			sourceType: "commonjs",
+			parserOptions: { sourceType: "commonjs" },
+		},
 		rules: {
 			"@typescript-eslint/no-require-imports": "off",
 			"@typescript-eslint/no-var-requires": "off",
 		},
 	},
+
 	{
-		files: ["*.{js,cjs}"],
+		files: ["**/*.?([mc])js?(x)"],
 		extends: [tsEslintPlugin.configs.disableTypeChecked],
 	},
+
 	{
-		files: ["./*"],
+		files: ["*.?([mc])[tj]s?(x)"],
 		rules: {
 			"filenames/match-exported": "off",
 		},
 	},
+
 	{
-		files: ["src/**/*.{ts,mts,cts,js,mjs,cjs}"],
+		files: ["src/**/*.?([mc])[tj]s?(x)"],
 		languageOptions: {
 			globals: { ...globals.browser },
 			parserOptions: { project: webTsConfig },
@@ -129,6 +139,7 @@ export default tsEslintPlugin.config(
 			"import-x/order": getImportOrderConfig(webTsConfig),
 		},
 	},
+
 	{
 		files: testFilePatterns(),
 		languageOptions: { globals: { ...globals.node } },
@@ -151,6 +162,7 @@ export default tsEslintPlugin.config(
 			"@typescript-eslint/unbound-method": "off",
 		},
 	},
+
 	{
 		files: testFilePatterns({ root: "src" }),
 		languageOptions: { globals: { ...globals.node, ...globals.browser } },
@@ -163,5 +175,6 @@ export default tsEslintPlugin.config(
 			"vitest/no-hooks": "off",
 		},
 	},
+
 	eslintPluginPrettierRecommended,
 );

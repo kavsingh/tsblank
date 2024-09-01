@@ -10,7 +10,7 @@ export const testFileSuffixes = ["test", "spec", "mock"];
 
 export function testFilePatterns({
 	root = "",
-	extensions = "{ts,mts,cts,js,mjs,cjs}",
+	extensions = "?([mc])[tj]s?(x)",
 } = {}) {
 	return [
 		`*.{${testFileSuffixes.join(",")}}`,

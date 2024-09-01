@@ -20,7 +20,9 @@ export default defineConfig(({ mode }) => ({
 		checker(mode),
 	] as PluginOption[],
 	test: {
-		include: ["src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}"],
+		include: [
+			"src/**/*.{test,spec}.{ts,tsx,mts,mtsx,cts,ctsx,js,jsx,mjs,mjsx,cjs,cjsx}",
+		],
 		environment: "jsdom",
 		setupFiles: ["./vitest.setup.ts"],
 		clearMocks: true,
@@ -35,7 +37,7 @@ function checker(mode: string) {
 		typescript: true,
 		eslint: {
 			useFlatConfig: true,
-			lintCommand: 'eslint "./src/**/*.ts"',
+			lintCommand: 'eslint "./src"',
 			dev: { logLevel: ["error"] },
 		},
 	});

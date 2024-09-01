@@ -6,5 +6,18 @@
 		"sourceMap": true,
 		"types": ["@testing-library/jest-dom/vitest"]
 	},
-	"include": ["./**/*.ts"]
+	"include": [
+		"./**/*.ts",
+		"./**/*.tsx",
+		"./**/*.mts",
+		"./**/*.mtsx",
+		"./**/*.cts",
+		"./**/*.ctsx",
+		"./**/*.js",
+		"./**/*.jsx",
+		"./**/*.mjs",
+		"./**/*.mjsx",
+		"./**/*.cjs",
+		"./**/*.cjsx"
+	]
 }
