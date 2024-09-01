@@ -3,6 +3,8 @@ import { fileURLToPath } from "node:url";
 
 import ts from "typescript";
 
+import type { Linter } from "eslint";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -19,20 +21,13 @@ export function testFilePatterns({
 	].map((pattern) => path.join(root, `**/${pattern}.${extensions}`));
 }
 
-/**
- * @typedef {Object} TsConfigCompilerOptions
- * @property {Record<string, string[]> | undefined} [paths]
- *
- * @typedef {Object} TsConfig
- * @property {TsConfigCompilerOptions | undefined} [compilerOptions]
- */
+type TsConfig = {
+	compilerOptions?:
+		| { paths?: Record<string, string[]> | undefined }
+		| undefined;
+};
 
-/**
- * @param {string} configPath
- *
- * @returns {TsConfig | undefined}
- */
-export function readTsConfig(configPath) {
+export function readTsConfig(configPath: string): TsConfig | undefined {
 	const dir = path.isAbsolute(configPath)
 		? path.dirname(configPath)
 		: __dirname;
@@ -43,28 +38,22 @@ export function readTsConfig(configPath) {
 
 	const contents = ts.findConfigFile(dir, ts.sys.fileExists.bind(ts.sys), file);
 
-	/** @type {unknown | undefined} */
-	const config = contents
+	const config: unknown = contents
 		? ts.readConfigFile(contents, ts.sys.readFile.bind(ts.sys)).config
 		: undefined;
 
-	if (!(config && typeof config === "object")) return undefined;
-
-	return config;
+	return config && typeof config === "object" ? config : undefined;
 }
 
-/**
- * @typedef {import("eslint").Linter.RuleLevel} RuleLevel
- *
- * @param {string} tsConfigPath
- * @param {(ruleConfig: Record<string, unknown>, tsconfig: TsConfig | undefined) => Record<string, unknown>} customizer
- *
- * @returns {[RuleLevel, Record<string, unknown>]}
- */
+type ImportOrderConfigCustomizer = (
+	ruleConfig: Record<string, unknown>,
+	tsconfig: TsConfig | undefined,
+) => Record<string, unknown>;
+
 export function getImportOrderConfig(
-	tsConfigPath,
-	customizer = (ruleConfig) => ruleConfig,
-) {
+	tsConfigPath: string,
+	customizer: ImportOrderConfigCustomizer = (ruleConfig) => ruleConfig,
+): [Linter.RuleLevel, Record<string, unknown>] {
 	const tsConfig = readTsConfig(tsConfigPath);
 	const aliases = Object.keys(tsConfig?.compilerOptions?.paths ?? {});
 

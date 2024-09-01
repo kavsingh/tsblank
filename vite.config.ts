@@ -37,7 +37,7 @@ function checker(mode: string) {
 		typescript: true,
 		eslint: {
 			useFlatConfig: true,
-			lintCommand: 'eslint "./src"',
+			lintCommand: 'eslint --flag unstable_ts_config "./src"',
 			dev: { logLevel: ["error"] },
 		},
 	});

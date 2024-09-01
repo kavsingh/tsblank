@@ -133,6 +133,7 @@ export default tsEslintPlugin.config(
 			},
 			"tailwindcss": { callees: ["twMerge", "twJoin"] },
 		},
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
 		extends: [...tailwindPlugin.configs["flat/recommended"]],
 		rules: {
 			"no-console": "error",
@@ -166,9 +167,12 @@ export default tsEslintPlugin.config(
 	{
 		files: testFilePatterns({ root: "src" }),
 		languageOptions: { globals: { ...globals.node, ...globals.browser } },
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		extends: [
 			vitestPlugin.configs.all,
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 			testingPlugin.configs.recommended,
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 			jestDomPlugin.configs["flat/recommended"],
 		],
 		rules: {
