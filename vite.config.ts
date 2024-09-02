@@ -35,10 +35,11 @@ function checker(mode: string) {
 	return checkerPlugin({
 		overlay: { initialIsOpen: false },
 		typescript: true,
-		eslint: {
-			useFlatConfig: true,
-			lintCommand: 'eslint --flag unstable_ts_config "./src"',
-			dev: { logLevel: ["error"] },
-		},
+		// TODO: renable when we can send in "--flag" option
+		// eslint: {
+		// 	useFlatConfig: true,
+		// 	lintCommand: 'eslint --flag unstable_ts_config "./src"',
+		// 	dev: { logLevel: ["error"] },
+		// },
 	});
 }
