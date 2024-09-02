@@ -53,7 +53,7 @@ type ImportOrderConfigCustomizer = (
 export function getImportOrderConfig(
 	tsConfigPath: string,
 	customizer: ImportOrderConfigCustomizer = (ruleConfig) => ruleConfig,
-): [Linter.RuleLevel, Record<string, unknown>] {
+): [Linter.RuleSeverity, Record<string, unknown>] {
 	const tsConfig = readTsConfig(tsConfigPath);
 	const aliases = Object.keys(tsConfig?.compilerOptions?.paths ?? {});
 
