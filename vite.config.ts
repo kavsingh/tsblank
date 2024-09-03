@@ -20,9 +20,7 @@ export default defineConfig(({ mode }) => ({
 		checker(mode),
 	] as PluginOption[],
 	test: {
-		include: [
-			"src/**/*.{test,spec}.{ts,tsx,mts,mtsx,cts,ctsx,js,jsx,mjs,mjsx,cjs,cjsx}",
-		],
+		include: ["src/**/*.{test,spec}.?([mc])[tj]s?(x)"],
 		environment: "jsdom",
 		setupFiles: ["./vitest.setup.ts"],
 		clearMocks: true,
