@@ -15,26 +15,21 @@ import vitestPlugin from "eslint-plugin-vitest";
 import globals from "globals";
 import * as tsEslintPlugin from "typescript-eslint";
 
-import {
-	testFilePatterns,
-	testFileSuffixes,
-	getImportOrderConfig,
-} from "./eslint.helpers.js";
+import { testFilePatterns, testFileSuffixes } from "./eslint.helpers.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const baseTsConfig = path.resolve(__dirname, "tsconfig.json");
-const webTsConfig = path.resolve(__dirname, "src", "tsconfig.json");
-
 export default tsEslintPlugin.config(
-	{ ignores: [".vscode/*", "dist/*", "coverage/*"] },
+	{
+		ignores: [".vscode/*", "dist/*", "coverage/*"],
+	},
 
 	{
 		linterOptions: { reportUnusedDisableDirectives: true },
 		languageOptions: {
 			globals: { ...globals.node },
-			parserOptions: { project: baseTsConfig },
+			parserOptions: { projectService: true },
 		},
 	},
 
@@ -46,11 +41,6 @@ export default tsEslintPlugin.config(
 	filenamesPlugin.configs.kebab,
 
 	{
-		settings: {
-			"import-x/resolver": {
-				"eslint-import-resolver-typescript": { project: baseTsConfig },
-			},
-		},
 		rules: {
 			"camelcase": "off",
 			"curly": ["warn", "multi-line", "consistent"],
@@ -93,7 +83,22 @@ export default tsEslintPlugin.config(
 			"import-x/no-self-import": "error",
 			"import-x/no-unused-modules": "error",
 			"import-x/no-useless-path-segments": "error",
-			"import-x/order": getImportOrderConfig(baseTsConfig),
+			"import-x/order": [
+				"warn",
+				{
+					"alphabetize": { order: "asc" },
+					"groups": [
+						"builtin",
+						"external",
+						"internal",
+						"parent",
+						["sibling", "index"],
+						"type",
+					],
+					"pathGroupsExcludedImportTypes": ["type"],
+					"newlines-between": "always",
+				},
+			],
 		},
 	},
 
@@ -125,11 +130,12 @@ export default tsEslintPlugin.config(
 		files: ["src/**/*.?([mc])[tj]s?(x)"],
 		languageOptions: {
 			globals: { ...globals.browser },
-			parserOptions: { project: webTsConfig },
 		},
 		settings: {
 			"import-x/resolver": {
-				"eslint-import-resolver-typescript": { project: webTsConfig },
+				"eslint-import-resolver-typescript": {
+					project: path.resolve(__dirname, "src", "tsconfig.json"),
+				},
 			},
 			"tailwindcss": { callees: ["twMerge", "twJoin"] },
 		},
@@ -137,13 +143,14 @@ export default tsEslintPlugin.config(
 		extends: [...tailwindPlugin.configs["flat/recommended"]],
 		rules: {
 			"no-console": "error",
-			"import-x/order": getImportOrderConfig(webTsConfig),
 		},
 	},
 
 	{
 		files: testFilePatterns(),
-		languageOptions: { globals: { ...globals.node } },
+		languageOptions: {
+			globals: { ...globals.node },
+		},
 		rules: {
 			"no-console": "off",
 			"filenames/match-exported": [
@@ -166,7 +173,9 @@ export default tsEslintPlugin.config(
 
 	{
 		files: testFilePatterns({ root: "src" }),
-		languageOptions: { globals: { ...globals.node, ...globals.browser } },
+		languageOptions: {
+			globals: { ...globals.node, ...globals.browser },
+		},
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		extends: [
 			vitestPlugin.configs.all,
