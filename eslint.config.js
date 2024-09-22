@@ -8,6 +8,8 @@ import jestDom from "eslint-plugin-jest-dom";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
 import { default as react } from "eslint-plugin-react";
 // @ts-expect-error no types available
+import reactCompiler from "eslint-plugin-react-compiler";
+// @ts-expect-error no types available
 import reactHooks from "eslint-plugin-react-hooks";
 import tailwind from "eslint-plugin-tailwindcss";
 import testingLibrary from "eslint-plugin-testing-library";
@@ -143,6 +145,8 @@ export default tsEslint.config(
 		plugins: {
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			"react-hooks": reactHooks,
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+			"react-compiler": reactCompiler,
 		},
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		rules: {
@@ -154,6 +158,7 @@ export default tsEslint.config(
 				{ extensions: [".tsx", ".jsx"] },
 			],
 			"react/prop-types": "off",
+			"react-compiler/react-compiler": "warn",
 		},
 	},
 

@@ -13,12 +13,14 @@ import type { PluginOption } from "vite";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig(({ mode }) => ({
-	build: { sourcemap: true },
+	build: { sourcemap: true, minify: false },
 	plugins: [
+		reactPlugin({
+			babel: { plugins: [["babel-plugin-react-compiler", {}]] },
+		}),
 		tsconfigPathsPlugin({
 			projects: [path.resolve(__dirname, "src/tsconfig.json")],
 		}),
-		reactPlugin(),
 		checker(mode),
 	] as PluginOption[],
 }));
