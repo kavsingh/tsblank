@@ -5,8 +5,13 @@ import { checker } from "vite-plugin-checker";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig(({ mode }) => ({
-	build: { sourcemap: true },
-	plugins: [tsconfigPaths(), tailwindcss(), react(), createChecker(mode)],
+	build: { sourcemap: true, minify: false },
+	plugins: [
+		react({ babel: { plugins: [["babel-plugin-react-compiler", {}]] } }),
+		tsconfigPaths(),
+		tailwindcss(),
+		createChecker(mode),
+	],
 }));
 
 function createChecker(mode: string) {
