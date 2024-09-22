@@ -8,9 +8,15 @@ export default defineConfig(({ mode }) => {
 	return {
 		build:
 			mode === "production"
-				? { sourcemap: true, minify: "esbuild" }
+				? // inspect built code
+					{ sourcemap: true, minify: false }
 				: { sourcemap: false, minify: false },
-		plugins: [tsconfigPaths(), tailwindcss(), react(), createChecker(mode)],
+		plugins: [
+			tsconfigPaths(),
+			tailwindcss(),
+			react({ babel: { plugins: [["babel-plugin-react-compiler", {}]] } }),
+			createChecker(mode),
+		],
 	};
 });
 

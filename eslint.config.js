@@ -7,6 +7,7 @@ import { flatConfigs as importX } from "eslint-plugin-import-x";
 import jestDom from "eslint-plugin-jest-dom";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
 import react from "eslint-plugin-react";
+import { configs as reactCompiler } from "eslint-plugin-react-compiler";
 import { configs as reactHooks } from "eslint-plugin-react-hooks";
 import testingLibrary from "eslint-plugin-testing-library";
 import vitest from "eslint-plugin-vitest";
@@ -136,6 +137,7 @@ export default tsEslint.config(
 			// @ts-expect-error upstream types
 			react.configs.flat["jsx-runtime"],
 			reactHooks["recommended-latest"],
+			reactCompiler.recommended,
 		],
 		rules: {
 			"no-console": "error",

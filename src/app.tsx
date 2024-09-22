@@ -1,10 +1,12 @@
 import { Suspense, lazy } from "react";
+import { twMerge } from "tailwind-merge";
 
 import type { PropsWithChildren } from "react";
 
 export default function App() {
 	return (
-		<div className="flex min-h-full flex-col gap-4 p-4">
+		// forcing twMerge into main chunk to inspect compiled output
+		<div className={twMerge("flex min-h-full flex-col gap-4 p-4")}>
 			<LazyLoad>
 				<LazyCount />
 			</LazyLoad>
