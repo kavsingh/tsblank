@@ -1,26 +1,25 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import jsPlugin from "@eslint/js";
-import filenamesPlugin from "@kavsingh/eslint-plugin-filenames";
-import importPlugin from "eslint-plugin-import-x";
+import { fixupPluginRules } from "@eslint/compat";
+import js from "@eslint/js";
+import filenames from "@kavsingh/eslint-plugin-filenames";
+import importX from "eslint-plugin-import-x";
 // @ts-expect-error no types available
-import jestDomPlugin from "eslint-plugin-jest-dom";
-import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
+import jestDom from "eslint-plugin-jest-dom";
+import prettierRecommended from "eslint-plugin-prettier/recommended";
+import tailwind from "eslint-plugin-tailwindcss";
 // @ts-expect-error no types available
-import tailwindPlugin from "eslint-plugin-tailwindcss";
-// @ts-expect-error no types available
-import testingPlugin from "eslint-plugin-testing-library";
-import vitestPlugin from "eslint-plugin-vitest";
+import testingLibrary from "eslint-plugin-testing-library";
+import vitest from "eslint-plugin-vitest";
 import globals from "globals";
-import * as tsEslintPlugin from "typescript-eslint";
+import * as tsEslint from "typescript-eslint";
 
 import { testFilePatterns, testFileSuffixes } from "./eslint.helpers.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const dirname = path.dirname(fileURLToPath(import.meta.url));
 
-export default tsEslintPlugin.config(
+export default tsEslint.config(
 	{
 		ignores: [".vscode/*", "dist/*", "coverage/*"],
 	},
@@ -33,12 +32,12 @@ export default tsEslintPlugin.config(
 		},
 	},
 
-	jsPlugin.configs.recommended,
-	...tsEslintPlugin.configs.strictTypeChecked,
-	...tsEslintPlugin.configs.stylisticTypeChecked,
-	importPlugin.flatConfigs.recommended,
-	importPlugin.flatConfigs.typescript,
-	filenamesPlugin.configs.kebab,
+	js.configs.recommended,
+	...tsEslint.configs.strictTypeChecked,
+	...tsEslint.configs.stylisticTypeChecked,
+	importX.flatConfigs.recommended,
+	importX.flatConfigs.typescript,
+	filenames.configs.kebab,
 
 	{
 		rules: {
@@ -116,7 +115,7 @@ export default tsEslintPlugin.config(
 
 	{
 		files: ["**/*.?([mc])js?(x)"],
-		extends: [tsEslintPlugin.configs.disableTypeChecked],
+		extends: [tsEslint.configs.disableTypeChecked],
 	},
 
 	{
@@ -134,13 +133,12 @@ export default tsEslintPlugin.config(
 		settings: {
 			"import-x/resolver": {
 				"eslint-import-resolver-typescript": {
-					project: path.resolve(__dirname, "src", "tsconfig.json"),
+					project: path.resolve(dirname, "src", "tsconfig.json"),
 				},
 			},
 			"tailwindcss": { callees: ["twMerge", "twJoin"] },
 		},
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-		extends: [...tailwindPlugin.configs["flat/recommended"]],
+		extends: [...tailwind.configs["flat/recommended"]],
 		rules: {
 			"no-console": "error",
 		},
@@ -178,16 +176,21 @@ export default tsEslintPlugin.config(
 		},
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		extends: [
-			vitestPlugin.configs.all,
+			vitest.configs.all,
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-			testingPlugin.configs.recommended,
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-			jestDomPlugin.configs["flat/recommended"],
+			jestDom.configs["flat/recommended"],
 		],
+		plugins: {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+			"testing-library": fixupPluginRules({ rules: testingLibrary.rules }),
+		},
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		rules: {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+			...testingLibrary.configs["flat/dom"].rules,
 			"vitest/no-hooks": "off",
 		},
 	},
 
-	eslintPluginPrettierRecommended,
+	prettierRecommended,
 );
