@@ -114,19 +114,14 @@ export default tsEslint.config(
 	},
 
 	{
-		files: ["**/*.?([mc])js?(x)"],
-		extends: [tsEslint.configs.disableTypeChecked],
-	},
-
-	{
-		files: ["*.?([mc])[tj]s?(x)"],
+		files: ["*.?(m|c)[tj]s?(x)"],
 		rules: {
 			"filenames/match-exported": "off",
 		},
 	},
 
 	{
-		files: ["src/**/*.?([mc])[tj]s?(x)"],
+		files: ["src/**/*.?(m|c)[tj]s?(x)"],
 		languageOptions: {
 			globals: { ...globals.browser },
 		},
