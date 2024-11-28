@@ -1,11 +1,12 @@
 import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { checker } from "vite-plugin-checker";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig(({ mode }) => ({
 	build: { sourcemap: true },
-	plugins: [tsconfigPaths(), tailwindcss(), createChecker(mode)],
+	plugins: [tsconfigPaths(), tailwindcss(), react(), createChecker(mode)],
 }));
 
 function createChecker(mode: string) {

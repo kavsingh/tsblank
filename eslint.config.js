@@ -6,6 +6,9 @@ import filenames from "@kavsingh/eslint-plugin-filenames";
 import importX from "eslint-plugin-import-x";
 import jestDom from "eslint-plugin-jest-dom";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
+import react from "eslint-plugin-react";
+// @ts-expect-error no types available
+import reactHooks from "eslint-plugin-react-hooks";
 import testingLibrary from "eslint-plugin-testing-library";
 import vitest from "eslint-plugin-vitest";
 import globals from "globals";
@@ -126,9 +129,28 @@ export default tsEslint.config(
 					project: path.resolve(dirname, "src", "tsconfig.json"),
 				},
 			},
+			"react": { version: "detect" },
 		},
+		extends: [
+			// @ts-expect-error upstream types
+			react.configs.flat.recommended,
+			// @ts-expect-error upstream types
+			react.configs.flat["jsx-runtime"],
+		],
+		plugins: {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+			"react-hooks": reactHooks,
+		},
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		rules: {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+			...reactHooks.configs.recommended.rules,
 			"no-console": "error",
+			"react/jsx-filename-extension": [
+				"error",
+				{ extensions: [".tsx", ".jsx"] },
+			],
+			"react/prop-types": "off",
 		},
 	},
 
@@ -164,7 +186,7 @@ export default tsEslint.config(
 		},
 		extends: [
 			vitest.configs.all,
-			testingLibrary.configs["flat/dom"],
+			testingLibrary.configs["flat/react"],
 			jestDom.configs["flat/recommended"],
 		],
 		rules: {
