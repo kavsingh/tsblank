@@ -3,6 +3,7 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import reactPlugin from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { checker as checkerPlugin } from "vite-plugin-checker";
 import tsconfigPathsPlugin from "vite-tsconfig-paths";
@@ -17,6 +18,7 @@ export default defineConfig(({ mode }) => ({
 		tsconfigPathsPlugin({
 			projects: [path.resolve(__dirname, "src/tsconfig.json")],
 		}),
+		reactPlugin(),
 		checker(mode),
 	] as PluginOption[],
 }));
