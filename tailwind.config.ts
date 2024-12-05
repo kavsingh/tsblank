@@ -4,8 +4,5 @@ import type { Config } from "tailwindcss";
 
 export default {
 	content: ["./index.html", "./src/**/*.?([mc])[tj]s?(x)"],
-	plugins: [
-		// @ts-expect-error exactOptionalProperties conflict
-		containerQueriesPlugin,
-	],
+	plugins: [containerQueriesPlugin],
 } satisfies Config;
