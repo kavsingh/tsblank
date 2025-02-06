@@ -1,13 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
-	@apply text-zinc-900 bg-zinc-100;
+	@apply bg-zinc-100 text-zinc-900;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		@apply text-zinc-300 bg-zinc-900;
+		@apply bg-zinc-900 text-zinc-300;
 	}
 }
