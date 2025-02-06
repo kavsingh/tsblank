@@ -1,17 +1,17 @@
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
-import { checker as checkerPlugin } from "vite-plugin-checker";
-import tsconfigPathsPlugin from "vite-tsconfig-paths";
+import { checker } from "vite-plugin-checker";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig(({ mode }) => ({
 	build: { sourcemap: true },
-	plugins: [tsconfigPathsPlugin(), tailwindcss(), checker(mode)],
+	plugins: [tsconfigPaths(), tailwindcss(), createChecker(mode)],
 }));
 
-function checker(mode: string) {
+function createChecker(mode: string) {
 	if (mode !== "development") return undefined;
 
-	return checkerPlugin({
+	return checker({
 		overlay: { initialIsOpen: false },
 		typescript: true,
 		eslint: {
