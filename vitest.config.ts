@@ -8,7 +8,7 @@ export default mergeConfig(
 		test: {
 			include: ["src/**/*.{test,spec}.?(m|c)[tj]s?(x)"],
 			environment: "jsdom",
-			setupFiles: ["./vitest.setup.ts"],
+			setupFiles: ["./src/vitest.setup.ts"],
 			clearMocks: true,
 		},
 	}),
