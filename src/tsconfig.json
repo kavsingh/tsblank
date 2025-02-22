@@ -1,6 +1,7 @@
 {
 	"extends": "../tsconfig.json",
 	"compilerOptions": {
+		"jsx": "react-jsx",
 		"lib": ["esnext", "dom", "dom.iterable"],
 		"paths": { "#*": ["./*"] },
 		"sourceMap": true,
