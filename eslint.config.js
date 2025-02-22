@@ -6,6 +6,7 @@ import filenames from "@kavsingh/eslint-plugin-filenames";
 import importX from "eslint-plugin-import-x";
 import jestDom from "eslint-plugin-jest-dom";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
+import solid from "eslint-plugin-solid";
 import testingLibrary from "eslint-plugin-testing-library";
 import vitest from "eslint-plugin-vitest";
 import globals from "globals";
@@ -127,6 +128,7 @@ export default tsEslint.config(
 				},
 			},
 		},
+		extends: [solid.configs["flat/recommended"]],
 		rules: {
 			"no-console": "error",
 		},
