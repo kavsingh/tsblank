@@ -3,7 +3,7 @@ import { fileURLToPath } from "node:url";
 
 import js from "@eslint/js";
 import filenames from "@kavsingh/eslint-plugin-filenames";
-import importX from "eslint-plugin-import-x";
+import { flatConfigs as importX } from "eslint-plugin-import-x";
 import jestDom from "eslint-plugin-jest-dom";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
 import testingLibrary from "eslint-plugin-testing-library";
@@ -31,8 +31,8 @@ export default tsEslint.config(
 	js.configs.recommended,
 	...tsEslint.configs.strictTypeChecked,
 	...tsEslint.configs.stylisticTypeChecked,
-	importX.flatConfigs.recommended,
-	importX.flatConfigs.typescript,
+	importX.recommended,
+	importX.typescript,
 	filenames.configs.kebab,
 
 	{

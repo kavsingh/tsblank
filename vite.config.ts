@@ -3,10 +3,15 @@ import { defineConfig } from "vite";
 import { checker } from "vite-plugin-checker";
 import tsconfigPaths from "vite-tsconfig-paths";
 
-export default defineConfig(({ mode }) => ({
-	build: { sourcemap: true },
-	plugins: [tsconfigPaths(), tailwindcss(), createChecker(mode)],
-}));
+export default defineConfig(({ mode }) => {
+	return {
+		build:
+			mode === "production"
+				? { sourcemap: true, minify: "esbuild" }
+				: { sourcemap: false, minify: false },
+		plugins: [tsconfigPaths(), tailwindcss(), createChecker(mode)],
+	};
+});
 
 function createChecker(mode: string) {
 	if (mode !== "development") return undefined;
