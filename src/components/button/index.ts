@@ -21,10 +21,10 @@ export default function Button({ label, onClick, className }: ButtonProps) {
 	return { el };
 }
 
-export type ButtonProps = {
+export interface ButtonProps {
 	label: string;
 	onClick: ButtonClickHandler;
 	className?: string | undefined;
-};
+}
 
 export type ButtonClickHandler = (ev: HTMLElementEventMap["click"]) => void;

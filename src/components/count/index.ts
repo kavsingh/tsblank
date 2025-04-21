@@ -28,7 +28,10 @@ export default function Count({ initialCount = 0, step = 1 }: CountProps = {}) {
 	return { el };
 }
 
-export type CountProps = { initialCount?: number; step?: number };
+export interface CountProps {
+	initialCount?: number | undefined;
+	step?: number | undefined;
+}
 
 function formatValue(value: number) {
 	return String(value).padStart(2, "0");
