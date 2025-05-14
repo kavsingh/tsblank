@@ -1,6 +1,7 @@
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "rolldown-vite";
 import { checker } from "vite-plugin-checker";
+import solid from "vite-plugin-solid";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig(({ mode }) => {
@@ -9,7 +10,7 @@ export default defineConfig(({ mode }) => {
 			mode === "production"
 				? { sourcemap: true, minify: "esbuild" }
 				: { sourcemap: false, minify: false },
-		plugins: [tsconfigPaths(), tailwindcss(), createChecker(mode)],
+		plugins: [tsconfigPaths(), tailwindcss(), solid(), createChecker(mode)],
 	};
 });
 

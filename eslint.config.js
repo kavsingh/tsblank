@@ -8,6 +8,7 @@ import tailwindcss from "eslint-plugin-better-tailwindcss";
 import { flatConfigs as importX } from "eslint-plugin-import-x";
 import jestDom from "eslint-plugin-jest-dom";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
+import solid from "eslint-plugin-solid";
 import testingLibrary from "eslint-plugin-testing-library";
 import vitest from "eslint-plugin-vitest";
 import globals from "globals";
@@ -134,6 +135,7 @@ export default defineConfig(
 			},
 		},
 		plugins: { "better-tailwindcss": tailwindcss },
+		extends: [solid.configs["flat/typescript"]],
 		rules: {
 			"no-console": "error",
 			...tailwindcss.configs["recommended"]?.rules,
