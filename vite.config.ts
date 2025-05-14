@@ -1,3 +1,4 @@
+import { preact } from "@preact/preset-vite";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "rolldown-vite";
 import { checker } from "vite-plugin-checker";
@@ -9,7 +10,7 @@ export default defineConfig(({ mode }) => {
 			mode === "production"
 				? { sourcemap: true, minify: "esbuild" }
 				: { sourcemap: false, minify: false },
-		plugins: [tsconfigPaths(), tailwindcss(), createChecker(mode)],
+		plugins: [tsconfigPaths(), tailwindcss(), preact(), createChecker(mode)],
 	};
 });
 
