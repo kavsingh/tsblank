@@ -1,10 +1,14 @@
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "rolldown-vite";
 import { checker } from "vite-plugin-checker";
+import solid from "vite-plugin-solid";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig(({ mode }) => {
-	return { plugins: [tsconfigPaths(), tailwindcss(), createChecker(mode)] };
+	return {
+		plugins: [tsconfigPaths(), tailwindcss(), solid(), createChecker(mode)],
+		oxc: { jsx: { importSource: "solid-js" } },
+	};
 });
 
 function createChecker(mode: string) {
