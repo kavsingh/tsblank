@@ -4,6 +4,7 @@ import {
 	getDefaultVariables,
 } from "eslint-plugin-better-tailwindcss/api/defaults";
 import jestDom from "eslint-plugin-jest-dom";
+import solid from "eslint-plugin-solid";
 import testingLibrary from "eslint-plugin-testing-library";
 import { defineConfig } from "eslint/config";
 import { configs as tsEslint } from "typescript-eslint";
@@ -16,7 +17,11 @@ export default defineConfig(
 
 	{
 		files: ["src/**/*.?(m|c)[tj]s?(x)"],
-		extends: [tsEslint.base],
+		extends: [
+			tsEslint.base,
+			// @ts-expect-error upstream types
+			solid.configs["flat/typescript"],
+		],
 		settings: {
 			"better-tailwindcss": {
 				entryPoint: "src/index.css",
