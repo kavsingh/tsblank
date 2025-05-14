@@ -18,14 +18,18 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@preact/signals": "2.0.4",
+		"preact": "10.26.6",
 		"tailwind-merge": "3.3.0"
 	},
 	"devDependencies": {
 		"@eslint/js": "9.26.0",
 		"@kavsingh/eslint-plugin-filenames": "2.0.0-rc.1",
+		"@preact/preset-vite": "2.10.1",
 		"@tailwindcss/vite": "4.1.6",
 		"@testing-library/dom": "10.4.0",
 		"@testing-library/jest-dom": "6.6.3",
+		"@testing-library/preact": "3.2.4",
 		"@testing-library/user-event": "14.6.1",
 		"@tsconfig/strictest": "2.0.5",
 		"@types/bun": "1.2.13",
@@ -37,6 +41,8 @@
 		"eslint-plugin-import-x": "4.11.1",
 		"eslint-plugin-jest-dom": "5.5.0",
 		"eslint-plugin-prettier": "5.4.0",
+		"eslint-plugin-react": "7.37.5",
+		"eslint-plugin-react-hooks": "5.2.0",
 		"eslint-plugin-testing-library": "7.2.0",
 		"eslint-plugin-vitest": "0.5.4",
 		"globals": "16.1.0",
@@ -53,6 +59,7 @@
 	},
 	"trustedDependencies": [
 		"@tailwindcss/oxide",
+		"esbuild",
 		"unrs-resolver"
 	]
 }
