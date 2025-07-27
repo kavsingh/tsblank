@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from "@solidjs/testing-library";
-import { userEvent } from "@testing-library/user-event";
+import { userEvent as UserEvent } from "@testing-library/user-event";
 import { describe, it, expect } from "vitest";
 
 import { AppStoreProvider } from "#app-store/context";
@@ -13,11 +13,13 @@ describe("<Things /> page", () => {
 	it("should add todo", async () => {
 		expect.assertions(1);
 
-		const { Wrapper, ue, dispose } = setupWrapper();
+		const { Wrapper, userEvent, dispose } = setupWrapper();
 		const result = render(() => <Things />, { wrapper: Wrapper });
 
-		await ue.type(await screen.findByLabelText("Description"), "Todo 1");
-		await ue.click(await screen.findByRole("button", { name: "Add todo" }));
+		await userEvent.type(await screen.findByLabelText("Description"), "Todo 1");
+		await userEvent.click(
+			await screen.findByRole("button", { name: "Add todo" }),
+		);
 
 		await waitFor(() => {
 			expect(screen.getByText("Todo 1")).toBeInTheDocument();
@@ -46,12 +48,14 @@ describe("<Things /> page", () => {
 	it("should add user", async () => {
 		expect.assertions(1);
 
-		const { Wrapper, ue, dispose } = setupWrapper();
+		const { Wrapper, userEvent, dispose } = setupWrapper();
 		const result = render(() => <Things />, { wrapper: Wrapper });
 
-		await ue.type(await screen.findByLabelText("Name"), "New User");
-		await ue.type(await screen.findByLabelText("Email"), "new@user.com");
-		await ue.click(await screen.findByRole("button", { name: "Add user" }));
+		await userEvent.type(await screen.findByLabelText("Name"), "New User");
+		await userEvent.type(await screen.findByLabelText("Email"), "new@user.com");
+		await userEvent.click(
+			await screen.findByRole("button", { name: "Add user" }),
+		);
 
 		await waitFor(() => {
 			expect(screen.getByText(/New User/i)).toBeInTheDocument();
@@ -63,12 +67,12 @@ describe("<Things /> page", () => {
 });
 
 function setupWrapper() {
-	const ue = userEvent.setup();
+	const userEvent = UserEvent.setup();
 	const { store, dispose } = createAppStore();
 
 	function Wrapper(props: ParentProps) {
 		return <AppStoreProvider store={store}>{props.children}</AppStoreProvider>;
 	}
 
-	return { Wrapper, ue, store, dispose };
+	return { Wrapper, userEvent, store, dispose };
 }
