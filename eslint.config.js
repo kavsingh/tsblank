@@ -7,6 +7,8 @@ import tailwindcss from "eslint-plugin-better-tailwindcss";
 import { flatConfigs as importX } from "eslint-plugin-import-x";
 import jestDom from "eslint-plugin-jest-dom";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
+import react from "eslint-plugin-react";
+import { configs as reactHooks } from "eslint-plugin-react-hooks";
 import testingLibrary from "eslint-plugin-testing-library";
 import vitest from "eslint-plugin-vitest";
 import globals from "globals";
@@ -130,14 +132,29 @@ export default tsEslint.config(
 			"better-tailwindcss": {
 				entryPoint: "src/index.css",
 			},
+			"react": {
+				version: "detect",
+			},
 		},
 		plugins: { "better-tailwindcss": tailwindcss },
+		extends: [
+			// @ts-expect-error upstream types
+			react.configs.flat.recommended,
+			// @ts-expect-error upstream types
+			react.configs.flat["jsx-runtime"],
+			reactHooks.recommended,
+		],
 		rules: {
 			"no-console": "error",
 			...tailwindcss.configs["recommended"]?.rules,
 			"better-tailwindcss/enforce-consistent-line-wrapping": "off",
 			"better-tailwindcss/enforce-shorthand-classes": "warn",
 			"better-tailwindcss/no-conflicting-classes": "error",
+			"react/jsx-filename-extension": [
+				"error",
+				{ extensions: [".tsx", ".jsx"] },
+			],
+			"react/prop-types": "off",
 		},
 	},
 
@@ -173,7 +190,7 @@ export default tsEslint.config(
 		},
 		extends: [
 			vitest.configs.all,
-			testingLibrary.configs["flat/dom"],
+			testingLibrary.configs["flat/react"],
 			jestDom.configs["flat/recommended"],
 		],
 		rules: {
