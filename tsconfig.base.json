@@ -1,0 +1,17 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"extends": "@tsconfig/strictest/tsconfig.json",
+	"compilerOptions": {
+		"allowImportingTsExtensions": true,
+		"allowJs": true,
+		"checkJs": true,
+		"erasableSyntaxOnly": true,
+		"noEmit": true,
+		"verbatimModuleSyntax": true,
+		// leave the following to eslint
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"allowUnreachableCode": true
+	},
+	"include": []
+}
