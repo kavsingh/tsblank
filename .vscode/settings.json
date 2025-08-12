@@ -21,7 +21,7 @@
 
 	"files.associations": { "*.css": "tailwindcss" },
 	"tailwindCSS.validate": true,
-	"tailwindCSS.classAttributes": ["class", "classList", ".+ClassNames"],
+	"tailwindCSS.classAttributes": [".+ClassNames"],
 	"tailwindCSS.classFunctions": ["twMerge", "twJoin"],
 	"tailwindCSS.experimental.configFile": "src/index.css",
 
@@ -30,7 +30,13 @@
 	"[javascript]": {
 		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
 	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+	},
 	"[typescript]": {
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+	},
+	"[typescriptreact]": {
 		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
 	},
 	"[html]": {
