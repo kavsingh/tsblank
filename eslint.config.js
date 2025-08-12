@@ -4,6 +4,7 @@ import {
 	getDefaultVariables,
 } from "eslint-plugin-better-tailwindcss/api/defaults";
 import jestDom from "eslint-plugin-jest-dom";
+import reactHooks from "eslint-plugin-react-hooks";
 import testingLibrary from "eslint-plugin-testing-library";
 import { defineConfig } from "eslint/config";
 import { configs as tsEslint } from "typescript-eslint";
@@ -16,7 +17,7 @@ export default defineConfig(
 
 	{
 		files: ["src/**/*.?(m|c)[tj]s?(x)"],
-		extends: [tsEslint.base],
+		extends: [tsEslint.base, reactHooks.configs.flat["recommended-latest"]],
 		settings: {
 			"better-tailwindcss": {
 				entryPoint: "src/index.css",
@@ -29,6 +30,9 @@ export default defineConfig(
 					["classNames", [{ match: "strings" }, { match: "objectValues" }]],
 					[".+ClassNames", [{ match: "strings" }, { match: "objectValues" }]],
 				],
+			},
+			react: {
+				version: "detect",
 			},
 		},
 		plugins: { "better-tailwindcss": tailwindcss },
@@ -43,7 +47,7 @@ export default defineConfig(
 	{
 		files: ["src/**/*.test.?(m|c)[tj]s?(x)"],
 		extends: [
-			testingLibrary.configs["flat/dom"],
+			testingLibrary.configs["flat/react"],
 			jestDom.configs["flat/recommended"],
 		],
 	},

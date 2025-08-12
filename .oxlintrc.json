@@ -122,6 +122,25 @@
 		},
 
 		{
+			"files": ["src/**/*.tsx"],
+			"plugins": ["react", "jsx-a11y"],
+			"rules": {
+				"react/jsx-filename-extension": [
+					"error",
+					{ "allow": "as-needed", "extensions": ["tsx"] }
+				],
+				"react/jsx-props-no-spreading": "off",
+				"react/only-export-components": "off",
+				"react/jsx-handler-names": "off",
+				"react/react-in-jsx-scope": "off",
+
+				// disable oxlint version in favour of eslint plugin
+				"react/exhaustive-deps": "off",
+				"react/rules-of-hooks": "off"
+			}
+		},
+
+		{
 			"files": [
 				"**/vitest.*.setup.ts",
 				"**/*.test.*",
