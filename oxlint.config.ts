@@ -185,6 +185,7 @@ export default defineConfig({
 					"error",
 					{ allow: "as-needed", extensions: ["tsx"] },
 				],
+				"react/jsx-max-depth": "off",
 				"react/jsx-props-no-spreading": "off",
 				"react/no-multi-comp": "off",
 				"react/react-in-jsx-scope": "off",
