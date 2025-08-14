@@ -53,9 +53,9 @@ function WordGrid() {
 	return (
 		<div className="space-y-4">
 			<div className="grid grid-cols-4 grid-rows-4 gap-2">
-				{state.w?.map(([id, word]) => {
-					const isSelected = state.s?.includes(id);
-					const isInCollection = state.c?.some(([, c]) => c.includes(id));
+				{state.w.map(([id, word]) => {
+					const isSelected = state.s.includes(id);
+					const isInCollection = state.c.some(([, c]) => c.includes(id));
 
 					return (
 						<button
@@ -77,7 +77,7 @@ function WordGrid() {
 				type="button"
 				className="mx-auto block rounded-sm bg-neutral-700 px-4 py-3 text-white disabled:opacity-60"
 				onClick={() => void actions.collectSelected()}
-				disabled={!state.s?.length}
+				disabled={!state.s.length}
 			>
 				Collect
 			</button>
@@ -90,14 +90,14 @@ function Collections() {
 
 	return (
 		<div>
-			{state.c?.map(([collectionId, wordIds]) => {
+			{state.c.map(([collectionId, wordIds]) => {
 				return (
 					<div
 						key={collectionId}
 						className="flex items-center justify-end gap-2 border-t border-t-neutral-800 py-2"
 					>
 						{wordIds.map((wordId) => {
-							const word = state.w?.find(([id]) => id === wordId)?.[1];
+							const word = state.w.find(([id]) => id === wordId)?.[1];
 
 							return (
 								<div
