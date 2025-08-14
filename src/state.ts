@@ -24,7 +24,7 @@ export function useAppState() {
 		setWords: (words: string[]) => {
 			const withIds = words.map((w, i): [number, string] => [i + 1, w]);
 
-			return setState((current) => ({ ...current, w: withIds }));
+			return setState(() => ({ w: withIds, s: [], c: [] }));
 		},
 
 		toggleWordSelect: (id: number) => {
