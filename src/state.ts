@@ -3,11 +3,11 @@ import { z } from "zod/mini";
 
 const appStateSchema = z.object({
 	/** words */
-	w: z.optional(z.array(z.tuple([z.number(), z.string()]))),
+	w: z.array(z.tuple([z.number(), z.string()])),
 	/** collections */
-	c: z.optional(z.array(z.tuple([z.number(), z.array(z.number())]))),
+	c: z.array(z.tuple([z.number(), z.array(z.number())])),
 	/** selection */
-	s: z.optional(z.array(z.number())),
+	s: z.array(z.number()),
 });
 
 const queryParser = parseAsJson((val) => appStateSchema.parse(val)).withDefault(
@@ -30,9 +30,6 @@ export function useAppState() {
 		toggleWordSelect: (id: number) => {
 			return setState((current) => {
 				const currentSelection = current.s;
-
-				if (!currentSelection) return { ...current, s: [id] };
-
 				const selectedIdx = currentSelection.indexOf(id);
 
 				if (selectedIdx === -1) {
@@ -49,13 +46,11 @@ export function useAppState() {
 
 		collectSelected: () => {
 			return setState((current) => {
-				const selected = current.s;
+				if (!current.s.length) return current;
 
-				if (!selected?.length) return current;
+				const nextCollections = [...current.c];
 
-				const nextCollections = current.c ? [...current.c] : [];
-
-				nextCollections.push([nextCollections.length + 1, selected]);
+				nextCollections.push([nextCollections.length + 1, [...current.s]]);
 
 				return { ...current, c: nextCollections, s: [] };
 			});
@@ -63,17 +58,11 @@ export function useAppState() {
 
 		removeCollection: (id: number) => {
 			return setState((current) => {
-				const currentCollections = current.c;
-
-				if (!currentCollections) return current;
-
-				const collectionIndex = currentCollections.findIndex(
-					([cid]) => cid === id,
-				);
+				const collectionIndex = current.c.findIndex(([cid]) => cid === id);
 
 				if (collectionIndex === -1) return current;
 
-				const nextCollections = [...currentCollections];
+				const nextCollections = [...current.c];
 
 				nextCollections.splice(collectionIndex, 1);
 
