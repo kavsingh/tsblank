@@ -46,7 +46,7 @@ export function useAppState() {
 
 		collectSelected: () => {
 			return setState((current) => {
-				if (!current.s.length) return current;
+				if (current.s.length === 0) return current;
 
 				const nextCollections = [...current.c];
 
