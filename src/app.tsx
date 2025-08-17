@@ -7,14 +7,32 @@ export function App(): JSX.Element {
 	return (
 		<main className="min-h-full w-full p-4">
 			<div className="mx-auto w-full max-w-2xl space-y-8">
-				<pre className="w-full text-xs text-wrap text-neutral-400">
-					{`Array.from(document.querySelectorAll("input[data-testid='card-input']")).map((i) => i.value).join(" ");`}
-				</pre>
+				<Cmd />
 				<WordsInput />
-				<WordGrid />
-				<Collections />
+				<div className="grid auto-rows-max grid-cols-8 gap-2">
+					<Collections />
+					<Words />
+				</div>
+				<CollectButton />
 			</div>
 		</main>
+	);
+}
+
+const cmd = `Array.from(document.querySelectorAll("input[data-testid='card-input']")).map((i) => i.value).join(" ");`;
+
+function Cmd() {
+	return (
+		<button
+			type="button"
+			onClick={() => {
+				void navigator.clipboard.writeText(cmd);
+			}}
+		>
+			<pre className="w-full text-left text-xs text-wrap text-neutral-400">
+				{cmd}
+			</pre>
+		</button>
 	);
 }
 
@@ -47,77 +65,87 @@ function WordsInput() {
 	);
 }
 
-function WordGrid() {
-	const [state, actions] = useAppState();
-
-	return (
-		<div className="space-y-4">
-			<div className="grid grid-cols-4 grid-rows-4 gap-2">
-				{state.w.map(([id, word]) => {
-					const isSelected = state.s.includes(id);
-					const isInCollection = state.c.some(([, c]) => c.includes(id));
-
-					return (
-						<button
-							type="button"
-							key={id}
-							className={twJoin(
-								"rounded border bg-amber-50/80 px-7 py-6 text-lg font-bold text-neutral-950 uppercase transition-all duration-300 disabled:scale-50 disabled:border-transparent disabled:bg-transparent disabled:text-neutral-600",
-								isSelected && "border-teal-900 bg-teal-900 text-white",
-							)}
-							onClick={() => void actions.toggleWordSelect(id)}
-							disabled={isInCollection}
-						>
-							{word}
-						</button>
-					);
-				})}
-			</div>
-			<button
-				type="button"
-				className="mx-auto block rounded-sm bg-neutral-700 px-4 py-3 text-white disabled:opacity-60"
-				onClick={() => void actions.collectSelected()}
-				disabled={!state.s.length}
-			>
-				Collect
-			</button>
-		</div>
-	);
-}
-
 function Collections() {
 	const [state, actions] = useAppState();
 
 	return (
-		<div>
+		<>
 			{state.c.map(([collectionId, wordIds]) => {
 				return (
 					<div
 						key={collectionId}
-						className="flex items-center justify-end gap-2 border-t border-t-neutral-800 py-2"
+						className="col-span-8 grid grid-cols-subgrid rounded-lg bg-neutral-800 p-2"
 					>
-						{wordIds.map((wordId) => {
-							const word = state.w.find(([id]) => id === wordId)?.[1];
+						<div className="col-start-1 col-end-8 flex flex-wrap gap-1">
+							{wordIds.map((wordId) => {
+								const word = state.w.find(([id]) => id === wordId)?.[1];
 
-							return (
-								<div
-									className="rounded bg-neutral-800 px-3 py-2 text-sm text-white uppercase"
-									key={collectionId}
-								>
-									{word}
-								</div>
-							);
-						})}
-						<button
-							type="button"
-							className="ms-4 rounded border border-neutral-600 p-3 text-sm leading-1"
-							onClick={() => void actions.removeCollection(collectionId)}
-						>
-							clear
-						</button>
+								return (
+									<div
+										className="rounded bg-neutral-900 px-3 py-2 text-center text-sm text-white uppercase"
+										key={wordId}
+									>
+										{word}
+									</div>
+								);
+							})}
+						</div>
+						<div className="col-start-8 col-end-9 mt-1.5 flex justify-end">
+							<button
+								type="button"
+								className="size-6 rounded-full border border-neutral-600 text-sm leading-1"
+								onClick={() => void actions.removeCollection(collectionId)}
+							>
+								×
+							</button>
+						</div>
 					</div>
 				);
 			})}
-		</div>
+		</>
+	);
+}
+
+function Words() {
+	const [state, actions] = useAppState();
+	const words = state.w.filter(([id]) => {
+		return !state.c.some(([, wordIds]) => wordIds.includes(id));
+	});
+
+	return (
+		<>
+			{words.map(([id, word]) => {
+				const isSelected = state.s.includes(id);
+
+				return (
+					<button
+						type="button"
+						key={id}
+						className={twJoin(
+							"col-span-2 rounded border bg-amber-50/80 px-7 py-6 text-lg font-bold text-neutral-950 uppercase transition-colors duration-300",
+							isSelected && "border-teal-900 bg-teal-900 text-white",
+						)}
+						onClick={() => void actions.toggleWordSelect(id)}
+					>
+						{word}
+					</button>
+				);
+			})}
+		</>
+	);
+}
+
+function CollectButton() {
+	const [state, actions] = useAppState();
+
+	return (
+		<button
+			type="button"
+			className="mx-auto block rounded-sm bg-neutral-700 px-4 py-3 text-white disabled:opacity-60"
+			onClick={() => void actions.collectSelected()}
+			disabled={state.s.length === 0}
+		>
+			Collect
+		</button>
 	);
 }
