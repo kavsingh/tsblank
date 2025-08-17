@@ -1,4 +1,5 @@
 import { parseAsJson, useQueryState } from "nuqs";
+import { useSyncExternalStore } from "react";
 import * as z from "zod/mini";
 
 const appStateSchema = z.object({
@@ -86,14 +87,14 @@ export function useAppState() {
 					}
 
 					if (id === collectionId && wordIdx === -1) {
-						words.push(wordId);
+						nextWords.push(wordId);
 						nextCollections.push([id, nextWords]);
 
 						continue;
 					}
 
 					if (id !== collectionId && wordIdx !== -1) {
-						words.splice(wordIdx, 1);
+						nextWords.splice(wordIdx, 1);
 
 						if (nextWords.length) nextCollections.push([id, nextWords]);
 
@@ -109,4 +110,56 @@ export function useAppState() {
 	};
 
 	return [state, stateActions] as const;
+}
+
+interface TransientAppState {
+	draggingWordId?: number | undefined;
+}
+
+function createTransientAppStore() {
+	const subscribers = new Set<() => void>();
+	let state: TransientAppState = {};
+
+	return {
+		subscribe: (subscriber: () => void) => {
+			subscribers.add(subscriber);
+
+			return () => {
+				subscribers.delete(subscriber);
+			};
+		},
+
+		read: () => state,
+
+		update: (updater: (current: TransientAppState) => TransientAppState) => {
+			state = updater(state);
+
+			for (const subscriber of subscribers) subscriber();
+		},
+	};
+}
+
+const transientAppStore = createTransientAppStore();
+
+function startDragWord(wordId: number) {
+	transientAppStore.update((current) => {
+		return { ...current, draggingWordId: wordId };
+	});
+}
+
+function stopDragWord() {
+	transientAppStore.update((current) => {
+		return { ...current, draggingWordId: undefined };
+	});
+}
+
+export function useTransientAppState() {
+	const state = useSyncExternalStore(
+		transientAppStore.subscribe,
+		transientAppStore.read,
+	);
+
+	const actions = { startDragWord, stopDragWord };
+
+	return [state, actions] as const;
 }
