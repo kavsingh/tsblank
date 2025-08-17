@@ -82,10 +82,18 @@ function Collections() {
 
 								return (
 									<div
-										className="rounded bg-neutral-900 px-3 py-2 text-center text-sm text-white uppercase"
+										className="flex items-center gap-3 rounded bg-neutral-900 px-3 py-2 text-center text-sm text-white uppercase"
 										key={wordId}
 									>
-										{word}
+										<span>{word}</span>
+										<button
+											className="size-5 items-center text-xs leading-1"
+											onClick={() => {
+												void actions.moveWordToCollection(wordId, null);
+											}}
+										>
+											×
+										</button>
 									</div>
 								);
 							})}

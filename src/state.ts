@@ -69,6 +69,44 @@ export function useAppState() {
 				return { ...current, c: nextCollections };
 			});
 		},
+
+		moveWordToCollection: (wordId: number, collectionId: number | null) => {
+			return setState((current) => {
+				const nextCollections: AppState["c"] = [];
+
+				for (const [id, words] of current.c) {
+					const wordIdx = words.indexOf(wordId);
+					const nextWords = [...words];
+
+					if (collectionId === null && wordIdx !== -1) {
+						nextWords.splice(wordIdx, 1);
+
+						if (nextWords.length) nextCollections.push([id, nextWords]);
+
+						continue;
+					}
+
+					if (id === collectionId && wordIdx === -1) {
+						words.push(wordId);
+						nextCollections.push([id, nextWords]);
+
+						continue;
+					}
+
+					if (id !== collectionId && wordIdx !== -1) {
+						words.splice(wordIdx, 1);
+
+						if (nextWords.length) nextCollections.push([id, nextWords]);
+
+						continue;
+					}
+
+					nextCollections.push([id, words]);
+				}
+
+				return { ...current, c: nextCollections };
+			});
+		},
 	};
 
 	return [state, stateActions] as const;
