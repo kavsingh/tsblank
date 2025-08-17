@@ -16,7 +16,7 @@ const queryParser = parseAsJson((val) => appStateSchema.parse(val)).withDefault(
 
 export type AppState = z.infer<typeof appStateSchema>;
 
-// oxlint-disable-next-line explicit-module-boundary-types
+// oxlint-disable-next-line eslint/max-lines-per-function, typescript/explicit-module-boundary-types
 export function useAppState() {
 	const [state, setState] = useQueryState("s", queryParser);
 
@@ -65,6 +65,45 @@ export function useAppState() {
 				const nextCollections = [...current.c];
 
 				nextCollections.splice(collectionIndex, 1);
+
+				return { ...current, c: nextCollections };
+			});
+		},
+
+		moveWordToCollection: (wordId: number, collectionId?: number) => {
+			// oxlint-disable-next-line eslint/max-statements
+			return setState((current) => {
+				const nextCollections: AppState["c"] = [];
+
+				for (const [id, words] of current.c) {
+					const wordIdx = words.indexOf(wordId);
+					const nextWords = [...words];
+
+					if (typeof collectionId !== "number" && wordIdx !== -1) {
+						nextWords.splice(wordIdx, 1);
+
+						if (nextWords.length > 0) nextCollections.push([id, nextWords]);
+
+						continue;
+					}
+
+					if (id === collectionId && wordIdx === -1) {
+						words.push(wordId);
+						nextCollections.push([id, nextWords]);
+
+						continue;
+					}
+
+					if (id !== collectionId && wordIdx !== -1) {
+						words.splice(wordIdx, 1);
+
+						if (nextWords.length > 0) nextCollections.push([id, nextWords]);
+
+						continue;
+					}
+
+					nextCollections.push([id, words]);
+				}
 
 				return { ...current, c: nextCollections };
 			});

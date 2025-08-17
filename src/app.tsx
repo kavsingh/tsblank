@@ -67,10 +67,19 @@ function Collections() {
 
 								return (
 									<div
-										className="rounded-sm bg-neutral-900 px-3 py-2 text-center text-sm text-white uppercase"
+										className="flex items-center gap-3 rounded-sm bg-neutral-900 px-3 py-2 text-center text-sm text-white uppercase"
 										key={wordId}
 									>
-										{word}
+										<span>{word}</span>
+										<button
+											type="button"
+											className="size-5 items-center text-xs/1"
+											onClick={() => {
+												void actions.moveWordToCollection(wordId, undefined);
+											}}
+										>
+											×
+										</button>
 									</div>
 								);
 							})}
@@ -78,7 +87,7 @@ function Collections() {
 						<div className="col-start-8 col-end-9 mt-1.5 flex justify-end">
 							<button
 								type="button"
-								className="size-6 rounded-full border border-neutral-600 text-sm/1 "
+								className="size-6 rounded-full border border-neutral-600 text-sm/1"
 								onClick={() => void actions.removeCollection(collectionId)}
 							>
 								×
