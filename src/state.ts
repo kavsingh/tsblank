@@ -54,8 +54,11 @@ export function useAppState() {
 				if (current.s.length === 0) return current;
 
 				const nextCollections = [...current.c];
+				const newCollectionId = current.c.length
+					? Math.max(...current.c.map(([id]) => id)) + 1
+					: 1;
 
-				nextCollections.push([nextCollections.length + 1, [...current.s]]);
+				nextCollections.push([newCollectionId, [...current.s]]);
 
 				return { ...current, c: nextCollections, s: [] };
 			});
