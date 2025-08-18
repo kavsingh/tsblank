@@ -54,9 +54,10 @@ export function useAppState() {
 				if (current.s.length === 0) return current;
 
 				const nextCollections = [...current.c];
-				const newCollectionId = current.c.length
-					? Math.max(...current.c.map(([id]) => id)) + 1
-					: 1;
+				const newCollectionId =
+					current.c.length > 0
+						? Math.max(...current.c.map(([id]) => id)) + 1
+						: 1;
 
 				nextCollections.push([newCollectionId, [...current.s]]);
 

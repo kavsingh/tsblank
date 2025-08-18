@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { twJoin } from "tailwind-merge";
 
-import { useAppState, useTransientAppState } from "#state";
+import { useAppState, useTransientAppState } from "~/state";
 
 import type { JSX, SubmitEventHandler } from "react";
 
