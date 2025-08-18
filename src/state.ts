@@ -87,30 +87,13 @@ export function useAppState() {
 					const wordIdx = words.indexOf(wordId);
 					const nextWords = [...words];
 
-					if (collectionId === null && wordIdx !== -1) {
-						nextWords.splice(wordIdx, 1);
-
-						if (nextWords.length > 0) nextCollections.push([id, nextWords]);
-
-						continue;
-					}
-
-					if (id === collectionId && wordIdx === -1) {
-						nextWords.push(wordId);
-						nextCollections.push([id, nextWords]);
-
-						continue;
-					}
-
 					if (id !== collectionId && wordIdx !== -1) {
 						nextWords.splice(wordIdx, 1);
-
-						if (nextWords.length > 0) nextCollections.push([id, nextWords]);
-
-						continue;
+					} else if (id === collectionId && wordIdx === -1) {
+						nextWords.push(wordId);
 					}
 
-					nextCollections.push([id, words]);
+					if (nextWords.length > 0) nextCollections.push([id, nextWords]);
 				}
 
 				return { ...current, c: nextCollections };
