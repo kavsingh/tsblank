@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 
 import js from "@eslint/js";
 import filenames from "@kavsingh/eslint-plugin-filenames";
+import tailwindcss from "eslint-plugin-better-tailwindcss";
 import { flatConfigs as importX } from "eslint-plugin-import-x";
 import jestDom from "eslint-plugin-jest-dom";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
@@ -126,9 +127,17 @@ export default tsEslint.config(
 					project: path.resolve(dirname, "src", "tsconfig.json"),
 				},
 			},
+			"better-tailwindcss": {
+				entryPoint: "src/index.css",
+			},
 		},
+		plugins: { "better-tailwindcss": tailwindcss },
 		rules: {
 			"no-console": "error",
+			...tailwindcss.configs["recommended"]?.rules,
+			"better-tailwindcss/enforce-consistent-line-wrapping": "off",
+			"better-tailwindcss/enforce-shorthand-classes": "warn",
+			"better-tailwindcss/no-conflicting-classes": "error",
 		},
 	},
 
