@@ -22,20 +22,21 @@ export default function App() {
 	);
 }
 
-const cmd = `[...document.querySelectorAll("input[data-testid='card-input']")]
+const WORD_SEPARATOR = " | ";
+const WORD_COLLECT_CMD = `[...document.querySelectorAll("input[data-testid='card-input']")]
   .map((i) => i.value)
-  .join(" ");`;
+  .join("${WORD_SEPARATOR}");`;
 
 function Cmd() {
 	return (
 		<button
 			className="w-full rounded bg-neutral-950 p-2 text-left"
 			onClick={() => {
-				void navigator.clipboard.writeText(cmd);
+				void navigator.clipboard.writeText(WORD_COLLECT_CMD);
 			}}
 		>
 			<pre className="w-full text-xs text-wrap text-neutral-400 select-text">
-				{cmd}
+				{WORD_COLLECT_CMD}
 			</pre>
 		</button>
 	);
@@ -51,7 +52,7 @@ function WordsInput() {
 		const nextWords =
 			typeof wordsValue === "string"
 				? wordsValue
-						.split(/\s/)
+						.split(WORD_SEPARATOR)
 						.map((p) => p.trim().toLowerCase())
 						.filter(Boolean)
 				: undefined;
@@ -145,7 +146,7 @@ function Words() {
 					<button
 						key={id}
 						className={twJoin(
-							"col-span-2 rounded border bg-amber-50/80 px-7 py-6 text-lg font-bold text-neutral-950 uppercase transition-colors duration-300",
+							"col-span-2 rounded border bg-amber-50/80 px-2 py-6 text-lg font-bold text-neutral-950 uppercase transition-colors duration-300",
 							isSelected && "border-teal-900 bg-teal-900 text-white",
 						)}
 						onClick={() => {
