@@ -179,7 +179,10 @@ export default defineConfig(
 			jestDom.configs["flat/recommended"],
 		],
 		rules: {
+			"vitest/no-disabled-tests": "error",
+			"vitest/no-focused-tests": "error",
 			"vitest/no-hooks": "off",
+			"vitest/require-mock-type-parameters": "off",
 		},
 	},
 
