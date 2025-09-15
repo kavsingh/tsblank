@@ -158,7 +158,7 @@ function Words() {
 					<div
 						key={id}
 						className={twJoin(
-							"col-span-2 rounded border bg-amber-50/80 px-2 py-6 text-center text-lg font-bold text-neutral-950 uppercase transition-opacity duration-300",
+							"col-span-2 flex h-22 items-center justify-center rounded border bg-amber-50/80 p-2 text-center text-lg leading-5 font-bold text-neutral-950 uppercase transition-opacity duration-300",
 							isDragging ? "cursor-grabbing opacity-20" : "cursor-grab",
 						)}
 						onMouseDown={() => {
