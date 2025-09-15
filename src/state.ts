@@ -7,15 +7,26 @@ const appStateSchema = z.object({
 	w: z.array(z.tuple([z.number(), z.string()])),
 	/** collections */
 	c: z.array(z.tuple([z.number(), z.array(z.number())])),
-	/** selection */
-	s: z.array(z.number()),
 });
 
-const queryParser = parseAsJson((val) => appStateSchema.parse(val)).withDefault(
-	{ w: [], c: [], s: [] },
-);
-
 export type AppState = z.infer<typeof appStateSchema>;
+
+function getEmptyCollections(): AppState["c"] {
+	return [
+		// purple
+		[4, []],
+		// blue
+		[3, []],
+		// green
+		[2, []],
+		// yellow
+		[1, []],
+	];
+}
+
+const queryParser = parseAsJson((val) => appStateSchema.parse(val)).withDefault(
+	{ w: [], c: getEmptyCollections() },
+);
 
 // oxlint-disable-next-line eslint/max-lines-per-function, typescript/explicit-module-boundary-types
 export function useAppState() {
@@ -26,65 +37,22 @@ export function useAppState() {
 			return setState(() => {
 				return {
 					w: words.map((w, i): [number, string] => [i + 1, w]),
-					s: [],
-					c: [],
+					c: getEmptyCollections(),
 				};
-			});
-		},
-
-		toggleWordSelect: (id: number) => {
-			return setState((current) => {
-				const currentSelection = current.s;
-				const selectedIdx = currentSelection.indexOf(id);
-
-				if (selectedIdx === -1) {
-					return { ...current, s: [...currentSelection, id] };
-				}
-
-				const nextSelection = [...currentSelection];
-
-				nextSelection.splice(selectedIdx, 1);
-
-				return { ...current, s: nextSelection };
-			});
-		},
-
-		collectSelected: () => {
-			return setState((current) => {
-				if (current.s.length === 0) return current;
-
-				const nextCollections = [...current.c];
-				const newCollectionId =
-					current.c.length > 0
-						? Math.max(...current.c.map(([id]) => id)) + 1
-						: 1;
-
-				nextCollections.push([newCollectionId, [...current.s]]);
-
-				return { ...current, c: nextCollections, s: [] };
-			});
-		},
-
-		removeCollection: (id: number) => {
-			return setState((current) => {
-				const collectionIndex = current.c.findIndex(([cid]) => cid === id);
-
-				if (collectionIndex === -1) return current;
-
-				const nextCollections = [...current.c];
-
-				nextCollections.splice(collectionIndex, 1);
-
-				return { ...current, c: nextCollections };
 			});
 		},
 
 		moveWordToCollection: (wordId: number, collectionId?: number) => {
 			// oxlint-disable-next-line max-statements
 			return setState((current) => {
-				const nextCollections: AppState["c"] = [];
+				const nextCollections = structuredClone(current.c);
 
-				for (const [id, words] of current.c) {
+				for (let i = 0; i < nextCollections.length; i++) {
+					const collection = nextCollections[i];
+
+					if (!collection) continue;
+
+					const [id, words] = collection;
 					const wordIdx = words.indexOf(wordId);
 					const nextWords = [...words];
 
@@ -94,7 +62,25 @@ export function useAppState() {
 						nextWords.push(wordId);
 					}
 
-					if (nextWords.length > 0) nextCollections.push([id, nextWords]);
+					nextCollections[i] = [id, nextWords];
+				}
+
+				return { ...current, c: nextCollections };
+			});
+		},
+
+		clearCollection: (collectionId: number) => {
+			return setState((current) => {
+				const nextCollections = structuredClone(current.c);
+
+				for (let i = 0; i < nextCollections.length; i++) {
+					const collection = nextCollections[i];
+
+					if (!collection) continue;
+
+					const [id] = collection;
+
+					if (id === collectionId) nextCollections[i] = [id, []];
 				}
 
 				return { ...current, c: nextCollections };
