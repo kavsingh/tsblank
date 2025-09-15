@@ -8,8 +8,10 @@ export function App(): JSX.Element {
 	return (
 		<main className="min-h-full w-full p-4">
 			<div className="mx-auto w-full max-w-2xl space-y-8">
-				<Cmd />
-				<WordsInput />
+				<div>
+					<Cmd />
+					<WordsInput />
+				</div>
 				<div className="grid grid-cols-8 gap-2">
 					<Collections />
 					<Words />
@@ -30,7 +32,7 @@ function Cmd() {
 	return (
 		<button
 			type="button"
-			className="w-full rounded bg-neutral-950 p-2 text-left"
+			className="w-full rounded-t bg-neutral-950 p-2 text-left"
 			onClick={() => {
 				void navigator.clipboard.writeText(WORD_COLLECT_CMD);
 			}}
@@ -64,7 +66,7 @@ function WordsInput() {
 		<form onSubmit={handleSubmit}>
 			<input
 				type="text"
-				className="w-full rounded-lg border-neutral-800 bg-neutral-800 p-1 focus-within:border-neutral-50 focus-within:bg-transparent"
+				className="w-full rounded-b border-neutral-800 bg-neutral-800 p-1 focus-within:border-neutral-50 focus-within:bg-transparent"
 				name="available"
 			/>
 		</form>
@@ -136,6 +138,7 @@ function Words() {
 	const words = state.w.filter(([id]) => {
 		return !state.c.some(([, wordIds]) => wordIds.includes(id));
 	});
+	const [transientState, transientActions] = useTransientAppState();
 
 	return (
 		<div
@@ -144,19 +147,30 @@ function Words() {
 		>
 			{words.map(([id, word]) => {
 				const isSelected = state.s.includes(id);
+				const isDragging = transientState.draggingWordId === id;
 
 				return (
 					<button
 						type="button"
 						key={id}
 						className={twJoin(
-							"col-span-2 rounded border bg-amber-50/80 px-2 py-6 text-lg font-bold text-neutral-950 uppercase transition-colors duration-300",
+							"relative col-span-2 rounded border bg-amber-50/80 px-2 py-6 text-lg font-bold text-neutral-950 uppercase transition-colors duration-300",
 							isSelected && "border-teal-900 bg-teal-900 text-white",
+							isDragging && "opacity-20",
 						)}
-						onClick={() => {
+						onClick={(event) => {
+							event.stopPropagation();
 							void actions.toggleWordSelect(id);
 						}}
 					>
+						<div
+							className="absolute top-2 right-1 cursor-grab leading-0 opacity-20 transition-opacity hover:opacity-90"
+							onMouseDown={() => {
+								transientActions.startDragWord(id);
+							}}
+						>
+							≡
+						</div>
 						{word}
 					</button>
 				);
@@ -236,10 +250,12 @@ function DragWord() {
 
 		globalThis.window.addEventListener("pointermove", drag);
 		globalThis.window.addEventListener("pointerup", endDrag);
+		globalThis.window.addEventListener("pointercancel", endDrag);
 
 		return () => {
 			globalThis.window.removeEventListener("pointermove", drag);
 			globalThis.window.removeEventListener("pointerup", endDrag);
+			globalThis.window.removeEventListener("pointercancel", endDrag);
 			stopDrag();
 		};
 	}, [draggingId, stopDrag, moveWord]);
