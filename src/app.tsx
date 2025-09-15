@@ -17,7 +17,6 @@ export default function App() {
 					<Collections />
 					<Words />
 				</div>
-				<CollectButton />
 			</div>
 			<DragWord />
 		</main>
@@ -83,10 +82,16 @@ function Collections() {
 				return (
 					<div
 						key={collectionId}
-						className="col-span-8 grid grid-cols-subgrid rounded-lg bg-neutral-800 p-2"
+						className={twJoin(
+							"col-span-8 grid grid-cols-subgrid rounded-lg p-2",
+							collectionId === 4 && "bg-purple-400",
+							collectionId === 3 && "bg-blue-300",
+							collectionId === 2 && "bg-green-600",
+							collectionId === 1 && "bg-yellow-300",
+						)}
 						data-drop-collection={String(collectionId)}
 					>
-						<div className="col-start-1 col-end-8 flex flex-wrap gap-1">
+						<div className="col-start-1 col-end-8 flex min-h-10 flex-wrap items-center gap-1">
 							{wordIds.map((wordId) => {
 								const word = state.w.find(([id]) => id === wordId)?.[1];
 								const isDragging = transientState.draggingWordId === wordId;
@@ -94,7 +99,7 @@ function Collections() {
 								return (
 									<div
 										className={twJoin(
-											"flex cursor-grab items-center gap-3 rounded bg-neutral-900 px-3 py-2 text-center text-sm text-white uppercase",
+											"flex cursor-grab items-center gap-3 rounded bg-neutral-900/80 px-3 py-2 text-center text-sm text-white uppercase bg-blend-color-burn",
 											isDragging && "opacity-40",
 										)}
 										onMouseDown={() => {
@@ -115,10 +120,10 @@ function Collections() {
 								);
 							})}
 						</div>
-						<div className="col-start-8 col-end-9 mt-1.5 flex justify-end">
+						<div className="col-start-8 col-end-9 flex flex-col items-end justify-center">
 							<button
-								className="size-6 rounded-full border border-neutral-600 text-sm leading-1"
-								onClick={() => void actions.removeCollection(collectionId)}
+								className="size-6 rounded-full bg-neutral-900 text-sm leading-1"
+								onClick={() => void actions.clearCollection(collectionId)}
 							>
 								×
 							</button>
@@ -131,7 +136,7 @@ function Collections() {
 }
 
 function Words() {
-	const [state, actions] = useAppState();
+	const [state] = useAppState();
 	const words = state.w.filter(([id]) => {
 		return !state.c.some(([, wordIds]) => wordIds.includes(id));
 	});
@@ -143,49 +148,24 @@ function Words() {
 			data-drop-collection="null"
 		>
 			{words.map(([id, word]) => {
-				const isSelected = state.s.includes(id);
 				const isDragging = transientState.draggingWordId === id;
 
 				return (
-					<button
+					<div
 						key={id}
 						className={twJoin(
-							"relative col-span-2 rounded border bg-amber-50/80 px-2 py-6 text-lg font-bold text-neutral-950 uppercase transition-colors duration-300",
-							isSelected && "border-teal-900 bg-teal-900 text-white",
-							isDragging && "opacity-20",
+							"col-span-2 rounded border bg-amber-50/80 px-2 py-6 text-center text-lg font-bold text-neutral-950 uppercase transition-opacity duration-300",
+							isDragging ? "cursor-grabbing opacity-20" : "cursor-grab",
 						)}
-						onClick={(event) => {
-							event.stopPropagation();
-							void actions.toggleWordSelect(id);
+						onMouseDown={() => {
+							transientActions.startDragWord(id);
 						}}
 					>
-						<div
-							className="absolute top-2 right-1 cursor-grab leading-0 opacity-20 transition-opacity hover:opacity-90"
-							onMouseDown={() => {
-								transientActions.startDragWord(id);
-							}}
-						>
-							≡
-						</div>
 						{word}
-					</button>
+					</div>
 				);
 			})}
 		</div>
-	);
-}
-
-function CollectButton() {
-	const [state, actions] = useAppState();
-
-	return (
-		<button
-			className="mx-auto block rounded-sm bg-neutral-700 px-4 py-3 text-white disabled:opacity-60"
-			onClick={() => void actions.collectSelected()}
-			disabled={!state.s.length}
-		>
-			Collect
-		</button>
 	);
 }
 
