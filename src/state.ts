@@ -28,6 +28,35 @@ const queryParser = parseAsJson((val) => appStateSchema.parse(val)).withDefault(
 	{ w: [], c: getEmptyCollections() },
 );
 
+// oxlint-disable-next-line max-statements
+function moveWordToCollection(
+	current: AppState,
+	wordId: number,
+	collectionId: number | undefined,
+) {
+	const nextCollections = structuredClone(current.c);
+
+	for (let i = 0; i < nextCollections.length; i++) {
+		const collection = nextCollections[i];
+
+		if (!collection) continue;
+
+		const [id, words] = collection;
+		const wordIdx = words.indexOf(wordId);
+		const nextWords = [...words];
+
+		if (id !== collectionId && wordIdx !== -1) {
+			nextWords.splice(wordIdx, 1);
+		} else if (id === collectionId && wordIdx === -1) {
+			nextWords.push(wordId);
+		}
+
+		nextCollections[i] = [id, nextWords];
+	}
+
+	return { ...current, c: nextCollections };
+}
+
 // oxlint-disable-next-line explicit-module-boundary-types
 export function useAppState() {
 	const [state, setState] = useQueryState("s", queryParser);
@@ -42,33 +71,28 @@ export function useAppState() {
 			});
 		},
 
+		assignSeeds: (seeds: string[]) => {
+			return setState((current) => {
+				return seeds.reduce((acc, seedWord, i) => {
+					const wordId = current.w.find(([, wrd]) => wrd === seedWord)?.[0];
+
+					if (typeof wordId !== "number") return acc;
+
+					const collectionId = 4 - i;
+
+					if (!current.c.some(([id]) => id === collectionId)) return acc;
+
+					return moveWordToCollection(acc, wordId, collectionId);
+				}, current);
+			});
+		},
+
 		moveWordToCollection: (
 			wordId: number,
 			collectionId: number | undefined,
 		) => {
-			// oxlint-disable-next-line max-statements
 			return setState((current) => {
-				const nextCollections = structuredClone(current.c);
-
-				for (let i = 0; i < nextCollections.length; i++) {
-					const collection = nextCollections[i];
-
-					if (!collection) continue;
-
-					const [id, words] = collection;
-					const wordIdx = words.indexOf(wordId);
-					const nextWords = [...words];
-
-					if (id !== collectionId && wordIdx !== -1) {
-						nextWords.splice(wordIdx, 1);
-					} else if (id === collectionId && wordIdx === -1) {
-						nextWords.push(wordId);
-					}
-
-					nextCollections[i] = [id, nextWords];
-				}
-
-				return { ...current, c: nextCollections };
+				return moveWordToCollection(current, wordId, collectionId);
 			});
 		},
 
