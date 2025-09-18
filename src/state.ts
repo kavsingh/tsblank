@@ -28,7 +28,36 @@ const queryParser = parseAsJson((val) => appStateSchema.parse(val)).withDefault(
 	{ w: [], c: getEmptyCollections() },
 );
 
-// oxlint-disable-next-line eslint/max-lines-per-function, typescript/explicit-module-boundary-types
+// oxlint-disable-next-line eslint/max-lines-per-function, eslint/max-statements, typescript/explicit-module-boundary-types
+function moveWordToCollection(
+	current: AppState,
+	wordId: number,
+	collectionId: number | undefined,
+) {
+	const nextCollections = structuredClone(current.c);
+
+	for (let i = 0; i < nextCollections.length; i++) {
+		const collection = nextCollections[i];
+
+		if (!collection) continue;
+
+		const [id, words] = collection;
+		const wordIdx = words.indexOf(wordId);
+		const nextWords = [...words];
+
+		if (id !== collectionId && wordIdx !== -1) {
+			nextWords.splice(wordIdx, 1);
+		} else if (id === collectionId && wordIdx === -1) {
+			nextWords.push(wordId);
+		}
+
+		nextCollections[i] = [id, nextWords];
+	}
+
+	return { ...current, c: nextCollections };
+}
+
+// oxlint-disable-next-line explicit-module-boundary-types
 export function useAppState() {
 	const [state, setState] = useQueryState("s", queryParser);
 
@@ -42,30 +71,25 @@ export function useAppState() {
 			});
 		},
 
-		moveWordToCollection: (wordId: number, collectionId?: number) => {
-			// oxlint-disable-next-line max-statements
+		assignSeeds: (seeds: string[]) => {
 			return setState((current) => {
-				const nextCollections = structuredClone(current.c);
+				return seeds.reduce((acc, seedWord, i) => {
+					const wordId = current.w.find(([, wrd]) => wrd === seedWord)?.[0];
 
-				for (let i = 0; i < nextCollections.length; i++) {
-					const collection = nextCollections[i];
+					if (typeof wordId !== "number") return acc;
 
-					if (!collection) continue;
+					const collectionId = 4 - i;
 
-					const [id, words] = collection;
-					const wordIdx = words.indexOf(wordId);
-					const nextWords = [...words];
+					if (!current.c.some(([id]) => id === collectionId)) return acc;
 
-					if (id !== collectionId && wordIdx !== -1) {
-						nextWords.splice(wordIdx, 1);
-					} else if (id === collectionId && wordIdx === -1) {
-						nextWords.push(wordId);
-					}
+					return moveWordToCollection(acc, wordId, collectionId);
+				}, current);
+			});
+		},
 
-					nextCollections[i] = [id, nextWords];
-				}
-
-				return { ...current, c: nextCollections };
+		moveWordToCollection: (wordId: number, collectionId?: number) => {
+			return setState((current) => {
+				return moveWordToCollection(current, wordId, collectionId);
 			});
 		},
 

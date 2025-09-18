@@ -1,28 +1,46 @@
+// oxlint-disable max-lines
+
 import { useEffect, useRef } from "react";
 import { twJoin } from "tailwind-merge";
 
 import { useAppState, useTransientAppState } from "~/state";
 
-import type { JSX, SubmitEventHandler } from "react";
+import type { ComponentPropsWithoutRef, SubmitEventHandler, JSX } from "react";
 
 const WORD_SEPARATOR = " | ";
-const WORD_COLLECT_CMD = `[...document.querySelectorAll("input[data-testid='card-input']")]
+
+const WORDS_COLLECT_CMD = `[...document.querySelectorAll("input[data-testid='card-input']")]
   .map((i) => i.value)
   .join("${WORD_SEPARATOR}");`;
 
-function Cmd() {
+const GROUP_SEEDS_COLLECT_CMD = `[...document.querySelectorAll("div[data-testid='reveal-block'] > div:nth-of-type(2) > p:first-of-type")]
+  .reverse()
+  .map((el) => el.innerText).join(" | ");`;
+
+function Cmd(props: { cmd: string }) {
 	return (
 		<button
 			type="button"
 			className="w-full rounded-t bg-neutral-950 p-2 text-left"
 			onClick={() => {
-				void navigator.clipboard.writeText(WORD_COLLECT_CMD);
+				void navigator.clipboard.writeText(props.cmd);
 			}}
 		>
 			<pre className="w-full text-xs text-wrap text-neutral-400 select-text">
-				{WORD_COLLECT_CMD}
+				{props.cmd}
 			</pre>
 		</button>
+	);
+}
+
+function WordListInput(props: ComponentPropsWithoutRef<"input">) {
+	return (
+		<input
+			{...props}
+			type="text"
+			className="w-full rounded-b border-neutral-800 bg-neutral-800 p-1 text-xs focus-within:border-neutral-50 focus-within:bg-transparent"
+			placeholder="paste | result | here"
+		/>
 	);
 }
 
@@ -32,7 +50,7 @@ function WordsInput() {
 		event.preventDefault();
 
 		const formData = new FormData(event.currentTarget);
-		const wordsValue = formData.get("available");
+		const wordsValue = formData.get("words");
 		const nextWords =
 			typeof wordsValue === "string"
 				? wordsValue
@@ -46,12 +64,32 @@ function WordsInput() {
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<input
-				type="text"
-				className="w-full rounded-b border-neutral-800 bg-neutral-800 p-1 text-xs focus-within:border-neutral-50 focus-within:bg-transparent"
-				name="available"
-				placeholder="paste | words | here"
-			/>
+			<WordListInput name="words" />
+		</form>
+	);
+}
+
+function SeedsInput() {
+	const [, actions] = useAppState();
+	const handleSubmit: SubmitEventHandler<HTMLFormElement> = (event) => {
+		event.preventDefault();
+
+		const formData = new FormData(event.currentTarget);
+		const wordsValue = formData.get("seeds");
+		const nextWords =
+			typeof wordsValue === "string"
+				? wordsValue
+						.split(WORD_SEPARATOR)
+						.map((p) => p.trim().toLowerCase())
+						.filter(Boolean)
+				: undefined;
+
+		if (nextWords) void actions.assignSeeds(nextWords);
+	};
+
+	return (
+		<form onSubmit={handleSubmit}>
+			<WordListInput name="seeds" />
 		</form>
 	);
 }
@@ -255,9 +293,15 @@ export function App(): JSX.Element {
 					<Collections />
 					<Words />
 				</div>
-				<div>
-					<Cmd />
-					<WordsInput />
+				<div className="space-y-1">
+					<div>
+						<Cmd cmd={WORDS_COLLECT_CMD} />
+						<WordsInput />
+					</div>
+					<div>
+						<Cmd cmd={GROUP_SEEDS_COLLECT_CMD} />
+						<SeedsInput />
+					</div>
 				</div>
 			</div>
 			<DragWord />
