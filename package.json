@@ -15,7 +15,8 @@
 		"lint": "tsc && eslint .",
 		"dev": "vite",
 		"build": "rm -rf ./dist && vite build",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"deploy": "cp dist/index.html ~/Desktop/conn.html"
 	},
 	"dependencies": {
 		"nuqs": "2.6.0",
