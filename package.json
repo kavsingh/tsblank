@@ -14,7 +14,8 @@
 		"lint": "tsc --build --noEmit && oxlint --type-aware && eslint . && oxfmt --check",
 		"dev": "vite",
 		"build": "rm -rf ./dist && vite build",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"deploy": "cp dist/index.html ~/Desktop/conn.html"
 	},
 	"dependencies": {
 		"nuqs": "2.8.6",
