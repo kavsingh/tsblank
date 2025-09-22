@@ -3,13 +3,13 @@ import { fileURLToPath } from "node:url";
 
 import js from "@eslint/js";
 import filenames from "@kavsingh/eslint-plugin-filenames";
+import vitest from "@vitest/eslint-plugin";
 import { defineConfig } from "eslint/config";
 import tailwindcss from "eslint-plugin-better-tailwindcss";
 import { flatConfigs as importX } from "eslint-plugin-import-x";
 import jestDom from "eslint-plugin-jest-dom";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
 import testingLibrary from "eslint-plugin-testing-library";
-import vitest from "eslint-plugin-vitest";
 import globals from "globals";
 import { configs as tsEslint } from "typescript-eslint";
 
