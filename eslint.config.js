@@ -173,6 +173,9 @@ export default defineConfig(
 		languageOptions: {
 			globals: { ...globals.node, ...globals.browser },
 		},
+		settings: {
+			vitest: { typecheck: true },
+		},
 		extends: [
 			vitest.configs.all,
 			testingLibrary.configs["flat/dom"],
