@@ -3,6 +3,8 @@
 	"extends": "../tsconfig.base.json",
 	"compilerOptions": {
 		"lib": ["esnext", "dom", "dom.iterable"],
+		"module": "esnext",
+		"moduleResolution": "bundler",
 		"paths": { "#*": ["./*"] },
 		"sourceMap": true,
 		"types": ["@testing-library/jest-dom/vitest"]
