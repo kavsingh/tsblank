@@ -1,3 +1,4 @@
+import { preact } from "@preact/preset-vite";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 import { checker } from "vite-plugin-checker";
@@ -14,6 +15,6 @@ function createChecker(mode: string) {
 export default defineConfig(({ mode }) => {
 	return {
 		resolve: { tsconfigPaths: true },
-		plugins: [tailwindcss(), createChecker(mode)],
+		plugins: [tailwindcss(), preact(), createChecker(mode)],
 	};
 });

@@ -4,6 +4,8 @@
 	"include": ["src"],
 	"compilerOptions": {
 		"composite": true,
+		"jsx": "react-jsx",
+		"jsxImportSource": "preact",
 		"lib": ["esnext", "dom", "dom.iterable"],
 		"module": "esnext",
 		"moduleResolution": "bundler",
