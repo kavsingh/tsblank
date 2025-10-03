@@ -18,12 +18,16 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@preact/signals": "2.11.4",
+		"preact": "11.2.0",
 		"tailwind-variants": "4.0.2"
 	},
 	"devDependencies": {
+		"@preact/preset-vite": "2.10.6",
 		"@tailwindcss/vite": "4.3.5",
 		"@testing-library/dom": "10.4.2",
 		"@testing-library/jest-dom": "8.0.0",
+		"@testing-library/preact": "3.2.6",
 		"@testing-library/user-event": "14.6.13",
 		"@tsconfig/node26": "26.0.2",
 		"@tsconfig/strictest": "2.0.9",
