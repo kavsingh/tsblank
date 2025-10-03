@@ -10,6 +10,8 @@ import {
 import { flatConfigs as importX } from "eslint-plugin-import-x";
 import jestDom from "eslint-plugin-jest-dom";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
+import react from "eslint-plugin-react";
+import reactHooks from "eslint-plugin-react-hooks";
 import testingLibrary from "eslint-plugin-testing-library";
 import globals from "globals";
 import { configs as tsEslint } from "typescript-eslint";
@@ -136,14 +138,26 @@ export default defineConfig(
 					[".+ClassNames", [{ match: "strings" }, { match: "objectValues" }]],
 				],
 			},
+			"react": { version: "19" },
 		},
-		plugins: { "better-tailwindcss": tailwindcss },
+		plugins: { "better-tailwindcss": tailwindcss, "react-hooks": reactHooks },
+		extends: [
+			react.configs.flat["recommended"],
+			react.configs.flat["jsx-runtime"],
+		],
 		rules: {
 			"no-console": "error",
 			...tailwindcss.configs["recommended"]?.rules,
 			"better-tailwindcss/enforce-consistent-line-wrapping": "off",
 			"better-tailwindcss/enforce-shorthand-classes": "warn",
 			"better-tailwindcss/no-conflicting-classes": "error",
+			"react/jsx-filename-extension": [
+				"error",
+				{ extensions: [".tsx", ".jsx"] },
+			],
+			"react/prop-types": "off",
+			"react-hooks/rules-of-hooks": "error",
+			"react-hooks/exhaustive-deps": "warn",
 		},
 	},
 
@@ -182,7 +196,7 @@ export default defineConfig(
 		},
 		extends: [
 			vitest.configs.all,
-			testingLibrary.configs["flat/dom"],
+			testingLibrary.configs["flat/react"],
 			jestDom.configs["flat/recommended"],
 		],
 		rules: {

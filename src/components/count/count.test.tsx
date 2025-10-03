@@ -1,20 +1,14 @@
-import { screen } from "@testing-library/dom";
+import { screen, render } from "@testing-library/preact";
 import { userEvent } from "@testing-library/user-event";
-import { describe, beforeEach, it, expect } from "vitest";
+import { describe, it, expect } from "vitest";
 
 import Count from "./index";
 
 describe(Count, () => {
-	beforeEach(() => {
-		document.body.innerHTML = "";
-	});
-
 	it("should render correctly", () => {
 		expect.assertions(3);
 
-		const { el } = Count();
-
-		document.body.appendChild(el);
+		render(<Count initialCount={0} />);
 
 		expect(screen.getByText("-")).toBeInTheDocument();
 		expect(screen.getByText("00")).toBeInTheDocument();
@@ -24,10 +18,9 @@ describe(Count, () => {
 	it("should update count", async () => {
 		expect.assertions(5);
 
-		const { el } = Count({ initialCount: 2, step: 0.5 });
 		const user = userEvent.setup();
 
-		document.body.appendChild(el);
+		render(<Count initialCount={2} step={0.5} />);
 
 		expect(screen.getByText("02")).toBeInTheDocument();
 
