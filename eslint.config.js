@@ -9,6 +9,9 @@ import tailwindcss from "eslint-plugin-better-tailwindcss";
 import { flatConfigs as importX } from "eslint-plugin-import-x";
 import jestDom from "eslint-plugin-jest-dom";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
+import react from "eslint-plugin-react";
+// eslint-disable-next-line import-x/default
+import reactHooks from "eslint-plugin-react-hooks";
 import testingLibrary from "eslint-plugin-testing-library";
 import globals from "globals";
 import { configs as tsEslint } from "typescript-eslint";
@@ -129,17 +132,29 @@ export default defineConfig(
 					project: path.resolve(dirname, "src", "tsconfig.json"),
 				},
 			},
-			"better-tailwindcss": {
-				entryPoint: "src/index.css",
-			},
+			"react": { version: "19" },
+			"better-tailwindcss": { entryPoint: "src/index.css" },
 		},
 		plugins: { "better-tailwindcss": tailwindcss },
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+		extends: [
+			react.configs.flat["recommended"],
+			react.configs.flat["jsx-runtime"],
+			// @ts-expect-error upstream types
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+			reactHooks.configs["flat/recommended"],
+		],
 		rules: {
 			"no-console": "error",
 			...tailwindcss.configs["recommended"]?.rules,
 			"better-tailwindcss/enforce-consistent-line-wrapping": "off",
 			"better-tailwindcss/enforce-shorthand-classes": "warn",
 			"better-tailwindcss/no-conflicting-classes": "error",
+			"react/jsx-filename-extension": [
+				"error",
+				{ extensions: [".tsx", ".jsx"] },
+			],
+			"react/prop-types": "off",
 		},
 	},
 
@@ -178,7 +193,7 @@ export default defineConfig(
 		},
 		extends: [
 			vitest.configs.all,
-			testingLibrary.configs["flat/dom"],
+			testingLibrary.configs["flat/react"],
 			jestDom.configs["flat/recommended"],
 		],
 		rules: {
