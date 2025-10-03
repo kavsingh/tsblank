@@ -167,9 +167,18 @@ export default defineConfig({
 		{
 			files: ["src/**"],
 			env: { browser: true, node: false },
+			plugins: ["react", "jsx-a11y"],
 			jsPlugins: ["eslint-plugin-better-tailwindcss"],
 			rules: {
 				"import/no-nodejs-modules": "error",
+
+				"react/jsx-filename-extension": [
+					"error",
+					{ allow: "as-needed", extensions: ["tsx"] },
+				],
+				"react/jsx-props-no-spreading": "off",
+				"react/no-multi-comp": "off",
+				"react/react-in-jsx-scope": "off",
 
 				...tailwindcss.configs["recommended-error"].rules,
 				"better-tailwindcss/enforce-consistent-line-wrapping": "off",
@@ -233,7 +242,7 @@ export default defineConfig({
 				"vitest/require-test-timeout": "off",
 
 				...jestDom.configs["flat/recommended"].rules,
-				...testingLibrary.configs["flat/dom"].rules,
+				...testingLibrary.configs["flat/react"].rules,
 			},
 		},
 	],
