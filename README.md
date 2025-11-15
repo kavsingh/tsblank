@@ -23,7 +23,7 @@ quick and dirty typescript + vite web boilerplates
 ```mermaid
 ---
 config:
-  layout: elk
+  layout: tidy-tree
 ---
 graph TD;
    A-->B;
