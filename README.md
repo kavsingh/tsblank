@@ -15,3 +15,15 @@ quick and dirty typescript + vite web boilerplates
    ```shell
    bun i && bun dev
    ```
+
+---
+
+### TEST MERMAID
+
+```mermaid
+graph TD;
+   A-->B;
+   A-->C;
+   B-->D;
+   C-->D;
+```
