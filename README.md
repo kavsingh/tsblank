@@ -21,6 +21,7 @@ quick and dirty typescript + vite web boilerplates
 ### TEST MERMAID
 
 ```mermaid
+---
 config:
   layout: elk
 ---
