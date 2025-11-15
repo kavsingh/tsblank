@@ -3,18 +3,18 @@
 quick and dirty typescript + vite web boilerplates
 
 1. clone
-   ```shell
-   # vanilla + tailwind
-   npx degit kavsingh/tsblank
-   # solidjs + tailwind
-   npx degit kavsingh/tsblank#solid-js
-   # react dom + tailwind
-   npx degit kavsingh/tsblank#react-dom
-   ```
+    ```shell
+    # vanilla + tailwind
+    npx degit kavsingh/tsblank
+    # solidjs + tailwind
+    npx degit kavsingh/tsblank#solid-js
+    # react dom + tailwind
+    npx degit kavsingh/tsblank#react-dom
+    ```
 2. run
-   ```shell
-   bun i && bun dev
-   ```
+    ```shell
+    bun i && bun dev
+    ```
 
 ---
 
@@ -23,11 +23,13 @@ quick and dirty typescript + vite web boilerplates
 ```mermaid
 ---
 config:
-  layout: elk
+    layout: elk
+    graph:
+        defaultRenderer: elk
 ---
 graph TD;
-   A-->B;
-   A-->C;
-   B-->D;
-   C-->D;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
 ```
