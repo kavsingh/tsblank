@@ -6,6 +6,10 @@ import filenames from "@kavsingh/eslint-plugin-filenames";
 import vitest from "@vitest/eslint-plugin";
 import { defineConfig } from "eslint/config";
 import tailwindcss from "eslint-plugin-better-tailwindcss";
+import {
+	getDefaultAttributes,
+	getDefaultVariables,
+} from "eslint-plugin-better-tailwindcss/api/defaults";
 import { flatConfigs as importX } from "eslint-plugin-import-x";
 import jestDom from "eslint-plugin-jest-dom";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
@@ -131,6 +135,15 @@ export default defineConfig(
 			},
 			"better-tailwindcss": {
 				entryPoint: "src/index.css",
+				variables: [
+					...getDefaultVariables(),
+					[".+ClassNames", [{ match: "strings" }, { match: "objectValues" }]],
+				],
+				attributes: [
+					...getDefaultAttributes(),
+					["classNames", [{ match: "strings" }, { match: "objectValues" }]],
+					[".+ClassNames", [{ match: "strings" }, { match: "objectValues" }]],
+				],
 			},
 		},
 		plugins: { "better-tailwindcss": tailwindcss },

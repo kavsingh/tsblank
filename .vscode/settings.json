@@ -6,9 +6,6 @@
 	"editor.quickSuggestions": {
 		"strings": true
 	},
-	"files.associations": {
-		"*.css": "tailwindcss"
-	},
 	"files.watcherExclude": {
 		"**/node_modules": true,
 		"**/dist/": true
@@ -22,18 +19,11 @@
 
 	"eslint.workingDirectories": [{ "mode": "auto" }],
 
+	"files.associations": { "*.css": "tailwindcss" },
 	"tailwindCSS.validate": true,
-	"tailwindCSS.lint.cssConflict": "error",
-	"tailwindCSS.lint.invalidApply": "error",
-	"tailwindCSS.lint.invalidConfigPath": "error",
-	"tailwindCSS.lint.invalidScreen": "error",
-	"tailwindCSS.lint.invalidTailwindDirective": "error",
-	"tailwindCSS.lint.invalidVariant": "error",
-	"tailwindCSS.lint.recommendedVariantOrder": "error",
+	"tailwindCSS.classAttributes": ["class", "classList", ".+ClassNames"],
+	"tailwindCSS.classFunctions": ["twMerge", "twJoin"],
 	"tailwindCSS.experimental.configFile": "src/index.css",
-	"tailwindCSS.experimental.classRegex": [
-		["twMerge\\(([^)]*)\\)", "twJoin\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
-	],
 
 	"cssVariables.lookupFiles": ["src/style/**/*.css"],
 
