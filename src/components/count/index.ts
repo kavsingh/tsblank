@@ -1,6 +1,9 @@
-import Button from "#components/button";
+import { Button } from "#components/button";
 
-export default function Count({ initialCount = 0, step = 1 }: CountProps = {}) {
+// oxlint-disable-next-line max-statements
+export function Count({ initialCount = 0, step = 1 }: CountProps = {}): {
+	el: HTMLDivElement;
+} {
 	const el = document.createElement("div");
 	const value = document.createElement("span");
 
@@ -21,9 +24,9 @@ export default function Count({ initialCount = 0, step = 1 }: CountProps = {}) {
 
 	value.innerHTML = formatValue(initialCount);
 	el.setAttribute("class", "flex items-center gap-2");
-	el.appendChild(decrement);
-	el.appendChild(value);
-	el.appendChild(increment);
+	el.append(decrement);
+	el.append(value);
+	el.append(increment);
 
 	return { el };
 }

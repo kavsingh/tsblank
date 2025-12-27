@@ -17,7 +17,13 @@
 
 	"typescript.tsdk": "node_modules/typescript/lib",
 
+	"oxc.enable": true,
+	"oxc.typeAware": true,
+
+	"eslint.enable": true,
 	"eslint.workingDirectories": [{ "mode": "auto" }],
+
+	"prettier.enable": false,
 
 	"files.associations": { "*.css": "tailwindcss" },
 	"tailwindCSS.validate": true,
@@ -28,27 +34,27 @@
 	"cssVariables.lookupFiles": ["src/style/**/*.css"],
 
 	"[javascript]": {
-		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+		"editor.defaultFormatter": "oxc.oxc-vscode"
 	},
 	"[typescript]": {
-		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+		"editor.defaultFormatter": "oxc.oxc-vscode"
 	},
 	"[html]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "oxc.oxc-vscode"
 	},
 	"[css]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "oxc.oxc-vscode"
 	},
 	"[json]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "oxc.oxc-vscode"
 	},
 	"[jsonc]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "oxc.oxc-vscode"
 	},
 	"[yaml]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "oxc.oxc-vscode"
 	},
 	"[toml]": {
-		"editor.defaultFormatter": "tamasfe.even-better-toml"
+		"editor.defaultFormatter": "oxc.oxc-vscode"
 	}
 }

@@ -1,8 +1,10 @@
 import "./index.css";
-import App from "./app";
+import { App } from "./app";
 
-const appRoot = document.getElementById("app-root");
+const appRoot = document.querySelector("#app-root");
 
-if (!appRoot) throw new Error("Could not find root element #app-root");
+if (!(appRoot instanceof HTMLElement)) {
+	throw new Error("Could not find root element #app-root");
+}
 
 void App(appRoot);

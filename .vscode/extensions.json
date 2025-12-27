@@ -1,9 +1,7 @@
 {
 	"recommendations": [
-		"tamasfe.even-better-toml",
+		"oxc.oxc-vscode",
 		"dbaeumer.vscode-eslint",
-		"esbenp.prettier-vscode",
-		"bradlc.vscode-tailwindcss",
-		"vunguyentuan.vscode-css-variables"
+		"bradlc.vscode-tailwindcss"
 	]
 }

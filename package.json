@@ -1,18 +1,17 @@
 {
 	"name": "tsblank",
 	"version": "0.0.0",
+	"license": "MIT",
 	"repository": {
 		"type": "git",
 		"url": "git@github.com:kavsingh/tsblank.git"
 	},
 	"type": "module",
 	"main": "index.js",
-	"license": "MIT",
-	"packageManager": "bun@1.3.5",
 	"scripts": {
 		"tdd": "vitest",
 		"test": "vitest run",
-		"lint": "tsc --build --noEmit && eslint .",
+		"lint": "tsc --build --noEmit && oxlint --type-aware && eslint . && oxfmt --check",
 		"dev": "vite",
 		"build": "rm -rf ./dist && vite build",
 		"preview": "vite preview"
@@ -21,8 +20,6 @@
 		"tailwind-merge": "3.4.0"
 	},
 	"devDependencies": {
-		"@eslint/js": "9.39.2",
-		"@kavsingh/eslint-plugin-filenames": "2.0.0-rc.3",
 		"@tailwindcss/vite": "4.1.18",
 		"@testing-library/dom": "10.4.1",
 		"@testing-library/jest-dom": "6.9.1",
@@ -32,18 +29,14 @@
 		"@types/bun": "1.3.5",
 		"@types/eslint": "9.6.1",
 		"@vitest/coverage-v8": "4.0.16",
-		"@vitest/eslint-plugin": "1.6.4",
 		"eslint": "9.39.2",
-		"eslint-config-prettier": "10.1.8",
-		"eslint-import-resolver-typescript": "4.4.4",
 		"eslint-plugin-better-tailwindcss": "3.8.0",
-		"eslint-plugin-import-x": "4.16.1",
 		"eslint-plugin-jest-dom": "5.5.0",
-		"eslint-plugin-prettier": "5.5.4",
 		"eslint-plugin-testing-library": "7.15.3",
-		"globals": "16.5.0",
 		"jsdom": "27.4.0",
-		"prettier": "3.7.4",
+		"oxfmt": "0.20.0",
+		"oxlint": "1.35.0",
+		"oxlint-tsgolint": "0.10.0",
 		"rolldown-vite": "7.3.0",
 		"tailwindcss": "4.1.18",
 		"typescript": "5.9.3",
@@ -52,6 +45,7 @@
 		"vite-tsconfig-paths": "6.0.3",
 		"vitest": "4.0.16"
 	},
+	"packageManager": "bun@1.3.5",
 	"trustedDependencies": [
 		"@tailwindcss/oxide",
 		"esbuild",

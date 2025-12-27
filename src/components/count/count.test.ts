@@ -2,7 +2,7 @@ import { screen } from "@testing-library/dom";
 import { userEvent } from "@testing-library/user-event";
 import { describe, beforeEach, it, expect } from "vitest";
 
-import Count from "./index";
+import { Count } from "./index";
 
 describe(Count, () => {
 	beforeEach(() => {
@@ -14,7 +14,7 @@ describe(Count, () => {
 
 		const { el } = Count();
 
-		document.body.appendChild(el);
+		document.body.append(el);
 
 		expect(screen.getByText("-")).toBeInTheDocument();
 		expect(screen.getByText("00")).toBeInTheDocument();
@@ -27,7 +27,7 @@ describe(Count, () => {
 		const { el } = Count({ initialCount: 2, step: 0.5 });
 		const user = userEvent.setup();
 
-		document.body.appendChild(el);
+		document.body.append(el);
 
 		expect(screen.getByText("02")).toBeInTheDocument();
 

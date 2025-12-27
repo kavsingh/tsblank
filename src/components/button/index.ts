@@ -1,6 +1,8 @@
 import { twMerge } from "tailwind-merge";
 
-export default function Button({ label, onClick, className }: ButtonProps) {
+export function Button({ label, onClick, className }: ButtonProps): {
+	el: HTMLButtonElement;
+} {
 	const frag = document.createElement("fragment");
 
 	frag.innerHTML = `
