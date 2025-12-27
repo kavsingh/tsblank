@@ -125,8 +125,8 @@
 			"files": [
 				"**/vitest.*.setup.ts",
 				"**/*.test.*",
-				"**/*.testHelpers.*",
-				"**/*__{mock,mocks,test,testHelpers,tests,fixtures}__/**/*"
+				"**/*.test-*.*",
+				"**/*__{mock,mocks,test,test-*,tests,fixtures}__/**/*"
 			],
 			"plugins": ["eslint", "import", "promise", "typescript"],
 			"env": { "browser": true, "node": true },

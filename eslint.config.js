@@ -41,7 +41,7 @@ export default defineConfig(
 	},
 
 	{
-		files: ["src/**/*.test.ts"],
+		files: ["src/**/*.test.?(m|c)[tj]s?(x)"],
 		extends: [
 			testingLibrary.configs["flat/dom"],
 			jestDom.configs["flat/recommended"],
