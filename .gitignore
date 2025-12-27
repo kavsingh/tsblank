@@ -12,7 +12,4 @@ node_modules/
 !/.vscode/tasks.json
 
 /dist
-/coverage
-/test-results/
-/playwright-report/
-/playwright/.cache/
+/reports

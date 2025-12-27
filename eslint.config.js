@@ -18,7 +18,7 @@ import { testFilePatterns, testFileSuffixes } from "./eslint.helpers.js";
 
 export default defineConfig(
 	{
-		ignores: [".vscode/*", "dist/*", "coverage/*"],
+		ignores: [".vscode/*", "dist/*", "reports/*"],
 	},
 
 	{
