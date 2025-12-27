@@ -9,6 +9,6 @@
 		"moduleResolution": "bundler",
 		"paths": { "#*": ["./src/*"] },
 		"sourceMap": true,
-		"types": ["@testing-library/jest-dom/vitest"]
+		"types": ["rolldown-vite/client", "@testing-library/jest-dom/vitest"]
 	}
 }
