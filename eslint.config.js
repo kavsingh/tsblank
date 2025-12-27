@@ -1,6 +1,3 @@
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-
 import js from "@eslint/js";
 import filenames from "@kavsingh/eslint-plugin-filenames";
 import vitest from "@vitest/eslint-plugin";
@@ -18,8 +15,6 @@ import globals from "globals";
 import { configs as tsEslint } from "typescript-eslint";
 
 import { testFilePatterns, testFileSuffixes } from "./eslint.helpers.js";
-
-const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig(
 	{
@@ -82,6 +77,7 @@ export default defineConfig(
 			"import-x/consistent-type-specifier-style": ["error", "prefer-top-level"],
 			"import-x/no-cycle": "error",
 			"import-x/no-self-import": "error",
+			"import-x/no-unresolved": "off",
 			"import-x/no-unused-modules": "error",
 			"import-x/no-useless-path-segments": "error",
 			"import-x/order": [
@@ -128,11 +124,6 @@ export default defineConfig(
 			globals: { ...globals.browser },
 		},
 		settings: {
-			"import-x/resolver": {
-				"eslint-import-resolver-typescript": {
-					project: path.resolve(dirname, "src", "tsconfig.json"),
-				},
-			},
 			"better-tailwindcss": {
 				entryPoint: "src/index.css",
 				variables: [

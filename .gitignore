@@ -3,6 +3,7 @@
 node_modules/
 *.log
 *.log.*
+*.tsbuildinfo
 
 /.vscode/**/*
 !/.vscode/extensions.json

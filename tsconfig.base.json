@@ -6,9 +6,11 @@
 		"allowJs": true,
 		"checkJs": true,
 		"erasableSyntaxOnly": true,
-		"noEmit": true,
 		"verbatimModuleSyntax": true,
-		// leave the following to eslint
+		// to allow composite + allowImportingTsExtensions
+		// to block emit, use --noEmit cli flag
+		"emitDeclarationOnly": true,
+		// leave the following to linters
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
 		"allowUnreachableCode": true

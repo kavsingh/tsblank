@@ -1,0 +1,11 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"extends": ["./tsconfig.base.json", "@tsconfig/bun/tsconfig.json"],
+	"include": ["./*.ts", "./*.js", "./*.mjs", "./*.cjs", "./.*.js"],
+	"compilerOptions": {
+		"composite": true,
+		"emitDeclarationOnly": true,
+		"noEmit": false,
+		"noPropertyAccessFromIndexSignature": true
+	}
+}

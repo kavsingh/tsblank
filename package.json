@@ -12,7 +12,7 @@
 	"scripts": {
 		"tdd": "vitest",
 		"test": "vitest run",
-		"lint": "tsc && eslint .",
+		"lint": "tsc --build --noEmit && eslint .",
 		"dev": "vite",
 		"build": "rm -rf ./dist && vite build",
 		"preview": "vite preview"
