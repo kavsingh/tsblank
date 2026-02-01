@@ -9,14 +9,18 @@ import { defineConfig } from "eslint/config";
 import { configs as tsEslint } from "typescript-eslint";
 
 export default defineConfig(
-	{
-		ignores: [".vscode/*", "dist/*", "reports/*"],
-		linterOptions: { reportUnusedDisableDirectives: true },
-	},
+	{ ignores: [".vscode/*", ".zed/*", "dist/*", "reports/*"] },
+
+	{ linterOptions: { reportUnusedDisableDirectives: true } },
+
+	{ files: ["src/**/*.{ts,tsx}"], extends: [tsEslint.base] },
 
 	{
-		files: ["src/**/*.?(m|c)[tj]s?(x)"],
-		extends: [tsEslint.base],
+		files: ["src/**/*.tsx"],
+		extends: [
+			// @ts-expect-error upstream types
+			tailwindcss.configs.recommended,
+		],
 		settings: {
 			"better-tailwindcss": {
 				entryPoint: "src/index.css",
@@ -31,17 +35,15 @@ export default defineConfig(
 				],
 			},
 		},
-		plugins: { "better-tailwindcss": tailwindcss },
 		rules: {
-			...tailwindcss.configs["recommended"]?.rules,
 			"better-tailwindcss/enforce-consistent-line-wrapping": "off",
-			"better-tailwindcss/enforce-shorthand-classes": "warn",
-			"better-tailwindcss/no-conflicting-classes": "error",
+			"better-tailwindcss/enforce-consistent-important-position": "error",
+			"better-tailwindcss/enforce-shorthand-classes": "error",
 		},
 	},
 
 	{
-		files: ["src/**/*.test.?(m|c)[tj]s?(x)"],
+		files: ["src/**/*.test.{ts,tsx}"],
 		extends: [
 			testingLibrary.configs["flat/dom"],
 			jestDom.configs["flat/recommended"],

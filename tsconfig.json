@@ -3,6 +3,6 @@
 	"include": [],
 	"references": [
 		{ "path": "./tsconfig.bun.json" },
-		{ "path": "./tsconfig.browser.json" }
+		{ "path": "./tsconfig.app.json" }
 	]
 }

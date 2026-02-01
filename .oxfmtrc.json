@@ -8,7 +8,7 @@
 		"groups": [
 			["builtin"],
 			["external"],
-			["internal"],
+			["internal", "subpath"],
 			["parent"],
 			["sibling", "index"],
 			["type"]

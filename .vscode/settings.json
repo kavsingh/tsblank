@@ -17,6 +17,7 @@
 	},
 
 	"typescript.tsdk": "node_modules/typescript/lib",
+	"typescript.experimental.useTsgo": true,
 
 	"oxc.enable": true,
 	"oxc.typeAware": true,
@@ -28,7 +29,12 @@
 
 	"files.associations": { "*.css": "tailwindcss" },
 	"tailwindCSS.validate": true,
-	"tailwindCSS.classAttributes": ["class", "classList", ".+ClassNames"],
+	"tailwindCSS.classAttributes": [
+		"class",
+		"className",
+		".+ClassName",
+		".+ClassNames"
+	],
 	"tailwindCSS.classFunctions": ["twMerge", "twJoin"],
 	"tailwindCSS.experimental.configFile": "src/index.css",
 
