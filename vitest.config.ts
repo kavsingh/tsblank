@@ -14,11 +14,13 @@ export default defineConfig((configEnv) => {
 				mergeConfig(
 					baseAppConfig(configEnv),
 					defineProject({
+						resolve: { conditions: ["development", "browser"] },
 						test: {
 							name: "app",
 							include: ["src/**/*.{test,spec}.?(m|c)[tj]s?(x)"],
 							environment: "jsdom",
 							setupFiles: ["./src/vitest.setup.ts"],
+							server: { deps: { inline: true } },
 						},
 					}),
 				),
