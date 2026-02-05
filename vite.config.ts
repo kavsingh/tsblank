@@ -1,6 +1,7 @@
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 import { checker } from "vite-plugin-checker";
+import solid from "vite-plugin-solid";
 
 function createChecker(mode: string) {
 	if (mode !== "development") return undefined;
@@ -14,6 +15,7 @@ function createChecker(mode: string) {
 export default defineConfig(({ mode }) => {
 	return {
 		resolve: { tsconfigPaths: true },
-		plugins: [tailwindcss(), createChecker(mode)],
+		plugins: [tailwindcss(), solid(), createChecker(mode)],
+		oxc: { jsx: { importSource: "solid-js" } },
 	};
 });

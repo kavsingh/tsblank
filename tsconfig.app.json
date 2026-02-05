@@ -4,6 +4,8 @@
 	"include": ["src"],
 	"compilerOptions": {
 		"composite": true,
+		"jsx": "preserve",
+		"jsxImportSource": "solid-js",
 		"lib": ["esnext", "dom", "dom.iterable"],
 		"module": "esnext",
 		"moduleResolution": "bundler",
