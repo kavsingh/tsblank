@@ -1,4 +1,6 @@
-import { defineConfig, type OxlintConfig } from "oxlint";
+import { defineConfig } from "oxlint";
+
+import type { OxlintConfig } from "oxlint";
 
 export default defineConfig({
 	ignorePatterns: [".vscode/*", "**/dist/*", "**/reports/*"],
