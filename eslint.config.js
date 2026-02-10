@@ -17,10 +17,7 @@ export default defineConfig(
 
 	{
 		files: ["src/**/*.tsx"],
-		extends: [
-			// @ts-expect-error upstream types
-			tailwindcss.configs.recommended,
-		],
+		extends: [tailwindcss.configs.recommended],
 		settings: {
 			"better-tailwindcss": {
 				entryPoint: "src/index.css",
