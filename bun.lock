@@ -27,7 +27,6 @@
         "oxlint-tsgolint": "0.16.0",
         "rolldown-vite": "7.3.1",
         "tailwindcss": "4.2.1",
-        "tombi": "0.9.3",
         "vite-plugin-checker": "0.12.0",
         "vite-tsconfig-paths": "6.1.1",
         "vitest": "4.0.18",
@@ -36,7 +35,6 @@
   },
   "trustedDependencies": [
     "esbuild",
-    "tombi",
     "lefthook",
   ],
   "packages": {
@@ -388,22 +386,6 @@
 
     "@testing-library/user-event": ["@testing-library/user-event@14.6.1", "", { "peerDependencies": { "@testing-library/dom": ">=7.21.4" } }, "sha512-vq7fv0rnt+QTXgPxr5Hjc210p6YKq2kmdziLgnsZGgLJ9e6VAShx1pACLuRjd/AS/sr7phAR58OIIpf0LlmQNw=="],
 
-    "@tombi-toml/cli-darwin-arm64": ["@tombi-toml/cli-darwin-arm64@0.9.3", "", { "os": "darwin", "cpu": "arm64" }, "sha512-V0yUrtC4wwfAaTOPiTqPDgI/mfbj1m3OtDt7PHEvFy2i4c5jJshucHNnj9kkxrO0I+Ftubvx2udv5PDXrXJm+A=="],
-
-    "@tombi-toml/cli-darwin-x64": ["@tombi-toml/cli-darwin-x64@0.9.3", "", { "os": "darwin", "cpu": "x64" }, "sha512-9B4AUGhE5ZOaKo7wV2tHyhc0v+/YPVFn9GXt0aMMN5b4ujHf4VbkNiABY3gwv8x1mUigAWOk58qnPWVe7iatCA=="],
-
-    "@tombi-toml/cli-linux-arm64": ["@tombi-toml/cli-linux-arm64@0.9.3", "", { "os": "linux", "cpu": "arm64" }, "sha512-yipzFXfxUhpiS1alQC3HnJ/gMau6/IdVPYR/jVX+7Nj+f4F1MiQYEGYcAom9s2xDpghkh+OF1WodkflNKEStBw=="],
-
-    "@tombi-toml/cli-linux-arm64-musl": ["@tombi-toml/cli-linux-arm64-musl@0.9.3", "", { "os": "linux", "cpu": "arm64" }, "sha512-tYtKN7X2xniBD1VzpE0bEKafwztrf7mN4s9iD842/rT29ub8NP5JFfDL74Wpz0TsDguHBAeIUhspVEJGqaxKtw=="],
-
-    "@tombi-toml/cli-linux-x64": ["@tombi-toml/cli-linux-x64@0.9.3", "", { "os": "linux", "cpu": "x64" }, "sha512-rSd3Xn5Enlw2yLYRigDFl1J/e3yuOtbsc28Versn7/4KPUIsKcumbiPuNQpC3t3hQRUJUD/iZJB3RI3ui1qfGQ=="],
-
-    "@tombi-toml/cli-linux-x64-musl": ["@tombi-toml/cli-linux-x64-musl@0.9.3", "", { "os": "linux", "cpu": "x64" }, "sha512-NVKnVhibANgNKItXMkyIklzkvyFLlX2pvgod4iy4+ar5yMEKFE+1wtBlW5BvesGLMjV3J7VOUIujGclC1LD95A=="],
-
-    "@tombi-toml/cli-win32-arm64": ["@tombi-toml/cli-win32-arm64@0.9.3", "", { "os": "win32", "cpu": "arm64" }, "sha512-9c1Gt/J1Zpkr75HvvDk4UnF/VFMZjP+GlQRwNG85BfB3lExoYy2sJN9y/Mg62uffqMPi229DDOcaDtPcYOrmpQ=="],
-
-    "@tombi-toml/cli-win32-x64": ["@tombi-toml/cli-win32-x64@0.9.3", "", { "os": "win32", "cpu": "x64" }, "sha512-WX3/be75kxJZM+PJyLFmxubX6NmOZnsshpAssQGDgkLFOCdi08tMNlp9euLip4bevb5/RyleO355lsh2Kef8JA=="],
-
     "@tsconfig/bun": ["@tsconfig/bun@1.0.10", "", {}, "sha512-5AV5YknQjNyoYzZ/8NG0dawqew/wH+x7ANiCfCIn29qo0cdbd1EryvFD1k5NSZWLBMOI/fGqMIaxi58GPIP9Cg=="],
 
     "@tsconfig/strictest": ["@tsconfig/strictest@2.0.8", "", {}, "sha512-XnQ7vNz5HRN0r88GYf1J9JJjqtZPiHt2woGJOo2dYqyHGGcd6OLGqSlBB6p1j9mpzja6Oe5BoPqWmeDx6X9rLw=="],
@@ -586,7 +568,7 @@
 
     "flat-cache": ["flat-cache@4.0.1", "", { "dependencies": { "flatted": "^3.2.9", "keyv": "^4.5.4" } }, "sha512-f7ccFPK3SXFHpx15UIGyRJ/FJQctuKZ0zVuN3frBo4HnK3cay9VEW0R6yPYFHC0AgqhukPzKjq22t5DmAyqGyw=="],
 
-    "flatted": ["flatted@3.3.4", "", {}, "sha512-3+mMldrTAPdta5kjX2G2J7iX4zxtnwpdA8Tr2ZSjkyPSanvbZAcy6flmtnXbEybHrDcU9641lxrMfFuUxVz9vA=="],
+    "flatted": ["flatted@3.4.0", "", {}, "sha512-kC6Bb+ooptOIvWj5B63EQWkF0FEnNjV2ZNkLMLZRDDduIiWeFF4iKnslwhiWxjAdbg4NzTNo6h0qLuvFrcx+Sw=="],
 
     "fsevents": ["fsevents@2.3.3", "", { "os": "darwin" }, "sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw=="],
 
@@ -831,8 +813,6 @@
     "tldts": ["tldts@7.0.25", "", { "dependencies": { "tldts-core": "^7.0.25" }, "bin": { "tldts": "bin/cli.js" } }, "sha512-keinCnPbwXEUG3ilrWQZU+CqcTTzHq9m2HhoUP2l7Xmi8l1LuijAXLpAJ5zRW+ifKTNscs4NdCkfkDCBYm352w=="],
 
     "tldts-core": ["tldts-core@7.0.25", "", {}, "sha512-ZjCZK0rppSBu7rjHYDYsEaMOIbbT+nWF57hKkv4IUmZWBNrBWBOjIElc0mKRgLM8bm7x/BBlof6t2gi/Oq/Asw=="],
-
-    "tombi": ["tombi@0.9.3", "", { "optionalDependencies": { "@tombi-toml/cli-darwin-arm64": "0.9.3", "@tombi-toml/cli-darwin-x64": "0.9.3", "@tombi-toml/cli-linux-arm64": "0.9.3", "@tombi-toml/cli-linux-arm64-musl": "0.9.3", "@tombi-toml/cli-linux-x64": "0.9.3", "@tombi-toml/cli-linux-x64-musl": "0.9.3", "@tombi-toml/cli-win32-arm64": "0.9.3", "@tombi-toml/cli-win32-x64": "0.9.3" }, "bin": { "tombi": "bin/tombi" } }, "sha512-2DwBCLsasUhJgtQTYMnifscIS/N0jLQSYQsRSuJdkxDdnLzAwDxcHF15AbdJcgT4qy+kjRAmqpO7T2e4u4DMpQ=="],
 
     "tough-cookie": ["tough-cookie@6.0.0", "", { "dependencies": { "tldts": "^7.0.5" } }, "sha512-kXuRi1mtaKMrsLUxz3sQYvVl37B0Ns6MzfrtV5DvJceE9bPyspOqk9xxv7XbZWcfLWbFmm997vl83qUWVJA64w=="],
 
