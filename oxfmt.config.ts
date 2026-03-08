@@ -1,7 +1,11 @@
 import { defineConfig } from "oxfmt";
 
 export default defineConfig({
-	ignorePatterns: ["**/dist/**", "**/reports/**"],
+	ignorePatterns: [
+		"**/dist/**",
+		"**/reports/**",
+		"public/mockServiceWorker.js",
+	],
 	printWidth: 80,
 	useTabs: true,
 	sortImports: {

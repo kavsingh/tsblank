@@ -1,30 +1,15 @@
-import { Suspense, lazy } from "solid-js";
+import { AppStoreProvider } from "~/app-store/context";
+import { Things } from "~/pages/things";
 
-import type { JSX, ParentProps } from "solid-js";
+import type { JSX } from "solid-js";
+import type { AppStore } from "~/app-store/create";
 
-function Loader() {
-	return <div>Loading...</div>;
-}
-
-function LazyLoad(props: ParentProps) {
-	return <Suspense fallback={<Loader />}>{props.children}</Suspense>;
-}
-
-const LazyCount = lazy(async () => {
-	const { Count } = await import("~/components/count");
-
-	return { default: Count };
-});
-
-export function App(): JSX.Element {
+export function App(props: { store: AppStore }): JSX.Element {
 	return (
-		<div class="flex min-h-full flex-col gap-4 p-4">
-			<LazyLoad>
-				<LazyCount />
-			</LazyLoad>
-			<LazyLoad>
-				<LazyCount initialCount={10} step={5} />
-			</LazyLoad>
-		</div>
+		<AppStoreProvider store={props.store}>
+			<div class="flex min-h-full flex-col gap-4 p-4">
+				<Things />
+			</div>
+		</AppStoreProvider>
 	);
 }

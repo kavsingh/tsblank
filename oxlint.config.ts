@@ -12,7 +12,12 @@ import testingLibrary from "eslint-plugin-testing-library";
 import { defineConfig } from "oxlint";
 
 export default defineConfig({
-	ignorePatterns: [".vscode/*", "**/dist/*", "**/reports/*"],
+	ignorePatterns: [
+		".vscode/*",
+		"**/dist/*",
+		"**/reports/*",
+		"public/mockServiceWorker.js",
+	],
 	plugins: ["oxc", "eslint", "typescript", "import", "promise", "unicorn"],
 	categories: {
 		correctness: "error",
