@@ -19,7 +19,7 @@
 		".+ClassName",
 		".+ClassNames"
 	],
-	"tailwindCSS.classFunctions": ["twMerge", "twJoin"],
+	"tailwindCSS.classFunctions": ["twMerge", "twJoin", "tv"],
 	"tailwindCSS.experimental.configFile": "src/index.css",
 
 	"editor.formatOnSave": true,
