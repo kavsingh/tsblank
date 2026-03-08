@@ -1,0 +1,12 @@
+pre-commit:
+  jobs:
+    - run: bun oxfmt {staged_files}
+      glob: "**/*.{ts,tsx,js,jsx,json,jsonc,toml,yaml,yml,html,css}"
+      stage_fixed: true
+    - run: bun oxlint --type-aware --type-check --max-warnings=0 {staged_files}
+      glob: "**/*.{ts,tsx,js,jsx}"
+
+pre-push:
+  jobs:
+    - run: bun lint
+      glob: "**/*.*"

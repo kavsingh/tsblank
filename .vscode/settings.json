@@ -62,6 +62,6 @@
 		"editor.defaultFormatter": "oxc.oxc-vscode"
 	},
 	"[toml]": {
-		"editor.defaultFormatter": "tombi-toml.tombi"
+		"editor.defaultFormatter": "oxc.oxc-vscode"
 	}
 }

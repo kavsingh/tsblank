@@ -90,7 +90,7 @@
 		},
 
 		"TOML": {
-			"formatter": [{ "language_server": { "name": "tombi" } }]
+			"formatter": [{ "language_server": { "name": "oxfmt" } }]
 		}
 	}
 }
