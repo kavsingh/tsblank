@@ -1,3 +1,13 @@
+import path from "node:path";
+
+import tailwindcss from "eslint-plugin-better-tailwindcss";
+import { getDefaultSelectors } from "eslint-plugin-better-tailwindcss/defaults";
+import {
+	SelectorKind,
+	MatcherType,
+} from "eslint-plugin-better-tailwindcss/types";
+import jestDom from "eslint-plugin-jest-dom";
+import testingLibrary from "eslint-plugin-testing-library";
 import { defineConfig } from "oxlint";
 
 export default defineConfig({
@@ -15,6 +25,33 @@ export default defineConfig({
 	env: { node: true },
 	settings: {
 		vitest: { typecheck: true },
+		"better-tailwindcss": {
+			entryPoint: path.join(import.meta.dirname, "./src/index.css"),
+			selectors: [
+				...getDefaultSelectors(),
+				...["^classNames$", "^.+ClassName$", "^.+ClassNames$"].map((name) => ({
+					name,
+					kind: SelectorKind.Attribute,
+					match: [
+						{ type: MatcherType.String },
+						{ type: MatcherType.ObjectValue },
+					],
+				})),
+				{
+					name: "^.+ClassName$",
+					kind: SelectorKind.Variable,
+					match: [{ type: MatcherType.String }],
+				},
+				{
+					name: "^.+ClassNames$",
+					kind: SelectorKind.Variable,
+					match: [
+						{ type: MatcherType.String },
+						{ type: MatcherType.ObjectValue },
+					],
+				},
+			],
+		},
 	},
 	rules: {
 		"oxc/no-async-await": "off",
@@ -125,8 +162,13 @@ export default defineConfig({
 		{
 			files: ["src/**"],
 			env: { browser: true, node: false },
+			jsPlugins: ["eslint-plugin-better-tailwindcss"],
 			rules: {
 				"import/no-nodejs-modules": "error",
+
+				...tailwindcss.configs["recommended-error"].rules,
+				"better-tailwindcss/enforce-consistent-line-wrapping": "off",
+				"better-tailwindcss/enforce-shorthand-classes": "error",
 			},
 		},
 
@@ -174,6 +216,7 @@ export default defineConfig({
 			files: ["src/**/*.test.*"],
 			env: { browser: true, node: true },
 			plugins: ["vitest"],
+			jsPlugins: ["eslint-plugin-jest-dom", "eslint-plugin-testing-library"],
 			rules: {
 				"vitest/no-disabled-tests": "error",
 				"vitest/no-focused-tests": "error",
@@ -183,6 +226,9 @@ export default defineConfig({
 				"vitest/prefer-to-be-falsy": "off",
 				"vitest/prefer-to-be-truthy": "off",
 				"vitest/require-mock-type-parameters": "off",
+
+				...jestDom.configs["flat/recommended"].rules,
+				...testingLibrary.configs["flat/dom"].rules,
 			},
 		},
 	],

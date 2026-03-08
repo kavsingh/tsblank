@@ -5,6 +5,8 @@
 	"compilerOptions": {
 		"composite": true,
 		"emitDeclarationOnly": true,
+		"module": "nodenext",
+		"moduleResolution": "nodenext",
 		"noEmit": false,
 		"noPropertyAccessFromIndexSignature": true
 	}

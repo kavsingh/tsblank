@@ -1,6 +1,6 @@
 import { defineConfig, defineProject, mergeConfig } from "vitest/config";
 
-import baseAppConfig from "./vite.config";
+import baseAppConfig from "./vite.config.ts";
 
 import type { ViteUserConfig } from "vitest/config";
 
