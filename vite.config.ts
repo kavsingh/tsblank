@@ -8,7 +8,7 @@ function createChecker(mode: string) {
 
 	return checker({
 		overlay: { initialIsOpen: false },
-		typescript: true,
+		oxlint: { lintCommand: "oxlint --type-aware --type-check" },
 	});
 }
 
