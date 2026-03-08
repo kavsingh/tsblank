@@ -1,15 +1,8 @@
 {
 	"format_on_save": "on",
-	"code_actions_on_format": { "source.fixAll": true },
-	// for some reason auto-indentation does not respect formatter configs
 	"hard_tabs": true,
-
-	"auto_install_extensions": {
-		"tsgo": true,
-		"oxc": true,
-		"html": true,
-		"tombi": true
-	},
+	"prettier": { "allowed": false },
+	"preferred_line_length": 84,
 
 	"terminal": { "env": { "GIT_EDITOR": "zed --wait" } },
 
@@ -18,21 +11,8 @@
 	},
 
 	"lsp": {
-		"rust-analyzer": {
-			"initialization_options": {
-				"binary": { "path": "~/.cargo/bin/rust-analyzer" },
-				"check": { "command": "clippy" },
-				"diagnostics": { "styleLints": { "enable": true } },
-				"rustfmt": { "extraArgs": ["+nightly"] }
-			}
-		},
-
 		"oxlint": {
 			"initialization_options": { "settings": { "typeAware": true } }
-		},
-
-		"oxfmt": {
-			"initialization_options": { "settings": { "run": "onSave" } }
 		},
 
 		"eslint": {
@@ -52,23 +32,20 @@
 					".+ClassNames"
 				],
 				"classFunctions": ["twMerge", "twJoin"],
-				"experimental": { "configFile": { "src/index.css": "src/**/*" } },
-				// @TODO: disable once figured out why eslint plugin
-				// doesn't catch some cases
-				"lint": { "suggestCanonicalClasses": "warn" }
+				"experimental": { "configFile": { "src/index.css": "src/**/*" } }
 			}
 		}
 	},
 
 	"languages": {
-		"Rust": {
-			"formatter": [{ "language_server": { "name": "rust-analyzer" } }],
-			"preferred_line_length": 100
-		},
-
 		"TypeScript": {
-			"language_servers": ["tsgo", "vtsls", "oxlint", "eslint", "oxfmt"],
-			"prettier": { "allowed": false },
+			"language_servers": [
+				"tsgo",
+				"oxlint",
+				"eslint",
+				"tailwindcss-language-server",
+				"oxfmt"
+			],
 			"formatter": [{ "language_server": { "name": "oxfmt" } }],
 			"code_actions_on_format": {
 				"source.fixAll.oxc": true,
@@ -79,13 +56,11 @@
 		"TSX": {
 			"language_servers": [
 				"tsgo",
-				"vtsls",
 				"oxlint",
 				"eslint",
 				"tailwindcss-language-server",
 				"oxfmt"
 			],
-			"prettier": { "allowed": false },
 			"formatter": [{ "language_server": { "name": "oxfmt" } }],
 			"code_actions_on_format": {
 				"source.fixAll.oxc": true,
@@ -94,8 +69,7 @@
 		},
 
 		"JavaScript": {
-			"language_servers": ["tsgo", "vtsls", "oxlint", "eslint", "oxfmt"],
-			"prettier": { "allowed": false },
+			"language_servers": ["tsgo", "oxlint", "eslint", "oxfmt"],
 			"formatter": [{ "language_server": { "name": "oxfmt" } }],
 			"code_actions_on_format": {
 				"source.fixAll.oxc": true,
@@ -105,40 +79,35 @@
 
 		"CSS": {
 			"language_servers": [
+				"tailwindcss-language-server",
 				"tailwindcss-intellisense-css",
+				"oxfmt",
 				"!vscode-css-language-server"
 			],
-			"prettier": { "allowed": false },
 			"formatter": [{ "language_server": { "name": "oxfmt" } }]
 		},
 
 		"HTML": {
-			"prettier": { "allowed": false },
 			"formatter": [{ "language_server": { "name": "oxfmt" } }]
 		},
 
 		"Markdown": {
-			"prettier": { "allowed": false },
 			"formatter": [{ "language_server": { "name": "oxfmt" } }]
 		},
 
 		"JSON": {
-			"prettier": { "allowed": false },
 			"formatter": [{ "language_server": { "name": "oxfmt" } }]
 		},
 
 		"JSONC": {
-			"prettier": { "allowed": false },
 			"formatter": [{ "language_server": { "name": "oxfmt" } }]
 		},
 
 		"YAML": {
-			"prettier": { "allowed": false },
 			"formatter": [{ "language_server": { "name": "oxfmt" } }]
 		},
 
 		"TOML": {
-			"prettier": { "allowed": false },
 			"formatter": [{ "language_server": { "name": "tombi" } }]
 		}
 	}

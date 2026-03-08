@@ -1,5 +1,11 @@
 import type { CountProps } from "#components/count";
 
+async function LazyCount(props?: CountProps) {
+	const { Count } = await import("#components/count");
+
+	return Count(props);
+}
+
 export async function App(appRoot: HTMLElement): Promise<void> {
 	appRoot.innerHTML = `
 		<div class="flex min-h-full flex-col gap-4 p-4"></div>
@@ -15,10 +21,4 @@ export async function App(appRoot: HTMLElement): Promise<void> {
 	]);
 
 	for (const { el } of counts) uiRoot.append(el);
-}
-
-async function LazyCount(props?: CountProps) {
-	const { Count } = await import("#components/count");
-
-	return Count(props);
 }

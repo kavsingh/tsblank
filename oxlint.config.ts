@@ -1,10 +1,8 @@
 import { defineConfig } from "oxlint";
 
-import type { OxlintConfig } from "oxlint";
-
 export default defineConfig({
 	ignorePatterns: [".vscode/*", "**/dist/*", "**/reports/*"],
-	plugins: ["oxc", "eslint", "import", "unicorn", "promise"],
+	plugins: ["oxc", "eslint", "typescript", "import", "promise", "unicorn"],
 	categories: {
 		correctness: "error",
 		suspicious: "error",
@@ -15,7 +13,14 @@ export default defineConfig({
 		nursery: "error",
 	},
 	env: { node: true },
+	settings: {
+		vitest: { typecheck: true },
+	},
 	rules: {
+		"oxc/no-async-await": "off",
+		"oxc/no-optional-chaining": "off",
+		"oxc/no-rest-spread-properties": "off",
+
 		"eslint/arrow-body-style": "off",
 		"eslint/capitalized-comments": "off",
 		"eslint/curly": ["error", "multi-line", "consistent"],
@@ -61,17 +66,42 @@ export default defineConfig({
 		"eslint/prefer-destructuring": "off",
 		"eslint/sort-imports": "off",
 		"eslint/sort-keys": "off",
+
+		"typescript/consistent-type-imports": [
+			"error",
+			{
+				fixStyle: "separate-type-imports",
+				prefer: "type-imports",
+			},
+		],
+		"typescript/explicit-function-return-type": "off",
+		"typescript/no-non-null-assertion": "error",
+		"typescript/prefer-readonly-parameter-types": "off",
+		"typescript/promise-function-async": "off",
+		"typescript/restrict-template-expressions": [
+			"error",
+			{ allowNumber: true },
+		],
+		"typescript/strict-boolean-expressions": "off",
+		"typescript/switch-exhaustiveness-check": [
+			"error",
+			{
+				allowDefaultCaseForExhaustiveSwitch: true,
+				considerDefaultExhaustiveForUnions: true,
+				requireDefaultForNonUnion: true,
+			},
+		],
+
 		"import/group-exports": "off",
 		"import/exports-last": "off",
 		"import/extensions": "off",
 		"import/max-dependencies": "off",
 		"import/no-default-export": "error",
 		"import/no-named-export": "off",
+		"import/no-nodejs-modules": "off",
 		"import/no-unassigned-import": ["error", { allow: ["**/*.css"] }],
 		"import/prefer-default-export": "off",
-		"oxc/no-async-await": "off",
-		"oxc/no-optional-chaining": "off",
-		"oxc/no-rest-spread-properties": "off",
+
 		"unicorn/catch-error-name": ["error", { name: "cause" }],
 		"unicorn/no-array-reduce": "off",
 		"unicorn/no-useless-undefined": "off",
@@ -93,38 +123,11 @@ export default defineConfig({
 		},
 
 		{
-			files: ["**/*.{ts,tsx}"],
-			plugins: ["typescript"],
-			rules: {
-				"typescript/consistent-type-imports": [
-					"error",
-					{
-						fixStyle: "separate-type-imports",
-						prefer: "type-imports",
-					},
-				],
-				"typescript/explicit-function-return-type": "off",
-				"typescript/no-non-null-assertion": "error",
-				"typescript/promise-function-async": "off",
-				"typescript/restrict-template-expressions": [
-					"error",
-					{ allowNumber: true },
-				],
-				"typescript/strict-boolean-expressions": "off",
-				"typescript/switch-exhaustiveness-check": [
-					"error",
-					{
-						allowDefaultCaseForExhaustiveSwitch: true,
-						considerDefaultExhaustiveForUnions: true,
-						requireDefaultForNonUnion: true,
-					},
-				],
-			},
-		},
-
-		{
 			files: ["src/**"],
 			env: { browser: true, node: false },
+			rules: {
+				"import/no-nodejs-modules": "error",
+			},
 		},
 
 		{
@@ -134,8 +137,9 @@ export default defineConfig({
 				"**/*.test-*.*",
 				"**/*__{mock,mocks,test,test-*,tests,fixtures}__/**/*",
 			],
-			plugins: ["eslint", "import", "promise", "typescript"],
 			env: { browser: true, node: true },
+			// @TODO: omitting this causes rule overrides to be ignored. why?
+			plugins: ["eslint", "import", "typescript", "promise"],
 			rules: {
 				"eslint/max-lines": "off",
 				"eslint/max-lines-per-function": "off",
@@ -144,10 +148,9 @@ export default defineConfig({
 				"eslint/no-console": "off",
 				"eslint/no-constructor-return": "off",
 				"eslint/no-promise-executor-return": "off",
+
 				"import/no-namespace": "off",
-				"promise/catch-or-return": "off",
-				"promise/prefer-await-to-callbacks": "off",
-				"promise/prefer-await-to-then": "off",
+
 				"typescript/ban-types": "off",
 				"typescript/consistent-type-assertions": "off",
 				"typescript/no-explicit-any": "off",
@@ -160,6 +163,10 @@ export default defineConfig({
 				"typescript/no-unsafe-return": "off",
 				"typescript/no-unsafe-type-assertion": "off",
 				"typescript/unbound-method": "off",
+
+				"promise/catch-or-return": "off",
+				"promise/prefer-await-to-callbacks": "off",
+				"promise/prefer-await-to-then": "off",
 			},
 		},
 
@@ -171,6 +178,7 @@ export default defineConfig({
 				"vitest/no-disabled-tests": "error",
 				"vitest/no-focused-tests": "error",
 				"vitest/no-hooks": "off",
+				"vitest/no-importing-vitest-globals": "off",
 				"vitest/prefer-expect-assertions": "off",
 				"vitest/prefer-to-be-falsy": "off",
 				"vitest/prefer-to-be-truthy": "off",
@@ -178,9 +186,4 @@ export default defineConfig({
 			},
 		},
 	],
-	settings: {
-		vitest: {
-			typecheck: true,
-		},
-	},
-} satisfies OxlintConfig);
+});
