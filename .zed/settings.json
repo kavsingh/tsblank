@@ -4,12 +4,6 @@
 	"prettier": { "allowed": false },
 	"preferred_line_length": 84,
 
-	"terminal": { "env": { "GIT_EDITOR": "zed --wait" } },
-
-	"file_types": {
-		"Dockerfile": ["dockerfile", "dockerfile.*"]
-	},
-
 	"lsp": {
 		"oxlint": {
 			"initialization_options": { "settings": { "typeAware": true } }

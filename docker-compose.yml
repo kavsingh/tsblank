@@ -1,0 +1,28 @@
+services:
+  dev:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+      target: dev
+    command: bun run dev -- --host 0.0.0.0
+    ports:
+      - "5173:5173"
+    develop:
+      watch:
+        - action: sync
+          path: ./src
+          target: /repo/src
+        - action: rebuild
+          path: ./package.json
+          target: /repo/package.json
+    profiles:
+      - dev
+
+  prod:
+    build:
+      context: .
+      target: prod
+    ports:
+      - "5174:80"
+    profiles:
+      - prod
