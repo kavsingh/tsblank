@@ -12,12 +12,7 @@
 		"tailwindcss-language-server": {
 			"settings": {
 				"validate": true,
-				"classAttributes": [
-					"class",
-					"className",
-					".+ClassName",
-					".+ClassNames"
-				],
+				"classAttributes": [".+ClassName", ".+ClassNames"],
 				"classFunctions": ["twMerge", "twJoin"],
 				"experimental": { "configFile": { "src/index.css": "src/**/*" } }
 			}

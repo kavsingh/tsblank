@@ -7,8 +7,19 @@ import {
 	MatcherType,
 } from "eslint-plugin-better-tailwindcss/types";
 import jestDom from "eslint-plugin-jest-dom";
+import reactHooks from "eslint-plugin-react-hooks";
 import testingLibrary from "eslint-plugin-testing-library";
 import { defineConfig } from "oxlint";
+
+const reactHooksName = "react-hooks-js";
+const reactHooksRecommended = Object.fromEntries(
+	Object.entries(reactHooks.configs["recommended-latest"].rules).map(
+		([key, value]) => [
+			key.replace(/^react-hooks\//, `${reactHooksName}/`),
+			value,
+		],
+	),
+);
 
 export default defineConfig({
 	ignorePatterns: [".vscode/*", "**/dist/*", "**/reports/*"],
@@ -162,9 +173,26 @@ export default defineConfig({
 		{
 			files: ["src/**"],
 			env: { browser: true, node: false },
-			jsPlugins: ["eslint-plugin-better-tailwindcss"],
+			jsPlugins: [
+				{ name: reactHooksName, specifier: "eslint-plugin-react-hooks" },
+				"eslint-plugin-better-tailwindcss",
+			],
+			plugins: ["react", "jsx-a11y"],
 			rules: {
 				"import/no-nodejs-modules": "error",
+
+				"react/jsx-filename-extension": [
+					"error",
+					{ allow: "as-needed", extensions: ["tsx"] },
+				],
+				"react/jsx-props-no-spreading": "off",
+				"react/no-multi-comp": "off",
+				"react/react-in-jsx-scope": "off",
+				// leave to eslint-plugin-react-hooks
+				"react/exhaustive-deps": "off",
+				"react/rules-of-hooks": "off",
+
+				...reactHooksRecommended,
 
 				...tailwindcss.configs["recommended-error"].rules,
 				"better-tailwindcss/enforce-consistent-line-wrapping": "off",
@@ -228,7 +256,7 @@ export default defineConfig({
 				"vitest/require-mock-type-parameters": "off",
 
 				...jestDom.configs["flat/recommended"].rules,
-				...testingLibrary.configs["flat/dom"].rules,
+				...testingLibrary.configs["flat/react"].rules,
 			},
 		},
 	],

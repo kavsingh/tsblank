@@ -23,12 +23,7 @@
 
 	"files.associations": { "*.css": "tailwindcss" },
 	"tailwindCSS.validate": true,
-	"tailwindCSS.classAttributes": [
-		"class",
-		"className",
-		".+ClassName",
-		".+ClassNames"
-	],
+	"tailwindCSS.classAttributes": [".+ClassName", ".+ClassNames"],
 	"tailwindCSS.classFunctions": ["twMerge", "twJoin"],
 	"tailwindCSS.experimental.configFile": "src/index.css",
 
