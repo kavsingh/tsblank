@@ -7,7 +7,7 @@
 		"lib": ["esnext", "dom", "dom.iterable"],
 		"module": "esnext",
 		"moduleResolution": "bundler",
-		"paths": { "#*": ["./src/*"] },
+		"paths": { "~/*": ["./src/*"] },
 		"sourceMap": true,
 		"types": ["vite/client", "@testing-library/jest-dom/vitest"]
 	}

@@ -1,7 +1,6 @@
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 import { checker } from "vite-plugin-checker";
-import tsconfigPaths from "vite-tsconfig-paths";
 
 function createChecker(mode: string) {
 	if (mode !== "development") return undefined;
@@ -13,5 +12,8 @@ function createChecker(mode: string) {
 }
 
 export default defineConfig(({ mode }) => {
-	return { plugins: [tsconfigPaths(), tailwindcss(), createChecker(mode)] };
+	return {
+		resolve: { tsconfigPaths: true },
+		plugins: [tailwindcss(), createChecker(mode)],
+	};
 });

@@ -1,7 +1,7 @@
-import type { CountProps } from "#components/count";
+import type { CountProps } from "~/components/count";
 
 async function LazyCount(props?: CountProps) {
-	const { Count } = await import("#components/count");
+	const { Count } = await import("~/components/count");
 
 	return Count(props);
 }

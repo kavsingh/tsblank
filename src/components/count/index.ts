@@ -1,4 +1,4 @@
-import { Button } from "#components/button";
+import { Button } from "~/components/button";
 
 function formatValue(value: number) {
 	return String(value).padStart(2, "0");
