@@ -1,9 +1,4 @@
 {
-	"editor.formatOnSave": true,
-	"editor.codeActionsOnSave": { "source.fixAll.oxc": "always" },
-	"editor.quickSuggestions": {
-		"strings": true
-	},
 	"files.watcherExclude": {
 		"**/node_modules": true,
 		"**/dist/": true
@@ -14,15 +9,11 @@
 	},
 
 	"js/ts.experimental.useTsgo": true,
-
 	"oxc.enable": true,
 	"oxc.typeAware": true,
 
-	"eslint.enable": false,
-	"prettier.enable": false,
-
 	"files.associations": { "*.css": "tailwindcss" },
-	"tailwindCSS.validate": true,
+	"tailwindCSS.validate": false,
 	"tailwindCSS.classAttributes": [
 		"class",
 		"className",
@@ -32,36 +23,10 @@
 	"tailwindCSS.classFunctions": ["twMerge", "twJoin"],
 	"tailwindCSS.experimental.configFile": "src/index.css",
 
-	"cssVariables.lookupFiles": ["src/style/**/*.css"],
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "oxc.oxc-vscode",
+	"editor.codeActionsOnSave": { "source.fixAll.oxc": "always" },
+	"editor.quickSuggestions": { "strings": true },
 
-	"[typescript]": {
-		"editor.defaultFormatter": "oxc.oxc-vscode"
-	},
-	"[typescriptreact]": {
-		"editor.defaultFormatter": "oxc.oxc-vscode"
-	},
-	"[javascript]": {
-		"editor.defaultFormatter": "oxc.oxc-vscode"
-	},
-	"[javascriptreact]": {
-		"editor.defaultFormatter": "oxc.oxc-vscode"
-	},
-	"[html]": {
-		"editor.defaultFormatter": "oxc.oxc-vscode"
-	},
-	"[css]": {
-		"editor.defaultFormatter": "oxc.oxc-vscode"
-	},
-	"[json]": {
-		"editor.defaultFormatter": "oxc.oxc-vscode"
-	},
-	"[jsonc]": {
-		"editor.defaultFormatter": "oxc.oxc-vscode"
-	},
-	"[yaml]": {
-		"editor.defaultFormatter": "oxc.oxc-vscode"
-	},
-	"[toml]": {
-		"editor.defaultFormatter": "oxc.oxc-vscode"
-	}
+	"[css]": { "tailwindCSS.validate": true }
 }

@@ -130,7 +130,6 @@ export default defineConfig({
 		],
 
 		"import/group-exports": "off",
-		"import/exports-last": "off",
 		"import/extensions": "off",
 		"import/max-dependencies": "off",
 		"import/no-default-export": "error",
@@ -168,7 +167,7 @@ export default defineConfig({
 
 				...tailwindcss.configs["recommended-error"].rules,
 				"better-tailwindcss/enforce-consistent-line-wrapping": "off",
-				"better-tailwindcss/enforce-shorthand-classes": "error",
+				"better-tailwindcss/enforce-logical-properties": "error",
 			},
 		},
 
@@ -222,10 +221,10 @@ export default defineConfig({
 				"vitest/no-focused-tests": "error",
 				"vitest/no-hooks": "off",
 				"vitest/no-importing-vitest-globals": "off",
-				"vitest/prefer-expect-assertions": "off",
 				"vitest/prefer-to-be-falsy": "off",
 				"vitest/prefer-to-be-truthy": "off",
 				"vitest/require-mock-type-parameters": "off",
+				"vitest/require-test-timeout": "off",
 
 				...jestDom.configs["flat/recommended"].rules,
 				...testingLibrary.configs["flat/dom"].rules,
