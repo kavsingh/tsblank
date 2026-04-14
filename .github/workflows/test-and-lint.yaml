@@ -8,9 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6 # needed for oxlint
+        with: { node-version: latest }
       - uses: oven-sh/setup-bun@v2
-        with:
-          bun-version-file: package.json
+        with: { bun-version-file: package.json }
       - run: bun install --frozen-lockfile
       - run: bun run test -- --coverage --silent
       - run: bun run lint
