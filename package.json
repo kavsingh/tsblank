@@ -11,7 +11,7 @@
 	"scripts": {
 		"tdd": "vitest",
 		"test": "vitest run",
-		"lint": "oxlint --type-aware --type-check --max-warnings=0 && oxfmt --check",
+		"lint": "oxlint && oxfmt --check",
 		"dev": "vite",
 		"build": "rm -rf ./dist && vite build",
 		"preview": "vite preview"

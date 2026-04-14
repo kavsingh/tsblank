@@ -11,6 +11,12 @@ import testingLibrary from "eslint-plugin-testing-library";
 import { defineConfig } from "oxlint";
 
 export default defineConfig({
+	options: {
+		typeAware: true,
+		typeCheck: true,
+		maxWarnings: 0,
+		reportUnusedDisableDirectives: "error",
+	},
 	ignorePatterns: [".vscode/*", "**/dist/*", "**/reports/*"],
 	plugins: ["oxc", "eslint", "typescript", "import", "promise", "unicorn"],
 	categories: {

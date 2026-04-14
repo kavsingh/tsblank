@@ -6,10 +6,6 @@
 	"formatter": [{ "language_server": { "name": "oxfmt" } }],
 
 	"lsp": {
-		"oxlint": {
-			"initialization_options": { "settings": { "typeAware": true } }
-		},
-
 		"tailwindcss-language-server": {
 			"settings": {
 				"validate": true,
