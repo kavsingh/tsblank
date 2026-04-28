@@ -6,7 +6,7 @@ async function LazyCount(props?: CountProps) {
 	return Count(props);
 }
 
-const rootClassName = "flex min-h-full flex-col gap-4 p-4";
+const rootClassName = "flex flex-col gap-4 p-4 min-block-full";
 
 export async function App(appRoot: HTMLElement): Promise<void> {
 	appRoot.innerHTML = `<div class="${rootClassName}"></div>`;
