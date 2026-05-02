@@ -30,8 +30,8 @@ export default defineConfig({
 	},
 	env: { node: true },
 	settings: {
-		vitest: { typecheck: true },
 		"better-tailwindcss": {
+			cwd: import.meta.dirname,
 			entryPoint: path.join(import.meta.dirname, "./src/index.css"),
 			selectors: [
 				...getDefaultSelectors(),
@@ -58,6 +58,8 @@ export default defineConfig({
 				},
 			],
 		},
+
+		vitest: { typecheck: true },
 	},
 	rules: {
 		"oxc/no-async-await": "off",
