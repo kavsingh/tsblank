@@ -4,6 +4,7 @@
 	"preferred_line_length": 84,
 	"prettier": { "allowed": false },
 	"formatter": [{ "language_server": { "name": "oxfmt" } }],
+	"code_actions_on_format": { "source.fixAll.oxc": true },
 
 	"lsp": {
 		"tailwindcss-language-server": {
@@ -28,8 +29,7 @@
 				"oxlint",
 				"tailwindcss-language-server",
 				"oxfmt"
-			],
-			"code_actions_on_format": { "source.fixAll.oxc": true }
+			]
 		},
 
 		"TSX": {
@@ -38,15 +38,10 @@
 				"oxlint",
 				"tailwindcss-language-server",
 				"oxfmt"
-			],
-			"formatter": [{ "language_server": { "name": "oxfmt" } }],
-			"code_actions_on_format": { "source.fixAll.oxc": true }
+			]
 		},
 
-		"JavaScript": {
-			"language_servers": ["tsgo", "oxlint", "oxfmt"],
-			"code_actions_on_format": { "source.fixAll.oxc": true }
-		},
+		"JavaScript": { "language_servers": ["tsgo", "oxlint", "oxfmt"] },
 
 		"CSS": {
 			"language_servers": [

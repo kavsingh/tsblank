@@ -17,7 +17,7 @@ export default defineConfig({
 		maxWarnings: 0,
 		reportUnusedDisableDirectives: "error",
 	},
-	ignorePatterns: [".vscode/*", "**/dist/*", "**/reports/*"],
+	ignorePatterns: ["**/dist/*", "**/reports/*", "*.lock"],
 	plugins: ["oxc", "eslint", "typescript", "import", "promise", "unicorn"],
 	categories: {
 		correctness: "error",
