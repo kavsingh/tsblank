@@ -4,12 +4,12 @@
 		"jobs": [
 			{
 				"glob": "*.{ts,tsx,js,jsx,html,css,json,jsonc,yml,yaml,toml,md}",
-				"run": "bun oxfmt {staged_files}",
+				"run": "bun oxfmt --no-error-on-unmatched-pattern {staged_files}",
 				"stage_fixed": true
 			},
 			{
 				"glob": "*.{ts,tsx,js,jsx}",
-				"run": "bun oxlint --fix {staged_files}",
+				"run": "bun oxlint --fix --no-error-on-unmatched-pattern {staged_files}",
 				"stage_fixed": true
 			}
 		]
