@@ -1,6 +1,14 @@
 import { twMerge } from "tailwind-merge";
 
-export function Button({ label, onClick, className }: ButtonProps): {
+type ButtonClickHandler = (ev: HTMLElementEventMap["click"]) => void;
+
+interface ButtonProps {
+	label: string;
+	onClick: ButtonClickHandler;
+	className?: string | undefined;
+}
+
+function Button({ label, onClick, className }: ButtonProps): {
 	el: HTMLButtonElement;
 } {
 	const frag = document.createElement("fragment");
@@ -24,10 +32,5 @@ export function Button({ label, onClick, className }: ButtonProps): {
 	return { el };
 }
 
-export interface ButtonProps {
-	label: string;
-	onClick: ButtonClickHandler;
-	className?: string | undefined;
-}
-
-export type ButtonClickHandler = (ev: HTMLElementEventMap["click"]) => void;
+export { Button };
+export type { ButtonProps, ButtonClickHandler };

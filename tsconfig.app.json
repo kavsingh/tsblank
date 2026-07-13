@@ -4,7 +4,7 @@
 	"include": ["src"],
 	"compilerOptions": {
 		"composite": true,
-		"lib": ["esnext", "dom", "dom.iterable"],
+		"lib": ["esnext", "dom", "dom.iterable", "dom.asynciterable"],
 		"module": "esnext",
 		"moduleResolution": "bundler",
 		"paths": { "~/*": ["./src/*"] },

@@ -1,16 +1,16 @@
 import { Button } from "~/components/button";
 
-function formatValue(value: number) {
-	return String(value).padStart(2, "0");
-}
-
-export interface CountProps {
+interface CountProps {
 	initialCount?: number | undefined;
 	step?: number | undefined;
 }
 
+function formatValue(value: number) {
+	return String(value).padStart(2, "0");
+}
+
 // oxlint-disable-next-line max-statements
-export function Count({ initialCount = 0, step = 1 }: CountProps = {}): {
+function Count({ initialCount = 0, step = 1 }: CountProps = {}): {
 	el: HTMLDivElement;
 } {
 	const el = document.createElement("div");
@@ -40,3 +40,6 @@ export function Count({ initialCount = 0, step = 1 }: CountProps = {}): {
 
 	return { el };
 }
+
+export { Count };
+export type { CountProps };

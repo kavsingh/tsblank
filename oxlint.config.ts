@@ -135,7 +135,6 @@ export default defineConfig({
 			},
 		],
 
-		"import/group-exports": "off",
 		"import/extensions": "off",
 		"import/max-dependencies": "off",
 		"import/no-default-export": "error",
