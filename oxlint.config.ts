@@ -106,6 +106,7 @@ export default defineConfig({
 		],
 		"eslint/no-void": ["error", { allowAsStatement: true }],
 		"eslint/no-warning-comments": ["error", { terms: ["fixme", "revert"] }],
+		"eslint/one-var": ["error", "never"],
 		"eslint/prefer-destructuring": "off",
 		"eslint/sort-imports": "off",
 		"eslint/sort-keys": "off",
