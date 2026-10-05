@@ -10,12 +10,7 @@
 		"tailwindcss-language-server": {
 			"settings": {
 				"validate": true,
-				"classAttributes": [
-					"class",
-					"className",
-					".+ClassName",
-					".+ClassNames"
-				],
+				"classAttributes": [".+ClassName", ".+ClassNames"],
 				"classFunctions": ["cn", "cx", "tv"],
 				"experimental": { "configFile": { "src/index.css": "src/**/*" } }
 			}

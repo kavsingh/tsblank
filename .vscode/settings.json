@@ -13,12 +13,7 @@
 
 	"files.associations": { "*.css": "tailwindcss" },
 	"tailwindCSS.validate": false,
-	"tailwindCSS.classAttributes": [
-		"class",
-		"className",
-		".+ClassName",
-		".+ClassNames"
-	],
+	"tailwindCSS.classAttributes": [".+ClassName", ".+ClassNames"],
 	"tailwindCSS.classFunctions": ["cn", "cx", "tv"],
 	"tailwindCSS.experimental.configFile": "src/index.css",
 
