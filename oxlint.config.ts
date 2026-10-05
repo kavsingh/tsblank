@@ -108,6 +108,7 @@ export default defineConfig({
 		"eslint/no-warning-comments": ["error", { terms: ["fixme", "revert"] }],
 		"eslint/one-var": ["error", "never"],
 		"eslint/prefer-destructuring": "off",
+		"eslint/require-unicode-regexp": "off",
 		"eslint/sort-imports": "off",
 		"eslint/sort-keys": "off",
 
@@ -161,9 +162,19 @@ export default defineConfig({
 		{
 			files: ["src/**"],
 			env: { browser: true, node: false },
+			plugins: ["react", "jsx-a11y"],
 			jsPlugins: ["eslint-plugin-better-tailwindcss"],
 			rules: {
 				"import/no-nodejs-modules": "error",
+
+				"react/jsx-filename-extension": [
+					"error",
+					{ allow: "as-needed", extensions: ["tsx"] },
+				],
+				"react/jsx-no-literals": "off",
+				"react/jsx-props-no-spreading": "off",
+				"react/no-multi-comp": "off",
+				"react/react-in-jsx-scope": "off",
 
 				...tailwindcss.configs["recommended-error"].rules,
 				"better-tailwindcss/enforce-consistent-line-wrapping": "off",
@@ -179,8 +190,6 @@ export default defineConfig({
 				"**/*__{mock,mocks,test,test-*,tests,fixtures}__/**/*",
 			],
 			env: { browser: true, node: true },
-			// @TODO: omitting this causes rule overrides to be ignored. why?
-			plugins: ["eslint", "import", "typescript", "promise"],
 			rules: {
 				"eslint/max-lines": "off",
 				"eslint/max-lines-per-function": "off",
@@ -227,7 +236,7 @@ export default defineConfig({
 				"vitest/require-test-timeout": "off",
 
 				...jestDom.configs["flat/recommended"].rules,
-				...testingLibrary.configs["flat/dom"].rules,
+				...testingLibrary.configs["flat/react"].rules,
 			},
 		},
 	],
