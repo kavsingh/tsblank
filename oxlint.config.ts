@@ -113,10 +113,7 @@ export default defineConfig({
 
 		"typescript/consistent-type-imports": [
 			"error",
-			{
-				fixStyle: "separate-type-imports",
-				prefer: "type-imports",
-			},
+			{ fixStyle: "separate-type-imports", prefer: "type-imports" },
 		],
 		"typescript/explicit-function-return-type": "off",
 		"typescript/no-non-null-assertion": "error",
@@ -146,14 +143,11 @@ export default defineConfig({
 
 		"unicorn/catch-error-name": ["error", { name: "cause" }],
 		"unicorn/no-array-reduce": "off",
-		"unicorn/no-useless-undefined": "off",
 	},
 	overrides: [
 		{
 			files: ["**/typings/*.d.ts"],
-			rules: {
-				"import/unambiguous": "off",
-			},
+			rules: { "import/unambiguous": "off" },
 		},
 
 		{
