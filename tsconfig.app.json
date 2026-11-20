@@ -3,6 +3,8 @@
 	"extends": "./tsconfig.base.json",
 	"include": ["src"],
 	"compilerOptions": {
+		"allowJs": true,
+		"checkJs": true,
 		"composite": true,
 		"lib": ["esnext", "dom", "dom.iterable", "dom.asynciterable"],
 		"module": "esnext",

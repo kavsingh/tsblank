@@ -13,5 +13,5 @@ quick and dirty typescript + vite web boilerplates
    ```
 2. run
    ```shell
-   bun i && bun dev
+   pnpm i && pnpm dev
    ```

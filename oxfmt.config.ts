@@ -1,7 +1,7 @@
 import { defineConfig } from "oxfmt";
 
 export default defineConfig({
-	ignorePatterns: ["**/dist/**", "**/reports/**", "*.lock"],
+	ignorePatterns: ["pnpm-*.yaml", "**/dist/**", "**/reports/**"],
 	printWidth: 80,
 	useTabs: true,
 	sortImports: {

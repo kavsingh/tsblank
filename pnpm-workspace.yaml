@@ -1,0 +1,18 @@
+blockExoticSubdeps: true
+minimumReleaseAge: 4320 # 3 days in minutes
+strictDepBuilds: true
+trustPolicy: no-downgrade
+trustPolicyIgnoreAfter: 10080
+verifyDepsBeforeRun: prompt
+
+savePrefix: ''
+
+skills:
+  dirs:
+    - .agents/skills
+    - .claude/skills
+    - .github/skills
+
+allowBuilds:
+  lefthook: true
+  nx: true

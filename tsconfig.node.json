@@ -1,0 +1,6 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"extends": ["./tsconfig.base.json", "@tsconfig/node26/tsconfig.json"],
+	"include": ["./*.ts", "./*.js", "./*.cjs"],
+	"compilerOptions": { "allowJs": true, "checkJs": true, "composite": true }
+}

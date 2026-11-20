@@ -24,7 +24,7 @@ function Button({ label, onClick, className }: ButtonProps): {
 	const el = frag.firstElementChild;
 
 	if (!(el instanceof HTMLButtonElement)) {
-		throw new Error("Could not create button");
+		throw new TypeError("Could not create button");
 	}
 
 	el.addEventListener("click", onClick);

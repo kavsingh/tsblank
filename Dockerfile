@@ -2,16 +2,17 @@
 
 # base
 
-FROM oven/bun:latest AS base
+FROM node:26-alpine AS base
 
 WORKDIR /repo
 
-COPY package.json bun.lock tsconfig.json tsconfig.*.json  ./
+COPY package.json pnpm-*.yaml tsconfig.json tsconfig.*.json  ./
 COPY vite.config.ts index.html ./
 COPY src/ ./src/
 
-RUN --mount=type=cache,id=bun,target=/root/.local/share/bun/store \
-	bun install --frozen-lockfile
+RUN npm install -g corepack
+RUN corepack prepare pnpm --activate
+RUN pnpm install --frozen-lockfile --ignore-scripts
 
 # dev mode
 
@@ -23,8 +24,7 @@ EXPOSE 5173
 
 FROM base AS build
 
-RUN --mount=type=cache,id=bun,target=/root/.local/share/bun/store \
-	bun run build
+RUN pnpm run build
 
 # host static build
 

@@ -3,13 +3,10 @@
 	"extends": "@tsconfig/strictest/tsconfig.json",
 	"compilerOptions": {
 		"allowImportingTsExtensions": true,
-		"allowJs": true,
-		"checkJs": true,
 		"erasableSyntaxOnly": true,
 		"verbatimModuleSyntax": true,
-		// to allow composite + allowImportingTsExtensions
-		// to block emit, use --noEmit cli flag
 		"emitDeclarationOnly": true,
+
 		// leave the following to linters
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
