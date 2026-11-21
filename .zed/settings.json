@@ -16,7 +16,7 @@
 					".+ClassName",
 					".+ClassNames"
 				],
-				"classFunctions": ["twMerge", "twJoin"],
+				"classFunctions": ["cn", "cx", "tv"],
 				"experimental": { "configFile": { "src/index.css": "src/**/*" } }
 			}
 		}
