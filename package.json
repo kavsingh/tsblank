@@ -18,7 +18,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"tailwind-merge": "3.7.0"
+		"tailwind-variants": "4.0.2"
 	},
 	"devDependencies": {
 		"@tailwindcss/vite": "4.3.5",
@@ -28,7 +28,7 @@
 		"@tsconfig/node26": "26.0.2",
 		"@tsconfig/strictest": "2.0.9",
 		"@types/node": "26.6.6",
-		"@vitest/coverage-v8": "5.1.0",
+		"@vitest/coverage-v8": "5.1.1",
 		"eslint-plugin-better-tailwindcss": "4.11.0",
 		"eslint-plugin-jest-dom": "5.10.2",
 		"eslint-plugin-testing-library": "7.16.2",
@@ -41,7 +41,7 @@
 		"typescript": "7.0.2",
 		"vite": "8.3.8",
 		"vite-plugin-checker": "1.0.0",
-		"vitest": "5.1.0"
+		"vitest": "5.1.1"
 	},
 	"packageManager": "pnpm@12.21.0+sha512.66fd8278ee28935ce951792d34367ff3af5c432a2756445823029533835b8da529bbe0be5130afd56ed0713fb8789e47bad82d93bd5ae2fe54b15562d6276ef0"
 }
