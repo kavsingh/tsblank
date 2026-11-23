@@ -9,7 +9,7 @@
 	"type": "module",
 	"main": "index.js",
 	"scripts": {
-		"postinstall": "lefthook install",
+		"prepare": "lefthook install && msw init",
 		"tdd": "vitest",
 		"test": "vitest run",
 		"lint": "oxlint && oxfmt --check",
@@ -18,9 +18,11 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@reduxjs/toolkit": "2.15.0",
 		"@solidjs/web": "2.0.3",
 		"solid-js": "2.0.3",
-		"tailwind-variants": "4.0.2"
+		"tailwind-variants": "4.0.2",
+		"zod": "4.6.7"
 	},
 	"devDependencies": {
 		"@solidjs/testing-library": "1.0.0-rc.2",
@@ -39,6 +41,7 @@
 		"eslint-plugin-testing-library": "7.16.2",
 		"jsdom": "31.0.1",
 		"lefthook": "2.2.2",
+		"msw": "3.0.7",
 		"oxfmt": "0.79.0",
 		"oxlint": "1.94.0",
 		"oxlint-tsgolint": "7.0.2007",
@@ -48,5 +51,10 @@
 		"vite-plugin-checker": "1.0.0",
 		"vitest": "5.1.1"
 	},
-	"packageManager": "pnpm@12.23.0+sha512.02da94ffaf133f46074322afe552f90d40b5f71ae259aefbccdacc5085b1d617e98d65e0131f5748b9b67445978ee5055d7d59a473f1eef0d504854fefcd5975"
+	"packageManager": "pnpm@12.23.0+sha512.02da94ffaf133f46074322afe552f90d40b5f71ae259aefbccdacc5085b1d617e98d65e0131f5748b9b67445978ee5055d7d59a473f1eef0d504854fefcd5975",
+	"msw": {
+		"workerDirectory": [
+			"public"
+		]
+	}
 }

@@ -1,7 +1,12 @@
 import { defineConfig } from "oxfmt";
 
 export default defineConfig({
-	ignorePatterns: ["pnpm-*.yaml", "**/dist/**", "**/reports/**"],
+	ignorePatterns: [
+		"pnpm-*.yaml",
+		"**/dist/**",
+		"**/reports/**",
+		"public/mockServiceWorker.js",
+	],
 	printWidth: 80,
 	useTabs: true,
 	sortImports: {
