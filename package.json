@@ -18,9 +18,13 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@solidjs/web": "2.0.3",
+		"solid-js": "2.0.3",
 		"tailwind-variants": "4.0.2"
 	},
 	"devDependencies": {
+		"@solidjs/testing-library": "1.0.0-rc.2",
+		"@solidjs/vite-plugin": "3.0.1",
 		"@tailwindcss/vite": "4.3.5",
 		"@testing-library/dom": "10.4.2",
 		"@testing-library/jest-dom": "8.0.0",
@@ -31,6 +35,7 @@
 		"@vitest/coverage-v8": "5.1.1",
 		"eslint-plugin-better-tailwindcss": "4.11.0",
 		"eslint-plugin-jest-dom": "5.11.0",
+		"eslint-plugin-solid": "0.20.1",
 		"eslint-plugin-testing-library": "7.16.2",
 		"jsdom": "31.0.1",
 		"lefthook": "2.2.2",

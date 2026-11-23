@@ -16,3 +16,8 @@ skills:
 allowBuilds:
   lefthook: true
   nx: true
+permissions:
+  '@solidjs/web':
+    skills: true
+  solid-js:
+    skills: [reactivity-diagnostics, solid-2.0, solid-2.0-cheatsheet]

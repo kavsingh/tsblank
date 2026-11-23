@@ -5,6 +5,7 @@ import {
 	MatcherType,
 } from "eslint-plugin-better-tailwindcss/types";
 import jestDom from "eslint-plugin-jest-dom";
+import solid from "eslint-plugin-solid/configs/v2-strict";
 import testingLibrary from "eslint-plugin-testing-library";
 import { defineConfig } from "oxlint";
 
@@ -28,6 +29,8 @@ export default defineConfig({
 	},
 	env: { node: true },
 	settings: {
+		...solid.settings,
+
 		"better-tailwindcss": {
 			cwd: import.meta.dirname,
 			entryPoint: "src/index.css",
@@ -161,9 +164,11 @@ export default defineConfig({
 		{
 			files: ["src/**"],
 			env: { browser: true, node: false },
-			jsPlugins: ["eslint-plugin-better-tailwindcss"],
+			jsPlugins: ["eslint-plugin-solid", "eslint-plugin-better-tailwindcss"],
 			rules: {
 				"import/no-nodejs-modules": "error",
+
+				...solid.rules,
 
 				...tailwindcss.configs["recommended-error"].rules,
 				"better-tailwindcss/enforce-consistent-line-wrapping": "off",
